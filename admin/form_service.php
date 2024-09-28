@@ -111,7 +111,7 @@ $data_keluhan = select("SELECT * FROM keluhan");
             </div>
             <!-- Teks di sebelah kanan gambar -->
             <div class="flex-grow-1 ms-3">
-                <h5 class="mb-0"><?php echo $_SESSION['namaadmin'] ?></h5>
+                <h5 class="mb-0"><?php echo $_SESSION['username'] = $r['username']; ?></h5>
                 <small><p class="text-muted"><i class="bi bi-clock-fill"></i>Pkl <?php echo date('H:i:s')  ?>WIB</l></small>
             </div>
         </div>

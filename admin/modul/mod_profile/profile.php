@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     <div class="card">
     <div class="card-header"><strong>Ubah Konten Profile</strong></div>
     <div class="card-body">
@@ -21,8 +21,8 @@
            <div class="form-group">
                 <img src="././img_profile/<?php echo $r["foto_profil"]?>" alt="<?php echo $r["foto_profil"]  ?>" heigth="100" width="100">
            </div>
-           <div class="mb-3 text-end">
-           <button type="submit" name="submit" class="btn btn-warning">Update</button>
+           <div class="mb-2 mt-3">
+           <button type="submit" name="submit" class="btn btn-primary">Update</button>
            </div>
         </form>
             <?php
@@ -32,7 +32,6 @@
 
                     $foto_profil = $_FILES['foto_profil']['name'];
                     $path_foto_profil = "././img_profile/".$r['foto_profil'];
-
                     $file_extension = array('png', 'jpg', 'jpeg', 'gif');
                     $extension = pathinfo($foto_profil, PATHINFO_EXTENSION);
                     $size_foto_profil = $_FILES['foto_profil']['size'];
@@ -54,7 +53,7 @@
                             move_uploaded_file($_FILES['foto_profil']['tmp_name'], '././img_profile/'.$nama_foto_profil);
                             mysqli_query($db, "UPDATE profil SET konten_profil='$konten_profil', foto_profil='$nama_foto_profil' WHERE id_profile='$id_profil'");
 
-                            echo "<script>alert('Konten dan Foto Profile Berhasil Diubah) window.location = dashboard.php?hal=profile</script>";
+                            echo "<script>alert('Konten dan Foto Profile Berhasil Diubah); window.location = 'dashboard.php?hal=profile'</script>";
                            
                         }else{
                             echo "<script>alert('Ukuran Foto Terlalu Besar'); window.location = 'dashboard.php?hal=profile'</script>";
@@ -62,7 +61,6 @@
                        }
 
                     }
-
 
                 }
             ?>

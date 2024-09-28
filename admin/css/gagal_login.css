@@ -7,7 +7,6 @@
     box-sizing: border-box;
 }
 
-/* Gaya dasar untuk body */
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #f4f4f4;
@@ -84,6 +83,7 @@ a {
 a:hover {
     background-color: #ff4b4b;
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+    outline-color: #ff4b4b;
     transform: translateY(-3px);
 }
 

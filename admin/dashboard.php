@@ -25,7 +25,7 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>.:Dashboard - <?php echo ucwords(str_replace('_','_',$_GET['hal']))  ?></title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -40,54 +40,24 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
         />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="//cdn.ckeditor.com/4.19.1/full/ckeditor.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css">
         <style>
-            body{
-                margin:0;
-                padding : 0;
-                height: 100%;
-              }
-          
-          
-                .nav-pills .nav-link {
-                    color: #ffffff; 
-                    border-radius: 2px; 
-                }
+            .nav-link:hover {
+                 background-color: #004085; /* Hover background */
+                 color: white !important;   /* Hover text */
+           }
 
-                .nav-pills .nav-link.active {
-                    background-color: #007bff; /* Warna background link aktif */
-                    color: #ffffff; /* Warna teks untuk link aktif */
-                }
-
-
-                .nav-pills .nav-link:hover {
-                    background-color: #495057; 
-                    color: #ffffff;
-                }
-
-
-            .col-lg-2.position-fixed { 
-                position: fixed;
-                background-color: #FFAF00;
-                z-index: 1000;
-                top: 54px; /* Beri jarak dari atas sesuai tinggi navbar */
-                left: 0;
-                bottom: 0;
-                overflow-y: auto; /* Tambahkan scroll jika sidebar lebih panjang dari layar */
-                width: 16.66667%;
-            }
-
-            .col-lg-10.offset-2 {
-                margin-left: 16.66667%; /* Pastikan kolom konten memiliki margin yang tepat agar tidak menumpuk di atas sidebar */
-}
-
-    
+      .nav-link.active {
+           background-color: #003366; /* Active background */
+           color: white !important;   /* Active text */
+       }
         </style>
     </head>
 
     <body>
       <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12 py-2 bg-dark text-end top-fixed">
+            <div class="col-lg-12 py-3 bg-dark text-end fixed-top">
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     User
@@ -99,9 +69,9 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
             <div class="flex-shrink-0">
                 <img class="mr-3" src="image/user.png" height="50" width="50" alt="Generic placeholder image" style="border-radius: 50%; object-fit: cover;">
             </div>
-            <!-- Teks di sebelah kanan gambar -->
+        
             <div class="flex-grow-1 ms-3">
-                <h5 class="mb-0"><?php echo  $_SESSION['username'] = $r['username']; ?></h5>
+                <h5 class="mb-0"><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Apa'; ?></h5>
                 <small><p class="text-muted"><i class="bi bi-clock-fill"></i>Pkl <?php echo date('H:i:s')  ?>WIB</l></small>
             </div>
         </div>
@@ -115,21 +85,19 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
 
             </div>
         </div>
-        <div class="row mt-4">
-    <div class="col-lg-2 position-fixed" style="left: 0; top: 54px; padding: 0;">
+        <div class="row mt-5" style="padding-top: 20px;">
+    <div class="col-lg-2 position-fixed vh-100 bg-primary">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'home' ? "active" : "") ?>" href="dashboard.php?hal=home">Home</a>
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'profile' ? "active" : "") ?>" href="dashboard.php?hal=profile">Profile</a>
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'galeri' ? "active" : "") ?>" href="dashboard.php?hal=galeri">Galeri</a>
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'destinasi-wisata' ? "active" : "") ?>" href="dashboard.php?hal=destinasi-wisata">Destinasi Wisata</a>
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'berita' ? "active" : "") ?>" href="dashboard.php?hal=berita">Berita</a>
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'kategori' ? "active" : "") ?>" href="dashboard.php?hal=kategori">Kategori</a>
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'keluhan' ? "active" : "") ?>" href="form_service.php?hal=keluhan">Keluhan Pengguna</a>
+        <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'home' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=home"><i class="bi bi-houses-fill"></i> Home</a>
+            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'profile' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=profile"><i class="bi bi-person-bounding-box"></i> Profile</a>
+            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'galeri' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=galeri"><i class="bi bi-image-fill"></i> Galeri</a>
+            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'destinasi-wisata' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=destinasi-wisata"><i class="bi bi-image-alt"></i> Destinasi Wisata</a>
+            <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'berita' or ($_GET['hal'] == 'tambah_berita')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=berita"><i class="bi bi-router"></i> Berita</a>
+            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'kategori' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kategori"><i class="bi bi-stack"></i> Kategori</a>
+            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'keluhan' ? "active text-white" : "text-white") ?> mb-3" href="form_service.php?hal=keluhan"><i class="bi bi-send-plus-fill"></i> Keluhan Pengguna</a>
+
         </div>
     </div>
-</div>
-
-
             <div class="col-lg-10 offset-2">
 
              <?php
@@ -155,6 +123,12 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
                     case 'berita':
                         include "modul/mod_berita/berita.php";
                         break;
+                    case 'tambah_berita':
+                        include "modul/mod_berita/tambah_berita.php";
+                        break;
+                    case 'hapus_berita':
+                        include "modul/mod_berita/hapus_berita.php";
+                        break;
                     case 'user':
                         include "modul/mod_user/user.php";
                         break;
@@ -172,7 +146,7 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
             </div>   
         </div>
 
-
+        </div>
       </div>
         <footer>
         </footer>
@@ -187,6 +161,32 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+        <script>
+         const table = new DataTable('#example', {
+                columnDefs: [
+              {
+                  searchable: false,
+                  orderable: false,
+                  targets: 0
+             }
+                ],
+                order: [[1, 'asc']]
+            });
+            
+            table
+                 .on('order.dt search.dt', function () {
+                    let i = 1;
+            
+                table
+                      .cells(null, 0, { search: 'applied', order: 'applied' })
+                      .every(function (cell) {
+                            this.data(i++);
+                        });
+                })
+                .draw();
+        </script>
     </body>
 </html>
 <?php

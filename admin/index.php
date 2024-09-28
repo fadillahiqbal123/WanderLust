@@ -18,7 +18,7 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
         }
         
         body {
-            background-image: url("image/homepage.png");
+            background-image: url("image/bg_login.png");
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -31,7 +31,7 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
         .card {
             background-color: rgba(255, 255, 255, 0.8); 
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 20px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
@@ -61,7 +61,7 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
                         </div>
                         
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-outline-primary">Login</button>
                         </div>
                     </form>
                 </div>

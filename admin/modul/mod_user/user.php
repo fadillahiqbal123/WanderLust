@@ -1,12 +1,16 @@
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     <div class="card">
         <div class="card-header"><strong>Pengaturan Akun</strong></div>
         <div class="card-body">
             <form class="action" method="POST">
                 
+            <div class="mb-3 w-25">
+                    <label class="form-label">Nama Admin</label>
+                    <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Admin" autocomplete="off" required/> 
+                </div>
                 <div class="mb-3 w-25">
                     <label class="form-label">Username</label>
-                    <input type="text" name="username"  class="form-control" placeholder="Masukan Username Admin" autocomplete="off" required/>
+                    <input type="text" name="username" class="form-control" placeholder="Masukan Username Admin" autocomplete="off" required/>
                    
                 </div>
                 <div class="mb-3 w-25">
@@ -31,6 +35,7 @@
             <?php  
             
             if(isset($_POST['submit'])){
+                $namaadmin            = $_POST['nama_admin'];
                 $username             = $_POST['username'];
                 $no_telp              = $_POST['telfon'];
                 $alamat               = $_POST['alamat'];

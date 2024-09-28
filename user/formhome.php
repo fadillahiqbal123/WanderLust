@@ -9,56 +9,60 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/formhome.css">
+    <link rel="stylesheet" href="css/style.css">
+    
 </head>
 
 <body>
-
-    <div class="header">
-        <nav class="navbar navbar-expand-lg" id="navbar">
-            <div class="container-fluid">
-                <!-- Logo -->
-                <a class="navbar-brand" href="#">
-                    <img src="image/LOGO_WONDERLUST-removebg-preview 2.png" alt="Logo WanderLust" class="navbar-logo">
-                </a>
-                <!-- Toggler -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!-- Dropdown Menu -->
-                <div class="dropdown ms-3">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="bi bi-list"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Wisata Air</a></li>
-                        <li><a class="dropdown-item" href="#">Wisata Alam</a></li>
-                        <li><a class="dropdown-item" href="#">Outbond</a></li>
-                    </ul>
-                </div>
-                <!-- Navbar Links -->
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="#">Katalog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="formregister.php">Register</a></li>
-                        <li class="nav-item"><a class="nav-link" href="loginuser.php">Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top" style=" height:90px">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+    <img src="image/logo_wanderlust.png" style="height: 90px;"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav justify-content-center mb-2 mb-lg-0 w-100">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Kritik Saran</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            User
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">History</a></li>
+            <li><a class="dropdown-item" href="#">Berita</a></li>
+            <li><a class="dropdown-item" href="#">Rating</a></li>
+            <li><a class="dropdown-item" href="#">Pesan Tiket</li>
+            <li><a class="dropdown-item" href="#">About Bromo</a></li>
+          
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pesan Tiket</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-warning" type="submit">Search</button>
+      </form>
     </div>
+  </div>
+</nav>
+        </header>
 
     <!-- Konten Utama -->
-    <div class="container my-5">
-        <!-- Carousel Pertama -->
+    <div class="container pt-5"> 
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="image/bromo4.jpg" class="d-block img-fluid" alt="Gunung Bromo"
-                        data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage(this.src)">
+                <div class="carousel-item active mt-10">
+                    <img src="image/pict.jpg" class="d-block img-fluid" alt="Gunung Bromo"
+                        data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage(this.src)" style="height: 700px;">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Gunung Bromo</h5>
                         <h6>Keindahan alam yang menakjubkan di Jawa Timur.</h6>
@@ -83,7 +87,7 @@
             </button>
         </div>
 
-        <!-- Tentang WanderLust -->
+      
         <div class="my-5">
             <h2>Tentang WanderLust</h2>
             <p>
@@ -96,7 +100,7 @@
             </p>
         </div>
 
-        <!-- Carousel Kedua -->
+        
         <div class="my-5">
             <div id="carouselExample2" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
                 <div class="carousel-inner">
@@ -128,7 +132,7 @@
             </div>
         </div>
 
-        <!-- Wisata Bromo -->
+       
         <div class="my-5">
             <h2>Wisata Bromo</h2>
             <p>Gunung Bromo adalah salah satu gunung berapi yang paling terkenal di Indonesia. Terletak di Jawa Timur, Bromo
@@ -142,7 +146,7 @@
             </ul>
         </div>
 
-        <!-- Galeri -->
+       
         <div class="py-5">
             <h3>Galeri</h3>
             <div class="row gallery">
@@ -175,7 +179,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+ 
     <footer class="footer">
         <div class="container-fluid py-5">
             <div class="row">
