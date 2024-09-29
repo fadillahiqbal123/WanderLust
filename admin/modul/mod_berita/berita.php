@@ -1,7 +1,7 @@
 <div class="container-fluid mt-4">
     <div class="card">
         <div class="card-header">
-            <a href="dashboard.php?hal=tambah_berita" class="btn btn-primary"><i class="bi bi-plus"></i>Tambah data</a>
+            <a href="dashboard.php?hal=tambah_berita" class="btn btn-outline-primary"><i class="bi bi-plus"></i>Tambah data</a>
         </div>
         <div class="card-body">
         <table id="example" class="display" style="width:100%">

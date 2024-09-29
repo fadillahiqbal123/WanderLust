@@ -43,14 +43,14 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css">
         <style>
             .nav-link:hover {
-                 background-color: #004085; /* Hover background */
-                 color: white !important;   /* Hover text */
+                 background-color: #004085; 
+                 
            }
 
-      .nav-link.active {
-           background-color: #003366; /* Active background */
-           color: white !important;   /* Active text */
-       }
+           .bg-primary .nav-link.active {
+             background-color: #004085 !important;
+             color: white !important;
+}
         </style>
     </head>
 
@@ -91,9 +91,9 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
         <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'home' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=home"><i class="bi bi-houses-fill"></i> Home</a>
             <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'profile' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=profile"><i class="bi bi-person-bounding-box"></i> Profile</a>
             <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'galeri' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=galeri"><i class="bi bi-image-fill"></i> Galeri</a>
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'destinasi-wisata' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=destinasi-wisata"><i class="bi bi-image-alt"></i> Destinasi Wisata</a>
+            <a class="nav-link <?php echo (((isset($_GET['hal']) && $_GET['hal'] == 'destinasi-wisata' or $_GET['hal'] == 'tambah_wisata') or ($_GET['hal'] == 'edit_wisata')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=destinasi-wisata"><i class="bi bi-image-alt"></i> Destinasi Wisata</a>
             <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'berita' or ($_GET['hal'] == 'tambah_berita')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=berita"><i class="bi bi-router"></i> Berita</a>
-            <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'kategori' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kategori"><i class="bi bi-stack"></i> Kategori</a>
+            <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'kategori' or ($_GET['hal'] == 'tambah_kategori') or ($_GET['hal'] == 'edit_kategori')) ?  "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kategori"><i class="bi bi-stack"></i> Kategori</a>
             <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'keluhan' ? "active text-white" : "text-white") ?> mb-3" href="form_service.php?hal=keluhan"><i class="bi bi-send-plus-fill"></i> Keluhan Pengguna</a>
 
         </div>
@@ -114,17 +114,38 @@ if(empty($_SESSION['username']) and empty($_SESSION['password'])) {
                     case 'galeri':
                         include "modul/mod_galeri/galeri.php";
                         break;
+                    case 'tambah_galeri':
+                        include "modul/mod_galeri/tambah_galeri.php";
+                        break;
                     case 'destinasi-wisata':
                         include "modul/mod_wisata/wisata.php";
                         break;
+                    case 'tambah_wisata':
+                        include "modul/mod_wisata/tambah_wisata.php";
+                        break;
+                    case 'edit_wisata':
+                        include "modul/mod_wisata/edit_wisata.php";
+                        break;
+                    case 'hapus_wisata':
+                        include "modul/mod_wisata/hapus_wisata.php";
+                        break;
                     case 'kategori':
                         include "modul/mod_kategori/kategori.php";
+                        break;
+                    case 'tambah_kategori':
+                        include "modul/mod_kategori/tambah_kategori.php";
                         break;
                     case 'berita':
                         include "modul/mod_berita/berita.php";
                         break;
                     case 'tambah_berita':
                         include "modul/mod_berita/tambah_berita.php";
+                        break;
+                    case 'edit_kategori':
+                        include "modul/mod_kategori/edit_kategori.php";
+                        break;
+                    case 'hapus_kategori':
+                        include "modul/mod_kategori/hapus_kategori.php";
                         break;
                     case 'hapus_berita':
                         include "modul/mod_berita/hapus_berita.php";
