@@ -36,9 +36,8 @@
             
             if(isset($_POST['submit'])){
                 $namaadmin            = $_POST['nama_admin'];
+                $email                = $_POST['email'];
                 $username             = $_POST['username'];
-                $no_telp              = $_POST['telfon'];
-                $alamat               = $_POST['alamat'];
                 $password             = $_POST['password'];
                 $konfirmasi_password  = $_POST['konfirmasi_password'];
                 $id_user_login            = $_SESSION['idadmin'];
@@ -46,7 +45,7 @@
                 if($password == $konfirmasi_password){
                     $password_md5= md5($password);
 
-                   mysqli_query($db, "UPDATE admin SET username='$username', password='$password_md5' WHERE id_admin= $id_user_login");
+                   mysqli_query($db, "UPDATE admin SET username='$username', password='$password_md5', email='$email' WHERE id_admin= $id_user_login");
                    
                    echo "<script>alert('Data Berhasil Diubah'); window.location = 'dashboard.php?hal=user' </script";
 

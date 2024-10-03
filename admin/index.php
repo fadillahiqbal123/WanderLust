@@ -2,6 +2,25 @@
 session_start();
 
 if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
+          if (isset($_SESSION['login_error'])) {
+        echo '
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Login failed!</strong> ' . $_SESSION['login_error'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+        unset($_SESSION['login_error']);
+    }
+
+    if (isset($_SESSION['register_success'])) {
+        echo '
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Registration successful!</strong> You can now log in.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+        unset($_SESSION['register_success']);
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +31,7 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
     <title>Wisatku.id</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .posisitengah {
             margin: 0 auto;
@@ -44,8 +64,7 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
                     <form action="ceklogin.php" method="POST">
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="form-label">Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Enter Username" required
-                            value="<?php echo (isset($_COOKIE["username"])) ? $_COOKIE['username']  : '' ?>">
+                            <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
                         </div>
                         
                         <div class="form-group">
@@ -60,10 +79,15 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
                             <label class="form-check-label" for="exampleCheck1">Remember Me</label>
                         </div>
                         
-                        <div class="text-end">
+                        <div class=" form-group col-6 mt-2">
                             <button type="submit" class="btn btn-outline-primary">Login</button>
                         </div>
+                        <div class="form-group mt-3">
+                        <p><a class="link-body-emphasis link-offset-2 link-opacity-50-hover" href="register.php">Don't have an Account? Click Here...</a></p>
+                       
+                        </div>
                     </form>
+                   
                 </div>
             </div>
         </div>

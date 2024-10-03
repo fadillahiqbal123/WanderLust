@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2024 at 04:56 PM
+-- Generation Time: Oct 03, 2024 at 10:22 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,18 +32,22 @@ CREATE TABLE `admin` (
   `nama_admin` varchar(100) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(80) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `no_telfon` varchar(50) NOT NULL,
-  `alamat` varchar(50) NOT NULL
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `nama_admin`, `username`, `password`, `email`, `no_telfon`, `alamat`) VALUES
-(1, 'adam', 'adame', 'e517be426dde9c8e41b281a18d5de9f2', 'adame@gmail.com', '08623527', 'Jember'),
-(3, 'iqbal', 'fadillah iqbal', '8d90d3b4702c9df2567603dfb1c26978', 'fadil@gmail.com', '08582783', 'Jember');
+INSERT INTO `admin` (`id_admin`, `nama_admin`, `username`, `password`, `email`) VALUES
+(1, 'adam', 'adame', 'e517be426dde9c8e41b281a18d5de9f2', 'adame@gmail.com'),
+(3, 'iqbal', 'fadillah iqbal', '8d90d3b4702c9df2567603dfb1c26978', 'fadil@gmail.com'),
+(4, 'Lastico', 'Tico', '$2y$10$h0i1vblEfY5xEkYk8rWat.hJ1IDPjGxpZjvw0gwQvvikb7fACwJi6', 'tico@gmail.com'),
+(18, 'adi', 'adish', '$2y$10$b.tuLnQzPiJNDAi5CDbwv.4vd9h.mMzXRynx9RfbbaYGoHhJzKDlu', 'adi@gmail.com'),
+(20, 'dana', 'danam', '$2y$10$RMzObjLt4iO9ymccV5XwhuaR.DISZChyPCSEmwmDjwIrlhhgePMWe', 'dana@gmail.com'),
+(21, 'iqbal', 'iqbalaa', '$2y$10$6.4j0CTqQc1l8B8K/N2NUuDc6zzseuq3EkV7T1GSmCAzMFwk5/vaC', 'iqbal@gmail.com'),
+(26, 'eriepras', 'erie', '352afb2aaaf3f5c72399f8433ac5047e', 'erie@gmail.com'),
+(27, 'haji', 'haji', 'a151602b76a7bb594fd13cb542b25bd7', 'haji@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -99,7 +103,9 @@ CREATE TABLE `destinasi` (
 --
 
 INSERT INTO `destinasi` (`id_destinasi`, `nama_destinasi`, `id_kategori`, `lokasi_wisata`, `link_peta`, `deskripsi`) VALUES
-(14, 'gunung gentong', 7, 'Taman Nasional Bromo ', 'https://www.openstreetmap.org/export/embed.html?bbox=112.88465023040773%2C-7.979550250062806%2C112.91718006134035%2C-7.954092063477967&amp;layer=mapnik&amp;marker=-7.9668213546569735%2C112.90091514587402', '<p style=\"text-align:center\"><strong>Gunung Gentong adalah salah satu gunung yang berada di kawasan Taman Nasional Bromo Tengger Semeru. Meskipun Gunung Gentong tidak sepopuler Gunung Bromo atau Gunung Semeru, gunung ini tetap menjadi bagian penting dari ekosistem kawasan yang terkenal karena pemandangan alamnya yang menakjubkan dan merupakan destinasi favorit para pendaki.</strong></p>\r\n');
+(14, 'gunung gentong', 7, 'Taman Nasional Bromo ', 'https://www.openstreetmap.org/export/embed.html?bbox=112.88465023040773%2C-7.979550250062806%2C112.91718006134035%2C-7.954092063477967&amp;layer=mapnik&amp;marker=-7.9668213546569735%2C112.90091514587402', '<p style=\"text-align:center\"><strong>Gunung Gentong adalah salah satu gunung yang berada di kawasan Taman Nasional Bromo Tengger Semeru. Meskipun Gunung Gentong tidak sepopuler Gunung Bromo atau Gunung Semeru, gunung ini tetap menjadi bagian penting dari ekosistem kawasan yang terkenal karena pemandangan alamnya yang menakjubkan dan merupakan destinasi favorit para pendaki.</strong></p>\r\n'),
+(16, 'Gunung Bromo', 7, 'Taman Nasional Bromo', 'https://www.openstreetmap.org/export/embed.html?bbox=112.95196026563646%2C-7.942865945795956%2C112.95399338006975%2C-7.941274713075184&amp;layer=mapnik', '\r\nGunung Bromo adalah salah satu gunung berapi paling terkenal di Indonesia, terletak di Jawa Timur dan merupakan bagian dari Taman Nasional Bromo Tengger Semeru. Gunung ini memiliki ketinggian sekitar 2.329 meter di atas permukaan laut dan dikenal dengan kawahnya yang aktif serta pemandangan alam yang menakjubkan.'),
+(17, 'Pura Luhur Poten', 7, 'Bromo Tengger Semeru', 'https://www.openstreetmap.org/export/embed.html?bbox=112.61672973632814%2C-8.22915967942778%2C113.13720703125001%2C-7.821888201898094&amp;layer=mapnik&amp;marker=-8.025574963173673%2C112.87696838378906', '<p>Pura Luhur Poten adalah salah satu pura yang terletak di kawasan Gunung Bromo, Jawa Timur, Indonesia. Pura ini memiliki keunikan tersendiri karena dibangun di tengah-tengah lautan pasir, yang merupakan bagian dari Taman Nasional Bromo Tengger Semeru</p>\r\n');
 
 -- --------------------------------------------------------
 
@@ -119,7 +125,8 @@ CREATE TABLE `galeri` (
 --
 
 INSERT INTO `galeri` (`id_galeri`, `keterangan_foto`, `id_destinasi`, `nama_foto`) VALUES
-(1, 'Gunung Gentong', 14, 'gunung.jpg');
+(8, 'Keindahan Gungung Bromo', 16, 'bromo2.png'),
+(9, 'Keindahan Pura Luhur Poten', 17, '665046888_purabromo.jpg');
 
 -- --------------------------------------------------------
 
@@ -354,7 +361,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `asal`
@@ -372,19 +379,19 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `destinasi`
 --
 ALTER TABLE `destinasi`
-  MODIFY `id_destinasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_destinasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `galeri`
 --
 ALTER TABLE `galeri`
-  MODIFY `id_galeri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_galeri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `paket`
