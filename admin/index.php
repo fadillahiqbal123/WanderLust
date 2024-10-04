@@ -84,7 +84,6 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
                         </div>
                         <div class="form-group mt-3">
                         <p><a class="link-body-emphasis link-offset-2 link-opacity-50-hover" href="register.php">Don't have an Account? Click Here...</a></p>
-                       
                         </div>
                     </form>
                    

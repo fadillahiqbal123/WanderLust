@@ -77,11 +77,11 @@
                           
 
                                 }else{
-                                        if($size_foto > 409600) {
+                                        if ($size_foto > 409600) {
 
                                             echo "<script>alert('File Terlalu Besar'); window.location = 'dashboard.php?hal=edit_galeri&id=$id' </script>";
                                         }else {
-                                            $nama_foto_baru = $rand.'_'.$nama_foto;
+                                            $nama_foto_baru = rand().'_'.$nama_foto;
 
                                             unlink("././img_galeri/".$r['nama_foto']);
                                             move_uploaded_file($_FILES['nama_foto']['tmp_name'], '././img_galeri/'.$nama_foto_baru);

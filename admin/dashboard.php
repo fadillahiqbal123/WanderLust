@@ -15,8 +15,17 @@
 
         </center> 
         ';
-    }else
-    {
+    }else{
+            $kategori_destinasi = mysqli_query($db, "SELECT * FROM kategori");
+            while($r = mysqli_fetch_array($kategori_destinasi)){
+            $nama_kategori[] = $r['nama_kategori'];
+            $jml_destinasi = mysqli_query($db, "SELECT COUNT(id_kategori) AS total FROM destinasi WHERE id_kategori = '$r[id_kategori]'");
+
+            $a =  mysqli_fetch_array($jml_destinasi);
+            $total_destinasi[] = $a['total'];
+            }
+    
+    
 
     ?>
 
@@ -31,19 +40,23 @@
                 name="viewport"
                 content="width=device-width, initial-scale=1, shrink-to-fit=no"
             />
+         <!-- BOOTSTRAP CSS -->
             <link
                 href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
                 rel="stylesheet"
                 integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-                crossorigin="anonymous"
-            />
+                crossorigin="anonymous"/>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
             <script src="//cdn.ckeditor.com/4.19.1/full/ckeditor.js"></script>
             <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css">
+                <!-- DATA TABLES JS -->
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
             <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
 
+            <!-- GRAFIK JS -->
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+            
             <style>
                 .nav-link:hover {
                     background-color: #004085; 
@@ -65,20 +78,29 @@
                         background-color: #d1e7dd; /* Sesuaikan hover dengan warna lebih terang */
                         }
 
+                        .col-lg-12.py-3.bg-ligth.text-end.bg-ligth.fixed-top {
+                             background-color: #004085; /* Ganti ini dengan warna background yang kamu inginkan */
+                             color: white; /* Jika ingin mengubah warna teks juga */
+}
+
                     
 
                     .text-white {
                             color: #000000 !important; /* Ganti warna teks menjadi hitam */
                         }
+                    .col-lg-2.position-fixed.vh-100.bg-ligth {
+                        border-right: 2px solid #ccc; /* Garis pemisah dengan warna abu-abu */
+                        position : relative;
+}
 
             </style>
         </head>
 
         <body>
             <div class="row">
-                <div class="col-lg-12 py-3 bg-ligth text-end bg-ligth fixed-top">
+                <div class="col-lg-12 py-2 bg-primary text-end fixed-top">
                 <div class="dropdown">
-                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         User
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
@@ -103,8 +125,8 @@
 
                 </div>
             </div>
-            <div class="row mt-5 bg-body" style="padding-top: 20px;">
-        <div class="col-lg-2 position-fixed vh-100 bg-ligth">
+            <div class="row mt-5 bg-body" style="padding-top: 25px;">
+        <div class="col-lg-2 col-md-3 col-sm-12 position-fixed vh-100 bg-ligth">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'home' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=home"><i class="bi bi-houses-fill"></i> Home</a>
                 <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'profile' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=profile"><i class="bi bi-person-bounding-box"></i> Profile</a>
@@ -116,7 +138,7 @@
 
             </div>
         </div>
-                <div class="col-lg-10 offset-2">
+                <div class="col-lg-10 offset-2 col-md-9 md-3 col-sm-12">
 
                 <?php
                 
@@ -229,8 +251,37 @@
                         .every(function (cell) {
                                 this.data(i++);
                             });
-                    })
-                    .draw();
+                    }).draw();
+                
+
+
+
+                    const x = <?php echo json_encode($nama_kategori) ?>;
+                    const y = <?php echo json_encode($total_destinasi)  ?>;
+                    const warna_bar = [
+                    "#b91d47",
+                    "#00aba9",
+                    "#2b5797",
+                    "#e8c3b9",
+                    "#1e7145"
+                    ];
+
+                    new Chart("grafikWisata", {
+                    type: "pie",
+                    data: {
+                        labels: x,
+                        datasets: [{
+                        backgroundColor: warna_bar,
+                        data: y
+                        }]
+                    },
+                    options: {
+                        title: {
+                        display: true,
+                        text: "Data Jumlah Wisata Berdasar Pada Kategori"
+                        }
+                    }
+                    });        
             </script>
         </body>
     </html>
