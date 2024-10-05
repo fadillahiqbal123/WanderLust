@@ -64,7 +64,8 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
                     <form action="ceklogin.php" method="POST">
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="form-label">Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
+                            <input type="text" name="username" class="form-control" placeholder="Enter Username" required
+                            value="<?php echo (isset($_COOKIE["username"])) ? $_COOKIE['username']: '' ?>">
                         </div>
                         
                         <div class="form-group">

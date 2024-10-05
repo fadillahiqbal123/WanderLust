@@ -16,6 +16,7 @@
         </center> 
         ';
     }else{
+             // data wisata
             $kategori_destinasi = mysqli_query($db, "SELECT * FROM kategori");
             while($r = mysqli_fetch_array($kategori_destinasi)){
             $nama_kategori[] = $r['nama_kategori'];
@@ -23,6 +24,16 @@
 
             $a =  mysqli_fetch_array($jml_destinasi);
             $total_destinasi[] = $a['total'];
+            }
+
+            // data galeri
+            $wisata = mysqli_query($db, "SELECT * FROM destinasi");
+            while($r1 = mysqli_fetch_array($wisata)){
+            $nama_destinasi[] = $r1['nama_destinasi'];
+            $jml_galeri = mysqli_query($db, "SELECT COUNT(id_destinasi) AS total_galeri FROM galeri WHERE id_destinasi = '$r1[id_destinasi]'");
+
+            $a1 =  mysqli_fetch_array($jml_galeri);
+            $total_galeri[] = $a1['total_galeri'];
             }
     
     
@@ -134,7 +145,7 @@
                 <a class="nav-link <?php echo (((isset($_GET['hal']) && $_GET['hal'] == 'destinasi-wisata' or $_GET['hal'] == 'tambah_wisata') or ($_GET['hal'] == 'edit_wisata')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=destinasi-wisata"><i class="bi bi-image-alt"></i> Destinasi Wisata</a>
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'berita' or ($_GET['hal'] == 'tambah_berita')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=berita"><i class="bi bi-router"></i> Berita</a>
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'kategori' or ($_GET['hal'] == 'tambah_kategori') or ($_GET['hal'] == 'edit_kategori')) ?  "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kategori"><i class="bi bi-stack"></i> Kategori</a>
-                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'keluhan' ? "active text-white" : "text-white") ?> mb-3" href="form_service.php?hal=keluhan"><i class="bi bi-send-plus-fill"></i> Keluhan Pengguna</a>
+                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'keluhan' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=keluhan"><i class="bi bi-send-plus-fill"></i> Keluhan Pengguna</a>
 
             </div>
         </div>
@@ -199,8 +210,15 @@
                         case 'user':
                             include "modul/mod_user/user.php";
                             break;
+                        case 'keluhan':
+                            include "modul/mod_keluhan/form_service.php";
+                            break;
+                        case 'hapus_keluhan':
+                            include "modul/mod_keluhan/hapus_keluhan.php";
+                            break;
                             default:
                             echo "<h1>Halaman Tidak Ditemukan</h1>";
+                        
                     
                     }
                 }else{
@@ -259,15 +277,16 @@
                     const x = <?php echo json_encode($nama_kategori) ?>;
                     const y = <?php echo json_encode($total_destinasi)  ?>;
                     const warna_bar = [
-                    "#b91d47",
-                    "#00aba9",
-                    "#2b5797",
-                    "#e8c3b9",
-                    "#1e7145"
+                    "#007bff",
+                    "#ffc107",
+                    "#28a745",
+                    "#dc3545",
+                    "#6c757d",
+                    "#17a2b8"
                     ];
 
                     new Chart("grafikWisata", {
-                    type: "pie",
+                    type: "doughnut",
                     data: {
                         labels: x,
                         datasets: [{
@@ -281,7 +300,37 @@
                         text: "Data Jumlah Wisata Berdasar Pada Kategori"
                         }
                     }
-                    });        
+                    });
+                    
+                    
+                    
+                    const x1 = <?php echo json_encode($nama_destinasi) ?>;
+                    const y1 = <?php echo json_encode($total_galeri)  ?>;
+                    const warna_bar1 = [
+                    "#007bff",
+                    "#ffc107",
+                    "#28a745",
+                    "#dc3545",
+                    "#6c757d",
+                    "#17a2b8"
+                    ];
+
+                    new Chart("grafikGaleri", {
+                    type: "doughnut",
+                    data: {
+                        labels: x1,
+                        datasets: [{
+                        backgroundColor: warna_bar1,
+                        data: y1
+                        }]
+                    },
+                    options: {
+                        title: {
+                        display: true,
+                        text: "Data Jumlah Galeri"
+                        }
+                    }
+                    });
             </script>
         </body>
     </html>

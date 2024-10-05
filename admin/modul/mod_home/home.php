@@ -69,10 +69,71 @@
     </div>
     <div class="row border mt-2">
         <div class="col-md-6">
-            <canvas id="grafikWisata" class="p-4" style="width:100%;max-width:650px"></canvas>
+            <canvas id="grafikWisata" class="p-2" style="width:100%; height:100%; max-width:650px"></canvas>
         </div>
         <div class="col-md-6">
-            <canvas id="grafikGaleri" style="width:100%;max-width:650px"></canvas>
+            <canvas id="grafikGaleri" class="p-2" style="width:100%; height:100%; max-width:650px"></canvas>
+        </div>
+    </div>
+
+    <div class="row border mt-2">
+        <div class="col-md-6">
+        <table class="table table-sm table-bordered mt-2">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Wisata</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Lokasi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php   
+                    $sql = mysqli_query($db, "SELECT * FROM destinasi, kategori WHERE destinasi.id_kategori = kategori.id_kategori ORDER BY destinasi.id_destinasi DESC");
+                    $no = 1;
+                    while($r=mysqli_fetch_array($sql)){?>
+
+                        <tr>
+                        <th scope="row"><?php echo $no++ ?></th>
+                        <td><?php echo $r['nama_destinasi'] ?></td>
+                        <td><?php echo $r['nama_kategori']  ?></td>
+                        <td><?php echo $r['lokasi_wisata'] ?></td>
+                    </tr>
+
+                    <?php
+                    }
+                ?>
+                
+            </tbody>
+        </table>
+        </div>
+        <div class="col-md-6">
+        <table class="table table-sm table-bordered mt-2">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Judul</th>
+                <th scope="col">Penulis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php   
+                    $sql = mysqli_query($db, "SELECT * FROM berita, admin WHERE berita.id_admin = admin.id_admin");
+                    $no = 1;
+                    while($r=mysqli_fetch_array($sql)){?>
+
+                        <tr>
+                        <th scope="row"><?php echo $no++ ?></th>
+                        <td><?php echo $r['judul_berita'] ?></td>
+                        <td><?php echo $r['nama_admin'] ?></td>
+                    </tr>
+
+                    <?php
+                    }
+                ?>
+                
+            </tbody>
+        </table>
         </div>
     </div>
 </div>
