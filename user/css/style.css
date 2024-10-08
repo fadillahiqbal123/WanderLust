@@ -1,91 +1,22 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.container-fluid{
+    background-image: url("image/pemandangan.png");
+    background-size : cover;
 }
 
-body {
-    background-image: url("../image/pict.png"); /* Pastikan path ini benar */
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
+.jumbotron .display-4{
+  color: white;
 }
 
-.header {
-    position: relative;
-    z-index: 1000;
-    margin-bottom: 20px; 
+.map-container {
+  margin-top: 40px; /* Memberikan jarak antara iframe dan elemen di atasnya */
+  text-align: center;
 }
 
-.container {
-    max-width: 1100px; /* Perbaiki nilai ini jika ingin memperlebar konten */
-    margin: 0 auto; /* Pusatkan konten secara horizontal */
-    padding-bottom: 30px;
-}
-
-.carousel-item img {
-    height: 100px; /* Sesuaikan tinggi gambar carousel agar tidak terlalu besar */
-    object-fit: cover;
-    width: 100%;
-}
-
-.footer {
-    background-color: #343a40;
-    color: white;
-    padding: 30px 0;
-}
-
-.footer h3 {
-    color: #f8f9fa;
-    margin-bottom: 15px;
-}
-
-.footer .footer-link {
-    color: #f8f9fa;
-    text-decoration: none;
-}
-
-.footer .footer-link:hover {
-    text-decoration: underline;
-}
-
-.footer .col-md-4 {
-    text-align: center;
-}
-
-.footer .col-md-4 ul {
-    padding: 0;
-    list-style-type: none;
-}
-
-.footer .col-md-4 ul li {
-    margin-bottom: 10px;
-}
-
-.footer .bg-light {
-    background-color: #f8f9fa;
-    color: #343a40;
-}
-
-.modal-body img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-.h2, h3 {
-    margin-bottom: 20px;
-}
-
-.p {
-    line-height: 1.6;
-}
-
-.row.gallery .col-md-4 {
-    margin-bottom: 20px;
+.map-container iframe {
+  
+  width: 50%;
+  max-width: 600px; /* Batas maksimal agar tampilan lebih responsif */
+  height: 350px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px; /* Sudut membulat untuk gaya */
 }
