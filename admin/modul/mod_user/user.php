@@ -9,21 +9,17 @@
                     <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Admin" autocomplete="off" required/> 
                 </div>
                 <div class="mb-3 w-25">
-                    <label class="form-label">Username</label>
+                    <label class="form-label">Email</label>
                     <input type="text" name="username" class="form-control" placeholder="Masukan Username Admin" autocomplete="off" required/>
                    
                 </div>
                 <div class="mb-3 w-25">
-                    <label class="form-label">Nomer Telefon</label>
+                    <label class="form-label">Username</label>
                     <input type="text" class="form-control" name="telfon"  placeholder="Masukan No Telefon Admin" required/>
                 </div>
                 <div class="mb-3 w-25">
-                    <label class="form-label">Alamat</label>
+                    <label class="form-label">Password</label>
                     <input type="text"  class="form-control" name="alamat" placeholder="Masukan Alamat Admin" required/>
-                </div>
-                <div class="mb-3 w-25">
-                    <label class="password">Password</label>
-                    <input type="password"  class="form-control" name="password" placeholder="Ubah Password Admin" required/>
                 </div>
                 <div class="mb-3 w-25">
                     <label for="" class="form-label">Konfirmasi Password</label>

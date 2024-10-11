@@ -34,7 +34,6 @@ if(isset($_POST["register"])){
             $sql = "INSERT INTO admin (nama_admin, username, password, email) VALUES ('$nama_admin', '$username', '$hash_password', '$email')";
             
             if($db->query($sql)) {
-                // SweetAlert untuk sukses registrasi
                 echo "<script>
                         document.addEventListener('DOMContentLoaded', function() {
                             Swal.fire({
@@ -89,6 +88,7 @@ if(isset($_POST["register"])){
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
 
     <style>
+
         .posisitengah {
             margin: 0 auto;
         }

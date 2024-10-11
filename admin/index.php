@@ -32,6 +32,13 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- sweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- lord icon -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <style>
         .posisitengah {
             margin: 0 auto;
@@ -57,15 +64,16 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
     </style>
 </head>
 <body>
+    
      <div class="container mb-5 mt-5">
         <div class="col-md-4 posisitengah">
             <div class="card mt-4">
                 <div class="card-body">
                     <form action="ceklogin.php" method="POST">
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="form-label">Username</label>
+                            <label for="exampleInputUsername1" class="form-label">Username</label>
                             <input type="text" name="username" class="form-control" placeholder="Enter Username" required
-                            value="<?php echo (isset($_COOKIE["username"])) ? $_COOKIE['username']: '' ?>">
+                            value = "<?php echo (isset($_COOKIE["username"])) ? $_COOKIE['username']: '' ?>">
                         </div>
                         
                         <div class="form-group">
@@ -83,9 +91,10 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
                         <div class=" form-group col-6 mt-2">
                             <button type="submit" class="btn btn-outline-primary">Login</button>
                         </div>
-                        <div class="form-group mt-3">
+                        <div class="form-group mt-2">
                         <p><a class="link-body-emphasis link-offset-2 link-opacity-50-hover" href="register.php">Don't have an Account? Click Here...</a></p>
                         </div>
+
                     </form>
                    
                 </div>

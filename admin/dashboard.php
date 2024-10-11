@@ -100,9 +100,12 @@
                             color: #000000 !important; /* Ganti warna teks menjadi hitam */
                         }
                     .col-lg-2.position-fixed.vh-100.bg-ligth {
-                        border-right: 2px solid #ccc; /* Garis pemisah dengan warna abu-abu */
+                        border-right: 2px solid #ccc;
                         position : relative;
+                        overflow-y: auto;
+                        max-height: 100vh; 
 }
+
 
             </style>
         </head>
@@ -137,7 +140,7 @@
                 </div>
             </div>
             <div class="row mt-5 bg-body" style="padding-top: 25px;">
-        <div class="col-lg-2 col-md-3 col-sm-12 position-fixed vh-100 bg-ligth">
+        <div class="col-lg-2 col-md-3 col-sm-12  bg-ligth sidebar" style="overflow-y: auto; position: sticky; top: 0; height: 100vh; border-right: 2px solid #ccc;">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'home' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=home"><i class="bi bi-houses-fill"></i> Home</a>
                 <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'profile' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=profile"><i class="bi bi-person-bounding-box"></i> Profile</a>
@@ -146,10 +149,18 @@
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'berita' or ($_GET['hal'] == 'tambah_berita')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=berita"><i class="bi bi-router"></i> Berita</a>
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'kategori' or ($_GET['hal'] == 'tambah_kategori') or ($_GET['hal'] == 'edit_kategori')) ?  "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kategori"><i class="bi bi-stack"></i> Kategori</a>
                 <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'keluhan' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=keluhan"><i class="bi bi-send-plus-fill"></i> Keluhan Pengguna</a>
+                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'transaksi' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=transaksi"><i class="bi bi-coin"></i>Terima Pesanan</a>
+                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'jeep' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=jeep"><i class="bi bi-car-front-fill"></i>Atur Armada</a>
+                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'jadwal' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=jadwal"><i class="bi bi-car-front-fill"></i>Atur Jadwal</a>
+                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'pendaftar' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=pendaftar"><i class="bi bi-car-front-fill"></i>Lihat User</a>
+             
+                
+                
+
 
             </div>
         </div>
-                <div class="col-lg-10 offset-2 col-md-9 md-3 col-sm-12">
+                <div class="col-lg-10 col-md-9 col-sm-12">
 
                 <?php
                 
@@ -216,6 +227,16 @@
                         case 'hapus_keluhan':
                             include "modul/mod_keluhan/hapus_keluhan.php";
                             break;
+                        case 'transaksi':
+                            include "modul/mod_transaksi/transaksi.php";
+                            break;
+                        case 'atur_jeep':
+                            include "modul/mod_transaksi/transaksi.php";
+                            break;
+                       case 'pendaftar':
+                          include "modul/mod_pengunjung/pengunjung.php";
+                            break;
+
                             default:
                             echo "<h1>Halaman Tidak Ditemukan</h1>";
                         
