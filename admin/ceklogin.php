@@ -11,12 +11,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $hashed_password = mysqli_real_escape_string($db, md5($password));
 
     // Query untuk mencari username dan password yang cocok
-    $query = mysqli_query($db, "SELECT * FROM admin WHERE username='$username' AND password='$hashed_password'");
-    $cek = mysqli_num_rows($query);
+    $query_username = mysqli_query($db, "SELECT * FROM admin WHERE username='$username' AND password='$hashed_password'");
+    $cek_username = mysqli_num_rows($query_username);
     
     // Pastikan hasil query valid
-    if ($cek > 0) {
-        $r = mysqli_fetch_array($query);
+    if ($cek_username > 0) {
+        $r = mysqli_fetch_array($query_username);
         
         // Set session setelah login berhasil
         $_SESSION['username'] = $r['username'];
@@ -35,16 +35,17 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         }
 
         // Redirect ke dashboard
-        header("location:dashboard.php?hal=home");
+        
+        echo "<script>alert('Selamat Datang Di Dashboard'); window.location = 'dashboard.php?hal=home' </script>";
         exit; // Pastikan untuk keluar setelah redirect
     } else {
         // Jika login gagal
-        header("location:gagal_login.php");
+        echo "<script>alert('Username ATau Password Anda Salah. Periksa Kembali'); window.location= 'index.php'</script>";
         exit; // Pastikan untuk keluar setelah redirect
     }
 } else {
     // Jika form tidak lengkap
-    header("location:gagal_login.php");
+    echo "<script>alert('Username Tidak Ditemukan. Silahkan Periksa Kembali'); window.location= 'index.php'</script>";
     exit; // Pastikan untuk keluar setelah redirect
 }
 ?>

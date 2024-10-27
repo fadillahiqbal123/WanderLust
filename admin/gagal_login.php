@@ -15,7 +15,7 @@
                     <h1>Ooopss!</h1>
                     <h2>SILAHKAN LOGIN KEMBALI</h2>
                 </div>
-                <a href="index.php" title="kembali ke halaman login">GO TO HOMEPAGE</a>
+                <a href="index.php" title="kembali ke halaman login">GO TO LOGIN PAGE</a>
             </div>
         </div>
     </body>

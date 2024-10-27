@@ -12,7 +12,6 @@
         <b>atau anda belum melakukan login</b><br>
 
         <a href="index.php" title="Klik Gambar ini untuk kembali ke Halaman Login"><img src="image/key1.png" height="100" width="100"></img></a>
-
         </center> 
         ';
     }else{
@@ -65,6 +64,8 @@
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
             <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
 
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+            <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
             <!-- GRAFIK JS -->
              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
             
@@ -92,10 +93,9 @@
                         .col-lg-12.py-3.bg-ligth.text-end.bg-ligth.fixed-top {
                              background-color: #004085; /* Ganti ini dengan warna background yang kamu inginkan */
                              color: white; /* Jika ingin mengubah warna teks juga */
-}
+                }
 
                     
-
                     .text-white {
                             color: #000000 !important; /* Ganti warna teks menjadi hitam */
                         }
@@ -104,43 +104,56 @@
                         position : relative;
                         overflow-y: auto;
                         max-height: 100vh; 
-}
+                    }
+                    
 
 
             </style>
         </head>
 
         <body>
-            <div class="row">
-                <div class="col-lg-12 py-2 bg-primary text-end fixed-top">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        User
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">
-                    <div class="d-flex align-items-center">
-            
-                <div class="flex-shrink-0">
-                    <img class="mr-3" src="image/user.png" height="50" width="50" alt="Generic placeholder image" style="border-radius: 50%; object-fit: cover;">
-                </div>
-            
-                <div class="flex-grow-1 ms-3">
-                    <h5 class="mb-0"><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Apa'; ?></h5>
-                    <small><p class="text-muted"><i class="bi bi-clock-fill"></i>Pkl <?php echo date('H:i:s')  ?>WIB</l></small>
-                </div>
-            </div>
-                        </a></li>
-                        <li><a class="dropdown-item" href="dashboard.php?hal=user"><i class="bi bi-gear"></i>Setting</a></li>
-                        <li><a class="dropdown-item" href="logout.php" onclick="return confirm('Apakah anda yakin ingin keluar dari aplikasi?')">
-                            <img src="image/logout(1).png">Logout</a></li>
-                    </ul>
+        <div class="row">
+    <div class="col-lg-12 py-2 bg-dark fixed-top d-flex justify-content-between align-items-center">
+        <!-- Nav Brand -->
+        <a href="index.php" class="navbar-brand ms-3 text-white">
+            <img src="image/wander_logo.png" height="55" width="90" alt="Brand Logo" class="me-2">
+        </a>
+        
+        <!-- User Dropdown -->
+        <div class="text-end">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                User
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <a class="dropdown-item" role="button" id="userDropdown" data-bs-toggle="dropdown" href="#">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <img class="me-3" src="image/user.png" height="50" width="50" alt="Generic placeholder image" style="border-radius: 50%; object-fit: cover;">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-0"><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Apa'; ?></h5>
+                                <small><p class="text-muted"><i class="bi bi-clock-fill"></i> Pkl <?php echo date('H:i:s') ?> WIB</p></small>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li><a class="dropdown-item" href="dashboard.php?hal=user"><i class="bi bi-gear"></i> Setting</a></li>
+                <li><a class="dropdown-item" href="logout.php" onclick="return confirm('Apakah anda yakin ingin keluar dari aplikasi?')">
+                    <img src="image/logout(1).png"> Logout</a>
+                </li>
+            </ul>
         </div>
+    </div>
+</div>
+            
 
-                </div>
-            </div>
-            <div class="row mt-5 bg-body" style="padding-top: 25px;">
-        <div class="col-lg-2 col-md-3 col-sm-12  bg-ligth sidebar" style="overflow-y: auto; position: sticky; top: 0; height: 100vh; border-right: 2px solid #ccc;">
+
+          
+
+                
+            <div class="row mt-5 bg-body" style="padding-top: 25px; font-size: 14px;">
+            <div class="col-lg-2 col-md-3 col-sm-12 bg-light sidebar" style="overflow-y: auto; position: sticky; top: 0; height:100vh; border-right:5px;">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'home' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=home"><i class="bi bi-houses-fill"></i> Home</a>
                 <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'profile' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=profile"><i class="bi bi-person-bounding-box"></i> Profile</a>
@@ -149,10 +162,33 @@
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'berita' or ($_GET['hal'] == 'tambah_berita')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=berita"><i class="bi bi-router"></i> Berita</a>
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'kategori' or ($_GET['hal'] == 'tambah_kategori') or ($_GET['hal'] == 'edit_kategori')) ?  "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kategori"><i class="bi bi-stack"></i> Kategori</a>
                 <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'keluhan' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=keluhan"><i class="bi bi-send-plus-fill"></i> Keluhan Pengguna</a>
-                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'transaksi' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=transaksi"><i class="bi bi-coin"></i>Terima Pesanan</a>
-                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'jeep' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=jeep"><i class="bi bi-car-front-fill"></i>Atur Armada</a>
-                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'jadwal' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=jadwal"><i class="bi bi-car-front-fill"></i>Atur Jadwal</a>
-                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'pendaftar' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=pendaftar"><i class="bi bi-car-front-fill"></i>Lihat User</a>
+                
+                <!-- dropdown transaksi -->
+                <a class="nav-link text-white mb-3" data-bs-toggle="collapse" href="#pesananDropdown" role="button" aria-expanded="<?php echo (isset($_GET['hal']) && in_array($_GET['hal'], ['pesanan-baru', 'data-pesanan', 'konfirmasi-pesan', 'perbarui_pesanan', 'belum_bayar'])) ? 'true' : 'false'; ?>" aria-controls="pesananDropdown">
+    <i class="bi bi-coin"></i> Pesanan <i class="bi bi-chevron-down"></i>
+</a>
+
+<!-- Dropdown Menu -->
+<div class="collapse <?php echo (isset($_GET['hal']) && in_array($_GET['hal'], ['pesanan-baru', 'data-pesanan', 'konfirmasi-pesan', 'perbarui_pesanan', 'belum_bayar'])) ? 'show' : ''; ?>" id="pesananDropdown">
+    <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'pesanan-baru' ? 'active text-white' : 'text-muted') ?>" href="dashboard.php?hal=pesanan-baru">
+        <i class="bi bi-stack"></i> Pesanan Baru
+    </a>
+    <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'data-pesanan' ? 'active text-white' : 'text-muted') ?>" href="dashboard.php?hal=data-pesanan">
+        <i class="bi bi-plus-circle"></i> Data Pesanan
+    </a>
+    <a class="nav-link <?php echo (isset($_GET['hal']) && in_array($_GET['hal'], ['konfirmasi-pesan', 'perbarui_pesanan']) ? 'active text-white' : 'text-muted') ?>" href="dashboard.php?hal=konfirmasi-pesan">
+        <i class="bi bi-plus-circle"></i> Konfirmasi Pesanan
+    </a>
+    <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'belum_bayar' ? 'active text-white' : 'text-muted') ?>" href="dashboard.php?hal=belum_bayar">
+        <i class="bi bi-stack"></i> Konfirmasi Belum Bayar
+    </a>
+</div>
+
+                <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'alamat' or ($_GET['hal'] == 'tambah_alamat') or ($_GET['hal'] == 'edit_alamat')) ?  "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=alamat"><i class="fa-solid fa-truck-pickup"></i> Alamat</a>
+                <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'kendaraan' or ($_GET['hal'] == 'tambah_kendaraan') or ($_GET['hal'] == 'edit_kendaraan')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kendaraan"><i class="bi bi-car-front-fill"></i> Atur Armada</a>
+                <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'jadwal' or ($_GET['hal'] == 'tambah_jadwal') or ($_GET['hal'] == 'edit_jadwal')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=jadwal"><i class="bi bi-car-front-fill"></i> Atur Jadwal</a>
+                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'pendaftar' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=pendaftar"><i class="bi bi-person-fill-check"></i> Lihat User</a>
+                
              
                 
                 
@@ -160,7 +196,7 @@
 
             </div>
         </div>
-                <div class="col-lg-10 col-md-9 col-sm-12">
+                <div class="col-lg-10 col-md-9 col-sm-12 card bg-white">
 
                 <?php
                 
@@ -227,14 +263,59 @@
                         case 'hapus_keluhan':
                             include "modul/mod_keluhan/hapus_keluhan.php";
                             break;
-                        case 'transaksi':
-                            include "modul/mod_transaksi/transaksi.php";
+                        case 'pesanan-baru':
+                            include "modul/mod_transaksi/pesanan_baru.php";
                             break;
-                        case 'atur_jeep':
-                            include "modul/mod_transaksi/transaksi.php";
+                        case 'data-pesanan':
+                            include "modul/mod_transaksi/data_pesanan.php";
+                            break;
+                        case 'konfirmasi-pesan':
+                            include "modul/mod_transaksi/konfirmasi_pesan.php";
+                            break;
+                        case 'perbarui_pesanan':
+                            include "modul/mod_transaksi/perbarui_pesanan.php";
+                            break;
+                        case 'belum_bayar':
+                            include "modul/mod_transaksi/belum_bayar.php";
                             break;
                        case 'pendaftar':
                           include "modul/mod_pengunjung/pengunjung.php";
+                            break;
+                        case 'kendaraan':
+                            include "modul/mod_armada/atur_kendaraan.php";
+                            break;
+                        case 'tambah_kendaraan':
+                            include "modul/mod_armada/tambah_kendaraan.php";
+                            break;
+                        case 'edit_kendaraan':
+                            include "modul/mod_armada/edit_kendaraan.php";
+                            break;
+                        case 'hapus_kendaraan':
+                            include "modul/mod_armada/hapus_kendaraan.php";
+                            break;
+                        case 'jadwal':
+                            include "modul/mod_jadwal/atur_jadwal.php";
+                            break;
+                        case 'tambah_jadwal':
+                            include "modul/mod_jadwal/tambah_jadwal.php";
+                            break;
+                        case 'hapus_jadwal':
+                            include "modul/mod_jadwal/hapus_jadwal.php";
+                            break;
+                        case 'edit_jadwal':
+                            include "modul/mod_jadwal/edit_jadwal.php";
+                            break;
+                        case 'alamat':
+                            include "modul/mod_alamat/atur_alamat.php";
+                            break;
+                        case 'tambah_alamat':
+                            include "modul/mod_alamat/tambah_alamat.php";
+                            break;
+                        case 'edit_alamat':
+                            include "modul/mod_alamat/edit_alamat.php";
+                            break;
+                        case 'hapus_alamat':
+                            include "modul/mod_alamat/hapus_alamat.php";
                             break;
 
                             default:
@@ -252,8 +333,7 @@
                 </div>   
             </div>
 
-            </div>
-        </div>
+        
             <footer>
             </footer>
             <script
@@ -261,7 +341,45 @@
                 integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
                 crossorigin="anonymous"
             ></script>
+   
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
+    <!-- dropdown menu -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownLinks = document.querySelectorAll('[data-bs-toggle="collapse"]');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                dropdownLinks.forEach(otherLink => {
+                    const otherTarget = document.querySelector(otherLink.getAttribute('href'));
+                    if (otherTarget !== target) {
+                        otherTarget.classList.remove('show'); // Close other dropdowns
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+    <script>
+    $(document).ready(function() {
+        $('#keluhanTable').DataTable({
+            "order": [[ 1, "asc" ]], // Default sorting berdasarkan kolom kedua (Nama) secara ascending
+            "paging": true,          // Menambahkan pagination
+            "searching": true,       // Menambahkan fitur search
+            "columnDefs": [
+                { "orderable": false, "targets": 0 },  // Disable sorting untuk kolom No
+                { "orderable": false, "targets": 4 }   // Disable sorting untuk kolom Aksi
+            ]
+        });
+    });
+    </script>
             <script
                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
                 integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"

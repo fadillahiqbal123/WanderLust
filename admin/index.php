@@ -71,18 +71,18 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
                 <div class="card-body">
                     <form action="ceklogin.php" method="POST">
                         <div class="form-group">
-                            <label for="exampleInputUsername1" class="form-label">Username</label>
+                            <label for="username" class="form-label">Username</label>
                             <input type="text" name="username" class="form-control" placeholder="Enter Username" required
                             value = "<?php echo (isset($_COOKIE["username"])) ? $_COOKIE['username']: '' ?>">
                         </div>
                         
                         <div class="form-group">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <label for="password" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control" placeholder="Enter Password" required
                             value="<?php echo (isset($_COOKIE["password"])) ? $_COOKIE['password']: '' ?>">
                         </div>
                         
-                        <div class="form-group form-check">
+                        <div class="form-group form-check mt-3">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
                             <?php echo ((isset($_COOKIE["username"])) and (isset($_COOKIE["password"]))) ? "checked": "" ?>>
                             <label class="form-check-label" for="exampleCheck1">Remember Me</label>

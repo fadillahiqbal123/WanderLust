@@ -33,7 +33,7 @@
 
                                     <?php
                                 }else { ?>
-                                    <option value="<?php echo $a['id_kategori'] ?>"d><?php echo $a['nama_kategori'] ?></option>
+                                    <option value="<?php echo $a['id_kategori'] ?>"><?php echo $a['nama_kategori'] ?></option>
 
                                     <?php
                                 }

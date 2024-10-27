@@ -1,10 +1,10 @@
 <div class="container-fluid mt-4">
     <div class="card">
         <div class="card-header">
-            <a href="dashboard.php?hal=tambah_berita" class="btn btn-outline-primary"><i class="bi bi-plus"></i>Tambah data</a>
+            <a href="dashboard.php?hal=tambah_berita" class="btn btn-outline-success" style="width: 100px; height: 30px; font-size: 12px;"><i class="bi bi-plus"></i> Create</a>
         </div>
         <div class="card-body">
-        <table id="example" class="display" style="width:100%">
+        <table id="example" class="display" style="height: 50px; font-size: 12px;">
         <thead>
             <tr>
                 <th></th>

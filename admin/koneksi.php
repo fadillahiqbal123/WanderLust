@@ -1,13 +1,12 @@
 <?php
-$server = "localhost";
-$user = "root";
-$password = "";
-$nama_database = "db_wisata";
+$server="localhost";
+$username="root";
+$password="";
+$database="db_wisata";
 
-$db = mysqli_connect($server, $user, $password, $nama_database);
+$db = new mysqli($server, $username, $password, $database);
 
-if ($db) {
+if($db->connect_error){
+    die ("Koneksi gagal " . $db->connect_error);
 }
-if ($db->connect_error) {
-    die("Koneksi gagal " . $db->connect_error);
-}
+?>

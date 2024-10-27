@@ -43,7 +43,7 @@ if(isset($_POST["register"])){
                                 showConfirmButton: false,
                                 timer: 3000
                             }).then(function() {
-                                window.location.href = 'index.php';
+                                window.location = 'index.php';
                             });
                         });
                       </script>";
@@ -57,7 +57,7 @@ if(isset($_POST["register"])){
                                 showConfirmButton: true
                             });
                         });
-                      </script>";
+                      </script> window.location = 'index.php'";
             }
         } catch (mysqli_sql_exception $e) {
             echo "<script>
@@ -69,7 +69,7 @@ if(isset($_POST["register"])){
                             showConfirmButton: true
                         });
                     });
-                  </script>";
+                  </script> window.location = index.php";
         }
     }
 }
@@ -134,7 +134,7 @@ if(isset($_POST["register"])){
                         </div>
 
                         <div class="form-group mt-3">
-                            <label class="form-label">Password</label>
+                            <label for="password" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control" placeholder="Masukan Password" required>
                         </div>
 
