@@ -16,103 +16,115 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"/>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+            <!-- googlw font -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
            <link rel="stylesheet" href="css/style.css">
     </head>
 
-    <body id="page-top">
-        <nav class="navbar navbar-expand-lg navbar-ligth bg-transparent fixed-top" id="mainNav">
-           <div class="container">
-          <a class="navbar-brand" href="page-top"><img src="image/lofo_wanderlust1.png" height="60px";></a>
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <body>
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-secondary bg-white fixed-top px-lg-3 py-lg-2 shadow-sm styicky-top">
+    <div class="container">
+        <a class="navbar-brand me-5 fw-bold" href="#">Brand</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger text-white" aria-current="page" href="#home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger text-white" href="#login">login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger text-white" href="#register">Registrasi</a>
-               </li>
-               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger text-white" href="#berita">Berita</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger text-white" href="#hubungi_kami">Hubungi Kami</a>
-              </li> 
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <!-- <div class="container-fluid" style="background-image: url('image/pemandangan2.png'); background-size: cover; height:750px; text-align: center; margin-top: -120px;">
-    <div class="p-5 mb-4 bg-ligth rounded-3">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold text-white" style="margin-top: 200px;">Explore Bromo<br><span class="font-weight-bold">With WanderLust</span></h1>
-            <hr class="my-4" style="border-color: blue; width: 100px; border-width:3px; margin: 0 auto;">
-            <p class="col-md-12 fs-2 text-white lead">Bromo Lebih Dekat, Perjalanan Lebih Nyaman</p>
-            <button class="btn btn-primary btn-lg my-4" type="button">MORE DETAIL</button>
+                <li class="nav-item">
+                    <a class="nav-link require-login" href="#section1">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Login/Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link require-login" href="#section3">Tentang Bromo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link require-login" href="#section4">Berita</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link require-login" href="#section4">Denah Bromo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link require-login" href="#section5">User</a>
+                </li>
+            </ul>
         </div>
     </div>
-</div> -->
+</nav>
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="image/jeep1.png " class="d-block w-100">
-      <div class="carousel-caption d-none d-md-block">
-      <h1 class="display-5 fw-bold text-white" style="margin-top: 80px;">Pura Luhur Poten<br><span class="font-weight-bold">With WanderLust</span></h1>
-            <hr class="my-4" style="border-color: blue; width: 100px; border-width:5px; margin: 0 auto;">
-            <p class="col-md-12 fs-2 text-white lead">Keindahan Budaya dan Agama Akan Nampak Disini</p>
-            <button class="btn btn-warning btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="image/pemandangan7.jpg" class="d-block w-100" alt="#">
-      <div class="carousel-caption d-none d-md-block">
-      <h1 class="display-5 fw-bold text-white" style="margin-top: 80px;">Gunung Bromo<br><span class="font-weight-bold">With WanderLust</span></h1>
-            <hr class="my-4" style="border-color: blue; width: 100px; border-width:5px; margin: 0 auto;">
-            <p class="col-md-12 fs-2 text-white lead">Keindahan Gunung Bromo</p>
-            <button class="btn btn-warning btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="image/pemandangan8.jpg" class="d-block w-100" alt="#">
-      <div class="carousel-caption d-none d-md-block">
-      <h1 class="display-5 fw-bold text-white" style="margin-top: 80px;">Gunung Bromo<br><span class="font-weight-bold">With WanderLust</span></h1>
-      <hr class="my-4" style="border-color: blue; width: 100px; border-width:5px; margin: 0 auto;">
-            <p class="col-md-12 fs-2 text-white lead">Paket Murah Dan Bersaing</p>
-            <button class="btn btn-warning btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+<!-- Content Sections -->
+ <div class="container-fluid">
+    <section id="section1" class="pt-5 mt-5">
+        <h5>Section 1</h5>
+        <p>Content for section 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum nibh eu urna consectetur egestas. Duis luctus sapien non eros faucibus dapibus. Vivamus eleifend ullamcorper eros nec gravida. Phasellus sit amet leo non metus posuere pulvinar.<br> Vestibulum auctor tincidunt dapibus. Quisque sed eros vitae ex sagittis vestibulum efficitur nec neque.<br> Nulla molestie mattis est nec tristique. Etiam faucibus, sapien ut pharetra porta, enim arcu tristique sapien, non vehicula urna nunc in sapien. Maecenas eget felis ac tellus imperdiet pellentesque<br> Morbi odio purus, tempus at ultricies sit amet, rhoncus at nisi. Aenean blandit ac ipsum at efficitur. Integer nisl nisi, bibendum ut varius in, tempus at magna.<br> Sed porta rutrum ex vel ultrices. Nulla sed tellus sollicitudin, ultricies erat at, tristique lacus. Quisque in congue tellus, auctor blandit neque. Nam eu nisl lectus.
+      <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum nibh eu urna consectetur egestas. Duis luctus sapien non eros faucibus dapibus. Vivamus eleifend ullamcorper eros nec gravida. Phasellus sit amet leo non metus posuere pulvinar. Vestibulum auctor tincidunt dapibus. Quisque sed eros vitae ex sagittis vestibulum efficitur nec neque. Nulla molestie mattis est nec tristique. Etiam faucibus, sapien ut pharetra porta, enim arcu tristique sapien, non vehicula urna nunc in sapien. Maecenas eget felis ac tellus imperdiet pellentesque. Morbi odio purus, tempus at ultricies sit amet, rhoncus at nisi. Aenean blandit ac ipsum at efficitur. Integer nisl nisi, bibendum ut varius in, tempus at magna. Sed porta rutrum ex vel ultrices. Nulla sed tellus sollicitudin, ultricies erat at, tristique lacus. Quisque in congue tellus, auctor blandit neque. Nam eu nisl lectus.
+Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.</p>
+    </section>
+    <section id="section2" class="pt-5 mt-5">
+        <h5>Section 2</h5>
+        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
+Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
+    </section>
+    <section id="section3" class="pt-5 mt-5">
+        <h5>Section 3</h5>
+        <p>Content for section 3 Cras diam leo, ultricies quis justo suscipit, venenatis pharetra libero. Curabitur ac lectus feugiat, fringilla ipsum id, euismod sem. Integer at risus eu sapien pretium scelerisque. Nullam porta nunc et tristique fermentum. Proin auctor, dui eget rhoncus finibus, turpis ipsum euismod massa, at eleifend purus lorem at arcu.<br> Curabitur nunc enim, rutrum sed euismod ut, congue consequat tellus. Vestibulum dapibus convallis pharetra. Proin facilisis ultricies mi vitae gravida. Cras pharetra suscipit dui non cursus. Etiam cursus consectetur odio, sed accumsan erat ultricies at.<br> Sed nec scelerisque eros, sit amet sodales lectus. In porttitor ligula vel nulla ornare, eu feugiat elit facilisis. Nam sed metus lorem. Mauris sit amet nunc dui. Duis blandit massa a dui faucibus pretium.</p>
+    </section>
+    <section id="section4" class="pt-5 mt-5">
+        <h15>Section 4</h15>
+        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
+Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
+    </section>
+
+    <section id="section5" class="pt-5 mt-5">
+        <h15>Section 5</h15>
+        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
+Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.<br>
+Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in. Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.
+
+Cras diam leo, ultricies quis justo suscipit, venenatis pharetra libero. Curabitur ac lectus feugiat, fringilla ipsum id, euismod sem. Integer at risus eu sapien pretium scelerisque. Nullam porta nunc et tristique fermentum. Proin auctor, dui eget rhoncus finibus, turpis ipsum euismod massa, at eleifend purus lorem at arcu. Curabitur nunc enim, rutrum sed euismod ut, congue consequat tellus. Vestibulum dapibus convallis pharetra. Proin facilisis ultricies mi vitae gravida. Cras pharetra suscipit dui non cursus. Etiam cursus consectetur odio, sed accumsan erat ultricies at. Sed nec scelerisque eros, sit amet sodales lectus. In porttitor ligula vel nulla ornare, eu feugiat elit facilisis. Nam sed metus lorem. Mauris sit amet nunc dui. Duis blandit massa a dui faucibus pretium.
+Nunc viverra egestas lacus a volutpat. Donec cursus, risus ut lacinia mattis, lacus diam posuere nunc, fringilla accumsan turpis nulla vel nisl. Proin vitae cursus quam, fermentum vestibulum magna. Aenean eu ullamcorper quam, quis maximus dolor. Quisque mauris metus, aliquet ut dolor id, porttitor aliquet est. In rutrum quam mi, nec laoreet dolor molestie a. Nam tincidunt ante sit amet lorem imperdiet dictum a et lacus. Cras vel lectus massa. Phasellus vehicula justo pulvinar turpis vehicula posuere. Nullam mollis scelerisque interdum. Pellentesque enim augue, suscipit sed suscipit at, gravida ut lorem. Phasellus sollicitudin tincidunt ipsum.</p>
+    </section>
+
+    <section id="section6" class="pt-5 mt-5">
+        <h15>Section 6</h15>
+        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
+Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
+    </section>
+</div> 
 
 
-<div class="map-container my-5">
-  <iframe width="50%" height="250" 
-    src="https://www.openstreetmap.org/export/embed.html?bbox=112.67372131347658%2C-8.24207140288243%2C113.19419860839845%2C-7.834812882712155&amp;layer=mapnik" 
-    style="border: 1px solid black"></iframe>
-  <br/>
-  <small><a href="https://www.openstreetmap.org/#map=11/-8.0385/112.9340">View Larger Map</a></small>
-</div>
+
+
+   
 
 
 
         <footer>
         
         </footer>
+
+
+        <script>
+    // Ganti `false` dengan variabel dari PHP atau session untuk mengecek apakah pengguna sudah login
+    const isLoggedIn = <?php echo isset($_SESSION['id_user']) ? 'true' : 'false'; ?>;
+
+    // Dapatkan semua elemen yang membutuhkan login
+    const loginRequiredLinks = document.querySelectorAll('.require-login');
+
+    loginRequiredLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            // Cek apakah user sudah login
+            if (!isLoggedIn) {
+                event.preventDefault(); // Mencegah link bekerja
+                alert('Silakan login terlebih dahulu untuk mengakses bagian ini.');
+                window.location.href = 'index.php'; // Arahkan ke halaman login
+            }
+        });
+    });
+</script>
 
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
