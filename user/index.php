@@ -7,7 +7,8 @@ session_start();
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Login User</title>
+    <title>WanderLust</title>
+    <link rel="icon" href="image/lofo_wanderlust1.png" type="image/png">
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -37,7 +38,7 @@ session_start();
       <div class="container" id="container">
         <div class="form-container sign-up">
           <form id="auth-form" action="proses.php" method="POST">
-            <h3 style="text-align: center;">Create Account</h3>
+            <h3 style="text-align: center;">Kunjungi Juga Sosial Media Kami</h3>
             <div class="social-icons">
                 <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i>
               </a>
@@ -61,7 +62,7 @@ session_start();
           <form action="proses.php" method="POST">
             <h4><strong>Sign In</strong></h4>
             <div class="social-icons">
-              <h5 style="text-align: center;"><strong>Kunjungi Juga<br>Social Media Kami</strong></h5>
+              <h6 style="text-align: center;"><strong>Kunjungi Juga<br>Social Media Kami</strong></h6>
                 <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i>
               </a>
               <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i>
@@ -71,14 +72,20 @@ session_start();
               <a href="#" class="icon"><i class="fa-brands fa-linkedin"></i>
               </a>
             </div>
-            <span>Or use your email password</span>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <a href="#">Forget Your Password ?</a>
-            <div class="form-group text-end" style="width: 10px;">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">
-            <label class="form-cek-label">Remember Me</label>
+            <span>Use your email password</span>
+            <input type="email" name="email" placeholder="Email" required
+            value = "<?php echo (isset($_COOKIE["email"])) ? $_COOKIE['email']: '' ?>">
+
+            <input type="password" name="password" placeholder="Password" required
+            value = "<?php echo (isset($_COOKIE["password"])) ? $_COOKIE['password']: '' ?>">
+
+            <div class="form-group" style="width: 10px; align-items: center;">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
+            <?php echo ((isset($_COOKIE["email"])) and (isset($_COOKIE["password"]))) ? "checked": "" ?>>
+            <label class="form-cek-label" for="exampleCheck1" style="font-size: 12px; line-height: 1; margin: 0; cursor: pointer;">Remember Me</label>
             </div>
+
+            <a href="#">Forget Your Password ?</a>
             <button type="submit" id="btn" name="login">Sign In</button>
           </form>
         </div>
@@ -102,7 +109,6 @@ session_start();
 </div>
 
       </div>
-
     
     
     
@@ -111,11 +117,11 @@ session_start();
         </footer>
 
 
-        <script src="script.js"></script>
+       
        
 
 
-
+        <script src="script.js"></script>
         <!-- Bootstrap JavaScript Libraries -->
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

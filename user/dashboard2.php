@@ -1,10 +1,10 @@
 <!-- selanjutnya adalah tambah gambar dan komponen lain, saya berifir untuk memprioritaskan crud yang simple
 namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku -->
 <?php
-   session_start();
+  session_start();
   date_default_timezone_set('Asia/Jakarta');
 
-   if(empty($_SESSION['email']) and empty($_SESSION['password'])) {
+   if(empty($_SESSION['email']) and empty($_SESSION['id_user'])) {
     echo'
     <br><br><br><br><br><br><br><br>
     <center>
@@ -15,6 +15,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
     <a href="homepage.php" title="Klik Gambar ini untuk kembali ke Halaman Login"><img src="image/key1.png" height="100" width="100"></img></a>
     </center> 
     ';
+    exit(); 
    }else{
     $db = new mysqli("localhost", "root", "", "db_wisata");
 
@@ -25,11 +26,11 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
     // Mengambil data berita
     $sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
     $result = $db->query($sql);
-  
 
-
-   
+    // Mulai HTML
     ?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -38,9 +39,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
     <link rel="icon" href="image/lofo_wanderlust1.png" type="image/png">
        
         <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
              rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
@@ -78,21 +77,12 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
               border: 1px;
               box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
-        .tour-package-card:hover {
-              transform: scale(1.1);
-              border: 1px;
-              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        }
         .availability-form{
           margin-top: -50px;
           z-index: 2;
           position: relative;
-        }
-
-          </style>
-           
-          
-           
+        }  
+          </style>    
     </head>
 
     <body>
@@ -103,7 +93,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
           <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="#navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active me-2 js-scroll-trigger text-dark" aria-current="page" href="#section1"><strong>Home</strong></a>
@@ -111,7 +101,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
 
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
               <li class="nav-item">
-                <a class="nav-link me-2 js-scroll-trigger text-dark" href="jadwal.php"><strong>Lihat Jadwal</strong></a>
+                <a class="nav-link me-2 js-scroll-trigger text-dark" href="#section2"><strong> Pesan Tiket</strong></a>
               </li>
 
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
@@ -133,25 +123,31 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
               </li>
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
               
-              
-            
               <li class="nav-item dropdown">
-          <button class="nav-link dropdown-toggle bg-primary text-light rounded" href="#" role="button" data-bs-toggle="dropdown">
-           <strong>User</strong>
-         </button>
-          <ul class="dropdown-menu">
-          <li>
-    <a class="dropdown-item" role="button">
-        <i class="fa-solid fa-user"></i>
-        <span class="username"><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Apa'; ?></span>
-    </a>
+    <button class="nav-link dropdown-toggle bg-primary text-light rounded" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong>User</strong>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+        <li>
+            <a class="dropdown-item" role="button" href="#">
+                <i class="fa-solid fa-user"></i>
+                <span class="username"><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Apa'; ?></span>
+            </a>
+        </li>
+        <li>
+            <small>
+                <p class="dropdown-item text-center">
+                    <i class="bi bi-clock-fill"></i> Pkl <?php echo date('H:i:s')?> WIB
+                </p>
+            </small>
+        </li>
+        <li><a class="dropdown-item" href="dashboard.php?hal=setting"><i class="bi bi-gear-fill"></i> Setting</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+    </ul>
 </li>
-            <small><p class="dropdown-item text-center"><i class="bi bi-clock-fill"></i> Pkl <?php echo date('H:i:s')?> WIB</l></small>
-            <li><a class="dropdown-item" href="dashboard.php?hal=setting"><i class="bi bi-gear-fill"></i> Setting</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
-          </ul>
-        </li> 
+
+
         
               </ul>
             </div>
@@ -174,12 +170,11 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
 
 
   <main>
-
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <section id="section1" >
   <div class="carousel-inner">
   <div class="carousel-item active">
-  <img src="image/pemandangan14.png" class="d-block w-100">
+  <img src="image/pemandangan16.jpg" class="d-block w-100">
   <div class="carousel-caption d-none d-md-block">
     <div class="card bg-dark opacity-75">
       <div class="card-body">
@@ -191,7 +186,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
   </div>
 </div>
 <div class="carousel-item">
-  <img src="image/pemandangan15.jpg" class="d-block w-100">
+  <img src="image/pemandangan14.png" class="d-block w-100">
   <div class="carousel-caption d-none d-md-block">
     <div class="card bg-dark opacity-75">
       <div class="card-body">
@@ -203,11 +198,11 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
   </div>
 </div>
 <div class="carousel-item">
-  <img src="image/pemandangan16.jpg" class="d-block w-100">
+  <img src="image/pemandangan15.jpg" class="d-block w-100">
   <div class="carousel-caption d-none d-md-block">
     <div class="card bg-dark opacity-75">
       <div class="card-body">
-        <h1 class="display-5 fw-bold text-white" style="margin-top: 20px;">Gunung Gentong</h1>
+        <h1 class="display-5 fw-bold text-white" style="margin-top: 20px;">Gunung Bromo</h1>
         <p class="col-md-12 fs-4 text-white">Keindahan Gunung Bromo</p>
         <button class="btn btn-primary btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
       </div>
@@ -227,17 +222,19 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
 </div>
 
 
+<!-- paket -->
+ 
 <div class="container availability-form">
     <div class="row">
         <div class="col-lg-12 bg-white shadow p-4 rounded">
             <h5 class="mb-4">Cek Jadwal</h5>
            
-            <form action="hasil_cari=.php?hal=hasil_cari" method="POST">
+            <form action="hasil_cari.php" method="POST">
                 <div class="row align-items-end">
                  
-                    <div class="form-group col-md-4 mb-3">
+                    <div class="col-lg-5 mb-3">
                         <label class="form-label" style="font-weight:500;">Keberangkatan</label>
-                        <select name="cari_asal" class="form-select shadow-none" required>
+                        <select name="id_asal" class="form-select shadow-none">
                             <option selected>-- Pilih Keberangkatan --</option>
                             <?php
                           
@@ -255,9 +252,9 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
                     </div>
 
                     <!-- Dropdown Destinasi Wisata -->
-                    <div class="form-group col-md-4 mb-3">
+                    <div class="col-lg-5 mb-3">
                         <label class="form-label" style="font-weight:500;">Destinasi Wisata</label>
-                        <select name="cari_destinasi" class="form-select shadow-none" required>
+                        <select name="id_destinasi" class="form-select shadow-none">
                             <option selected>-- Pilih Destinasi --</option>
                             <?php
                             // Query untuk mendapatkan data dari tabel `destinasi`
@@ -272,14 +269,9 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
                         </select>
                     </div>
 
-                    <div class="form-group col-md-3 mb-3">
-                      <label for="date" class="form-label" style="font-weight: 500;">Pilih Tanggal</label>
-                      <input type="date" class="form-control shadow-none" name="caritgl" required>
-                    </div>
-
                     <!-- Button Submit -->
-                    <div class="col-sm-1 mb-lg-3 mt-2">
-                        <input type="submit" class="btn btn-primary" value="Cari"/>
+                    <div class="col-lg-2 mb-lg-3 mt-2">
+                        <input type="submit" class="btn btn-primary" value="Cari Jadwal" />
                     </div>
                 </div>
             </form>
@@ -289,6 +281,8 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
 
 
 
+
+<!-- layanan paket -->
 <?php
 // Koneksi database
 function sql_select() {
@@ -381,11 +375,49 @@ function sql_select() {
 
 
 
+      <div class="col-lg-4 col-md-6 my-3 rounded">
+        <div class="card tour-package-card border-0 shadow" style="max-width: 350px; margin: auto;">
+          <img src="image/paket2.png" class="d-block w-100">
+          <div class="card-body">
+            <h5 class="card-title mb-4"><strong>PAKET 2</strong></h5>
+            <h6>Start From Rp. 1.000.000</h6>
+            <div class="fasilitas mb-3">
+               <h6 class="mb-1">Fasilitasi</h6>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    1 Mobil HiAce (Berisi 6 orang)
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    Wisata Pura Luhur Poten dan Bromo 
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    kenyamanan Perjalanan
+               </span>
+               
+            </div>
+            <div clas="rating mb-4">
+            <h6 class="mb-1">Rating</h6>
+            <span class="badge rounded-pill bg-light">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            </span>
+            </div>
+            <div class="d-flex justify-content-evenly mb-2 mt-3">
+                <a type="button" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                <a type="button" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
+            </div>
+            </div>
+        </div>
+      </div>
 
 
 
 
-<!-- layanan biasa -->
+
+
+
+
 <div class="container">
 <section id="section2" class="pt-5 mt-5">
   <div class="col-md-12 rounded">
@@ -477,43 +509,44 @@ function sql_select() {
             </div>
         </div>
     </div>
+       </div>
+       </div>
+       </section>
     </div>
-    </section>
-    </div>
+
 
     <h5 class="mt-5 pt-5 mb-5 text-center fw-bold h-font">BERITA BROMO</h5>
 
-<?php
+ <?php
 $sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
-   echo '<div class="container mt-4">';
-   while($row = $result->fetch_assoc()) {
-       // Path gambar
-       $foto_path = '../Admin/img_berita/' . $row['foto_berita'];
+    echo '<div class="container mt-4">';
+    while($row = $result->fetch_assoc()) {
+        // Path gambar
+        $foto_path = '../Admin/img_berita/' . $row['foto_berita'];
 ?>
-       <div class="row mb-4 rounded shadow">
-           <div class="col-md-4">
-               <img src="<?php echo $foto_path; ?>" class="img-fluid rounded" alt="Berita Terkini">
-           </div>
-           <div class="col-md-8">
-               <h3><?php echo $row['judul_berita']; ?></h3>
-               <p><small class="text-muted"><?php echo date('d-m-Y', strtotime($row['tgl_berita'])); ?></small></p>
-               <p><?php echo $row['konten_berita']; ?></p>
-           </div>
-       </div>
+        <div class="row mb-4 rounded shadow">
+            <div class="col-md-4">
+                <img src="<?php echo $foto_path; ?>" class="img-fluid rounded" alt="Berita Terkini">
+            </div>
+            <div class="col-md-8">
+                <h3><?php echo $row['judul_berita']; ?></h3>
+                <p><small class="text-muted"><?php echo date('d-m-Y', strtotime($row['tgl_berita'])); ?></small></p>
+                <p><?php echo $row['konten_berita']; ?></p>
+            </div>
+        </div>
 <?php
-   }
-   echo '</div>';
+    }
+    echo '</div>';
 } else {
-   echo "<p>Tidak ada berita tersedia.</p>";
+    echo "<p>Tidak ada berita tersedia.</p>";
 }
 ?>
-    
 
 
-    <h2 class="mt-5 pt-5 text-center fw-bold h-font">Fasilitas WanderLust</h2>
+<h2 class="mt-5 pt-5 text-center fw-bold h-font">Fasilitas WanderLust</h2>
 <div class="container">
     <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
@@ -540,55 +573,28 @@ if ($result->num_rows > 0) {
 </div>
 
 
-    <h5 class="mt-5 pt-5 text-center fw-bold h-font">Reach Us</h5>
-  <div class="container mt-5 mb-5">
+
+
+<!-- maps -->
+  <div class="container mt-5 pt-5">
   <div class="row">
-      <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-4 bg-white rounded">
-      <iframe class="w-100 rounded" height="350" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63224.15076365207!2d112.93910754647912!3d-7.946191125724633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd637aaab794a41%3A0xada40d36ecd2a5dd!2sGn.%20Bromo!5e0!3m2!1sid!2sid!4v1730612238451!5m2!1sid!2sid" loading="lazy"></iframe>
+    <section id="section3" class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5><strong>Denah Wilayah Taman Nasional Bromo</strong></h5>
         </div>
-        <div class="col-lg-4 col-md-4">
-          <div class="bg-white p-4 rounded mb-4 shadow">
-            <h5>Call Us</h5>
-            <a href="tel: +62875849258758" class="d-inline-block mb-2 text-decoration-none text-dark">
-            <i class="bi bi-telephone-fill"></i> +6285849258758
-            </a>
-            <br>
-            <a href="tel: +62875849258758" class="d-inline-block mb-2 text-decoration-none text-dark">
-            <i class="bi bi-whatsapp"></i> +6285849258758
-            </a>
-          </div>
-          <div class="bg-white p-4 rounded mb-4 shadow">
-            <h5>Follow Us</h5>
-            <a href="#" class="d-inline-block mb-3">
-              <span class="badge bg-light text-dark fs-6">
-              <i class="bi bi-twitter me-1"></i> Twitter
-              </span>
-            </a>
-            <br>
-            <a href="#" class="d-inline-block mb-3">
-              <span class="badge bg-light text-dark fs-6">
-              <i class="bi bi-instagram me-1"></i> Instagram
-              </span>
-            </a>
-            <br>
-            <a href="#" class="d-inline-block mb-3">
-              <span class="badge bg-light text-dark fs-6">
-              <i class="bi bi-youtube me-1"></i> Youtube
-              </span>
-            </a>
-          </div>
+        <div class="card-body">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=112.67372131347658%2C-8.24207140288243%2C113.19419860839845%2C-7.834812882712155&amp;layer=mapnik"
+            class="w-100" style="height: 200px; border: none;"></iframe>
+          <p class="mt-3 text-center">
+            <a href="https://www.openstreetmap.org/#map=11/-8.0385/112.9340">View Larger Map</a>
+          </p>
         </div>
-        </div>
-        </div>
-  
+      </div>
+    </section>
 
     <!-- Form Kritik dan Saran di sebelah peta -->
-  
-  
-
-<div class="container">
-  <div class="row">
-  <div class="col-md-12 mb-5">
+    <div class="col-md-6 mb-3">
       <div class="card">
         <div class="card-header">
           <h5><strong>Form Kritik dan Saran</strong></h5>
@@ -608,8 +614,10 @@ if ($result->num_rows > 0) {
               <textarea class="form-control" id="kritikSaran" rows="3" placeholder="Masukkan Kritik dan Saran Anda"></textarea>
             </div>
             <div class="form-group">
+            <button type="submit" class="btn btn-primary">Kirim</button>
+
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kritikSaranModal">
-              Isi
+              View
               </button>
 
               <div class="modal fade" id="kritikSaranModal" tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
@@ -650,7 +658,7 @@ if ($result->num_rows > 0) {
 
   </main>
 
-  <footer class="bg-dark text-white pt-5 pb-2">
+  <footer class="bg-dark text-white mt-5 pt-5 pb-2 py-2">
   <div class="container text-center">
     <div class="row">
       <div class="col-md-12">
@@ -672,7 +680,10 @@ if ($result->num_rows > 0) {
           <a href="https://www.instagram.com/fadillahiqbal._/?hl=en" target="_blank" class="text-white me-3">
             <i class="fab fa-instagram"></i> Nisrina
           </a>
-        
+          
+          <a>
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
         </p>
       </div>
     </div>
@@ -686,18 +697,25 @@ if ($result->num_rows > 0) {
   </div>
 </footer>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
-        ></script>
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></scrip>
+        <!-- Popper.js and Bootstrap Bundle -->
+<script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"
+></script>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
     </body>
 </html>
 <?php 
-   }
+}
+
 ?>

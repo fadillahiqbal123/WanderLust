@@ -1,11 +1,24 @@
 <!-- selanjutnya adalah tambah gambar dan komponen lain, saya berifir untuk memprioritaskan crud yang simple
 namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku -->
+<?php
 
+$db = new mysqli("localhost", "root", "", "db_wisata");
+
+if ($db->connect_error) {
+    die("Koneksi gagal: " . $db->connect_error);
+}
+
+
+$sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
+$result = $db->query($sql);
+?>
 
 <!doctype html>
 <html lang="en">
     <head>
-        <title>User WanderLust:</title>
+        <title>WanderLust</title>
+        <link rel="icon" href="image/lofo_wanderlust1.png" type="image/png">
+        <link rel="icon" href="image/LOGO_WONDERLUST-removebg-preview 2.png" type="image/png">
        
         <meta charset="utf-8" />
         <meta
@@ -20,40 +33,430 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-           <link rel="stylesheet" href="css/style.css">
+            <!-- sweetalert -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <!-- sweper.js -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+            <!-- css -->
+            <style>
+                .custom-bg{
+                    background-color: blue;
+                }
+                .custom-bg:hover{
+                    background-color: blue;
+                }
+                .availability-form{
+                    margin-top: -50px;
+                    z-index: 2;
+                    position: relative;
+                }
+            </style>
     </head>
 
-    <body>
+    <body class="bg-light">
     <nav id="mainNav" class="navbar navbar-expand-lg navbar-secondary bg-white fixed-top px-lg-3 py-lg-2 shadow-sm styicky-top">
     <div class="container">
-        <a class="navbar-brand me-5 fw-bold" href="#">Brand</a>
+        <a class="navbar-brand me-5 fw-bold" href="#">
+            <img src="image/lofo_wanderlust1.png" alt="WanderLust" style="height: 50px; width: 75px;">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link require-login" href="#section1">Home</a>
+                    <a class="nav-link" href="#section1">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Login/Register</a>
+                    <a class="nav-link require-login" href="#section2">Pesan Tiket</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link require-login" href="#section3">Tentang Bromo</a>
+                    <a class="nav-link" href="#section3">Fasilitas</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link require-login" href="#section4">Berita</a>
+                <li class="mb-3">
+                    <button  href="#section4" class="btn btn-dark require-login me-3">Login</button>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link require-login" href="#section4">Denah Bromo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link require-login" href="#section5">User</a>
-                </li>
+                 </div>
+               </div>
             </ul>
         </div>
+        </div>
+    </nav>
+
+   
+    
+
+
+ <div clas="container-fluid px-lg-4 mt-4">
+ <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <section id="section1" >
+  <div class="carousel-inner">
+  <div class="carousel-item active">
+  <img src="image/hd.jpg" class="d-block w-100">
+  <div class="carousel-caption d-none d-md-block">
+    <div class="card bg-dark opacity-75">
     </div>
-</nav>
+  </div>
+</div>
+<div class="carousel-item">
+  <img src="image/bromo2.jpg" class="d-block w-100">
+  <div class="carousel-caption d-none d-md-block">
+    <div class="card bg-dark opacity-75">
+    </div>
+  </div>
+</div>
+<div class="carousel-item">
+  <img src="image/hd2.png" class="d-block w-100">
+  <div class="carousel-caption d-none d-md-block">
+    <div class="card bg-dark opacity-75">
+    </div>
+  </div>
+</div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+  </section>
+</div>
+ </div>
+
+<!-- layanan cari -->
+<div class="container availability-form">
+    <div class="row">
+        <section id="#section2">
+        <div class="col-lg-12 bg-white shadow p-4 rounded">
+            <h5 class="mb-4">Cek Jadwal</h5>
+           <form>
+            <div class="row align-items-end">
+                <div class="col-lg-3 mb-3">
+                    <label class="form-label" style="font-weight: 500;">Cek Jadwal Anda</label>
+                    <input type="date" class="form-control shadow-none">
+                </div>
+                <div class="col-lg-3 mb-3">
+                    <label class="form-label" style="font-weight: 500;">Tujuan Destinasi</label>
+                    <input type="text" class="form-control shadow-none">
+                </div>
+                <div class="col-lg-3 mb-3">
+                    <label class="form-label" style="font-weight:500;">paket Wisata</label>
+                    <select class="form-select shadow-none">
+                    <option selected>-- Pilih Paket --</option>
+                    <option value="1">Paket Trip 1</option>
+                    <option value="2">Paket Trip 2</option>
+                    <option value="3">Paket Trip 3</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 mb-3">
+                    <label class="form-label" style="font-weight:500;">paket Kategori Wisata</label>
+                    <select class="form-select shadow-none">
+                    <option selected>-- Pilih Kategori --</option>
+                    <option value="1">Paket Kategori 1</option>
+                    <option value="2">Paket Kategori 2</option>
+                    <option value="3">Paket Kategori 3</option>
+                    </select>
+                </div>
+                <div class="col-lg-1 mb-lg-3 mt-2">
+                    <button type="button" class="btn text-white shadow-none custom-bg">Submit</button>
+                </div>
+            </div>
+            </div>
+           </form>
+           </section>
+        </div>
+    </div>
+
+<!-- layanan paket -->
+<div class="container mt-5">
+ <div class="row">
+  <div class="col-lg-4 col-md-6 my-3 rounded">
+        <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+          <img src="image/paket1.png" class="d-block w-100">
+          <div class="card-body">
+            <h5 class="card-title mb-4"><strong>PAKET 1</strong></h5>
+            <h6>Start From Rp. 1.000.000</h6>
+            <div class="fasilitas mb-3">
+               <h6 class="mb-1">Fasilitasi</h6>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    1 Mobil HiAce (Berisi 6 orang)
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    Wisata Pura Luhur Poten dan Bromo 
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    kenyamanan Perjalanan
+               </span>
+               
+            </div>
+            <div clas="rating mb-4">
+            <h6 class="mb-1">Rating</h6>
+            <span class="badge rounded-pill bg-light">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            </span>
+            </div>
+            <div class="d-flex justify-content-evenly mb-2 mt-3">
+                <a type="button" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                <a type="button" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 my-3 rounded">
+        <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+          <img src="image/paket2.png" class="d-block w-100">
+          <div class="card-body">
+            <h5 class="card-title mb-4"><strong>PAKET 2</strong></h5>
+            <h6>Start From Rp. 1.000.000</h6>
+            <div class="fasilitas mb-3">
+               <h6 class="mb-1">Fasilitasi</h6>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    1 Mobil HiAce (Berisi 6 orang)
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    Wisata Pura Luhur Poten dan Bromo 
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    kenyamanan Perjalanan
+               </span>
+               
+            </div>
+            <div clas="rating mb-4">
+            <h6 class="mb-1">Rating</h6>
+            <span class="badge rounded-pill bg-light">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            </span>
+            </div>
+            <div class="d-flex justify-content-evenly mb-2 mt-3">
+                <a type="button" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                <a type="button" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 my-3 rounded">
+        <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+          <img src="image/paket3.png" class="d-block w-100">
+          <div class="card-body">
+            <h5 class="card-title mb-4"><strong>PAKET 3</strong></h5>
+            <h6>Start From Rp. 1.000.000</h6>
+            <div class="fasilitas mb-3">
+               <h6 class="mb-1">Fasilitasi</h6>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    1 Mobil HiAce (Berisi 6 orang)
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    Wisata Pura Luhur Poten dan Bromo 
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    kenyamanan Perjalanan
+               </span>
+               
+            </div>
+            <div clas="rating mb-4">
+            <h6 class="mb-1">Rating</h6>
+            <span class="badge rounded-pill bg-light">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            </span>
+            </div>
+            <div class="d-flex justify-content-evenly mb-2 mt-3">
+                <a type="button" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                <a type="button" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 my-3 rounded">
+        <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+          <img src="image/paket3.png" class="d-block w-100">
+          <div class="card-body">
+            <h5 class="card-title mb-4"><strong>PAKET 1</strong></h5>
+            <h6>Start From Rp. 1.000.000</h6>
+            <div class="fasilitas mb-3">
+               <h6 class="mb-1">Fasilitasi</h6>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    1 Mobil HiAce (Berisi 6 orang)
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    Wisata Pura Luhur Poten dan Bromo 
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    kenyamanan Perjalanan
+               </span>
+               
+            </div>
+            <div clas="rating mb-4">
+            <h6 class="mb-1">Rating</h6>
+            <span class="badge rounded-pill bg-light">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            </span>
+            </div>
+            <div class="d-flex justify-content-evenly mb-2 mt-3">
+                <a type="button" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                <a type="button" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 my-3 rounded">
+        <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+          <img src="image/paket3.png" class="d-block w-100">
+          <div class="card-body">
+            <h5 class="card-title mb-4"><strong>PAKET 2</strong></h5>
+            <h6>Start From Rp. 1.000.000</h6>
+            <div class="fasilitas mb-3">
+               <h6 class="mb-1">Fasilitasi</h6>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    1 Mobil HiAce (Berisi 6 orang)
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    Wisata Pura Luhur Poten dan Bromo 
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    kenyamanan Perjalanan
+               </span>
+               
+            </div>
+            <div clas="rating mb-4">
+            <h6 class="mb-1">Rating</h6>
+            <span class="badge rounded-pill bg-light">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            </span>
+            </div>
+            <div class="d-flex justify-content-evenly mb-2 mt-3">
+                <a type="button" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                <a type="button" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 my-3 rounded">
+        <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+          <img src="image/paket3.png" class="d-block w-100">
+          <div class="card-body">
+            <h5 class="card-title mb-4"><strong>PAKET 3</strong></h5>
+            <h6>Start From Rp. 1.000.000</h6>
+            <div class="fasilitas mb-3">
+               <h6 class="mb-1">Fasilitasi</h6>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    1 Mobil HiAce (Berisi 6 orang)
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    Wisata Pura Luhur Poten dan Bromo 
+               </span>
+               <span class="badge rounded-pillbg-light text-dark text-wrap">
+                    kenyamanan Perjalanan
+               </span>
+               
+            </div>
+            <div clas="rating mb-4">
+            <h6 class="mb-1">Rating</h6>
+            <span class="badge rounded-pill bg-light">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            </span>
+            </div>
+            <div class="d-flex justify-content-evenly mb-2 mt-3">
+                <a type="button" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                <a type="button" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
+            </div>
+            </div>
+        </div>
+      </div>
+   </div>
+ </div>
+
+
+ <!-- berita terkini -->
+ <h5 class="mt-5 pt-5 mb-5 text-center fw-bold h-font">BERITA BROMO</h5>
+
+ <?php
+$sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+    echo '<div class="container mt-4">';
+    while($row = $result->fetch_assoc()) {
+        // Path gambar
+        $foto_path = '../Admin/img_berita/' . $row['foto_berita'];
+?>
+        <div class="row mb-4 rounded shadow">
+            <div class="col-md-4">
+                <img src="<?php echo $foto_path; ?>" class="img-fluid rounded" alt="Berita Terkini">
+            </div>
+            <div class="col-md-8">
+                <h3><?php echo $row['judul_berita']; ?></h3>
+                <p><small class="text-muted"><?php echo date('d-m-Y', strtotime($row['tgl_berita'])); ?></small></p>
+                <p><?php echo $row['konten_berita']; ?></p>
+            </div>
+        </div>
+<?php
+    }
+    echo '</div>';
+} else {
+    echo "<p>Tidak ada berita tersedia.</p>";
+}
+?>
+
+<section id="section3">
+    
+<h2 class="mt-5 pt-5 text-center fw-bold h-font">Fasilitas WanderLust</h2>
+<div class="container">
+    <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
+        <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
+            <img src="image/HiAce.jpg" width="100px;">
+            <h5 class="mt-3">HiAce</h5>
+        </div>
+        <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
+            <img src="image/HiAce.jpg" width="100px;">
+            <h5 class="mt-3">HiAce</h5>
+        </div>
+        <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
+            <img src="image/HiAce.jpg" width="100px;">
+            <h5 class="mt-3">HiAce</h5>
+        </div>
+        <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
+            <img src="image/HiAce.jpg" width="100px;">
+            <h5 class="mt-3">HiAce</h5>
+        </div>
+        <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
+            <img src="image/HiAce.jpg" width="100px;">
+            <h5 class="mt-3">HiAce</h5>
+        </div>   
+    </div>
+    </div>
+    </section>
+ <!-- <div clas="container">
+    <div class="row">
+        <div class="col-lg-12">
+          
+        </div>
+    </div>
+ </div> -->
+<br><br><br><br>
+<br><br><br><br>
+
+
 
 <!-- Content Sections -->
  <div class="container-fluid">
@@ -63,19 +466,19 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
       <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum nibh eu urna consectetur egestas. Duis luctus sapien non eros faucibus dapibus. Vivamus eleifend ullamcorper eros nec gravida. Phasellus sit amet leo non metus posuere pulvinar. Vestibulum auctor tincidunt dapibus. Quisque sed eros vitae ex sagittis vestibulum efficitur nec neque. Nulla molestie mattis est nec tristique. Etiam faucibus, sapien ut pharetra porta, enim arcu tristique sapien, non vehicula urna nunc in sapien. Maecenas eget felis ac tellus imperdiet pellentesque. Morbi odio purus, tempus at ultricies sit amet, rhoncus at nisi. Aenean blandit ac ipsum at efficitur. Integer nisl nisi, bibendum ut varius in, tempus at magna. Sed porta rutrum ex vel ultrices. Nulla sed tellus sollicitudin, ultricies erat at, tristique lacus. Quisque in congue tellus, auctor blandit neque. Nam eu nisl lectus.
 Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.</p>
     </section>
-    <section id="section2" class="pt-5 mt-5">
-        <h5>Section 2</h5>
-        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
-Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
-    </section>
-    <section id="section3" class="pt-5 mt-5">
+   
+     <section id="section3" class="pt-5 mt-5">
         <h5>Section 3</h5>
         <p>Content for section 3 Cras diam leo, ultricies quis justo suscipit, venenatis pharetra libero. Curabitur ac lectus feugiat, fringilla ipsum id, euismod sem. Integer at risus eu sapien pretium scelerisque. Nullam porta nunc et tristique fermentum. Proin auctor, dui eget rhoncus finibus, turpis ipsum euismod massa, at eleifend purus lorem at arcu.<br> Curabitur nunc enim, rutrum sed euismod ut, congue consequat tellus. Vestibulum dapibus convallis pharetra. Proin facilisis ultricies mi vitae gravida. Cras pharetra suscipit dui non cursus. Etiam cursus consectetur odio, sed accumsan erat ultricies at.<br> Sed nec scelerisque eros, sit amet sodales lectus. In porttitor ligula vel nulla ornare, eu feugiat elit facilisis. Nam sed metus lorem. Mauris sit amet nunc dui. Duis blandit massa a dui faucibus pretium.</p>
     </section>
     <section id="section4" class="pt-5 mt-5">
         <h15>Section 4</h15>
         <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
+Fusce elementum imper <section id="section2" class="pt-5 mt-5">
+        <h5>Section 2</h5>
+        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
 Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
+    </section>diet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
     </section>
 
     <section id="section5" class="pt-5 mt-5">
@@ -106,25 +509,28 @@ Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictums
         
         </footer>
 
+    
+       
+
+
 
         <script>
-    // Ganti `false` dengan variabel dari PHP atau session untuk mengecek apakah pengguna sudah login
-    const isLoggedIn = <?php echo isset($_SESSION['id_user']) ? 'true' : 'false'; ?>;
+            const isLoggedIn = <?php echo isset($_SESSION['id_user']) ? 'true' : 'false'; ?>;
 
     // Dapatkan semua elemen yang membutuhkan login
-    const loginRequiredLinks = document.querySelectorAll('.require-login');
+            const loginRequiredLinks = document.querySelectorAll('.require-login');
 
-    loginRequiredLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
+            loginRequiredLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
             // Cek apakah user sudah login
             if (!isLoggedIn) {
                 event.preventDefault(); // Mencegah link bekerja
                 alert('Silakan login terlebih dahulu untuk mengakses bagian ini.');
                 window.location.href = 'index.php'; // Arahkan ke halaman login
-            }
+                 }
+            });
         });
-    });
-</script>
+    </script>
 
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

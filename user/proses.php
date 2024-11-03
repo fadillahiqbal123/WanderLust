@@ -76,6 +76,7 @@ if (isset($_POST['register']) || isset($_POST['login'])) {
                     alert('Login Berhasil!');
                     window.location = 'dashboard.php';
                 </script>";
+                exit();
             } else {
                 echo "<script>
                     alert('Login Gagal! Password salah. Silakan coba lagi.');
