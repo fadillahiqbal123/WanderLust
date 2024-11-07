@@ -13,7 +13,7 @@
 
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
               <li class="nav-item">
-                <a class="nav-link me-2 js-scroll-trigger text-dark" href="#section2"><strong>Lihat Jadwal</strong></a>
+                <a class="nav-link me-2 js-scroll-trigger text-dark" href="jadwal.php"><strong>Lihat Jadwal</strong></a>
               </li>
 
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
@@ -26,12 +26,15 @@
                 <a class="nav-link me-2 js-scroll-trigger text-dark" href="#berita"><strong> Berita</strong></a>
               </li>
 
+              
+
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
               <li class="nav-item">
-                <a class="nav-link me-2 active js-scroll-trigger text-dark" href="#hubungi_kami"><strong>Hubungi Kami</strong></a>
+                <a class="nav-link me-2 active js-scroll-trigger text-dark" href="cekstatus.php"><strong>Cek Status Bayar</strong></a>
               </li>
+
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
-              <a class="nav-link me-2 active js-scroll-trigger text-dark" href="#about"><strong>About</strong></a>
+              <a class="nav-link me-2 active js-scroll-trigger text-dark" href="about.php"><strong>About</strong></a>
               </li>
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
               

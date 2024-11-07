@@ -446,57 +446,12 @@ if ($result->num_rows > 0) {
     </div>
     </div>
     </section>
- <!-- <div clas="container">
-    <div class="row">
-        <div class="col-lg-12">
-          
-        </div>
-    </div>
- </div> -->
+ 
 <br><br><br><br>
 <br><br><br><br>
 
 
 
-<!-- Content Sections -->
- <div class="container-fluid">
-    <section id="section1" class="pt-5 mt-5">
-        <h5>Section 1</h5>
-        <p>Content for section 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum nibh eu urna consectetur egestas. Duis luctus sapien non eros faucibus dapibus. Vivamus eleifend ullamcorper eros nec gravida. Phasellus sit amet leo non metus posuere pulvinar.<br> Vestibulum auctor tincidunt dapibus. Quisque sed eros vitae ex sagittis vestibulum efficitur nec neque.<br> Nulla molestie mattis est nec tristique. Etiam faucibus, sapien ut pharetra porta, enim arcu tristique sapien, non vehicula urna nunc in sapien. Maecenas eget felis ac tellus imperdiet pellentesque<br> Morbi odio purus, tempus at ultricies sit amet, rhoncus at nisi. Aenean blandit ac ipsum at efficitur. Integer nisl nisi, bibendum ut varius in, tempus at magna.<br> Sed porta rutrum ex vel ultrices. Nulla sed tellus sollicitudin, ultricies erat at, tristique lacus. Quisque in congue tellus, auctor blandit neque. Nam eu nisl lectus.
-      <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum nibh eu urna consectetur egestas. Duis luctus sapien non eros faucibus dapibus. Vivamus eleifend ullamcorper eros nec gravida. Phasellus sit amet leo non metus posuere pulvinar. Vestibulum auctor tincidunt dapibus. Quisque sed eros vitae ex sagittis vestibulum efficitur nec neque. Nulla molestie mattis est nec tristique. Etiam faucibus, sapien ut pharetra porta, enim arcu tristique sapien, non vehicula urna nunc in sapien. Maecenas eget felis ac tellus imperdiet pellentesque. Morbi odio purus, tempus at ultricies sit amet, rhoncus at nisi. Aenean blandit ac ipsum at efficitur. Integer nisl nisi, bibendum ut varius in, tempus at magna. Sed porta rutrum ex vel ultrices. Nulla sed tellus sollicitudin, ultricies erat at, tristique lacus. Quisque in congue tellus, auctor blandit neque. Nam eu nisl lectus.
-Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.</p>
-    </section>
-   
-     <section id="section3" class="pt-5 mt-5">
-        <h5>Section 3</h5>
-        <p>Content for section 3 Cras diam leo, ultricies quis justo suscipit, venenatis pharetra libero. Curabitur ac lectus feugiat, fringilla ipsum id, euismod sem. Integer at risus eu sapien pretium scelerisque. Nullam porta nunc et tristique fermentum. Proin auctor, dui eget rhoncus finibus, turpis ipsum euismod massa, at eleifend purus lorem at arcu.<br> Curabitur nunc enim, rutrum sed euismod ut, congue consequat tellus. Vestibulum dapibus convallis pharetra. Proin facilisis ultricies mi vitae gravida. Cras pharetra suscipit dui non cursus. Etiam cursus consectetur odio, sed accumsan erat ultricies at.<br> Sed nec scelerisque eros, sit amet sodales lectus. In porttitor ligula vel nulla ornare, eu feugiat elit facilisis. Nam sed metus lorem. Mauris sit amet nunc dui. Duis blandit massa a dui faucibus pretium.</p>
-    </section>
-    <section id="section4" class="pt-5 mt-5">
-        <h15>Section 4</h15>
-        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
-Fusce elementum imper <section id="section2" class="pt-5 mt-5">
-        <h5>Section 2</h5>
-        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
-Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
-    </section>diet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
-    </section>
-
-    <section id="section5" class="pt-5 mt-5">
-        <h15>Section 5</h15>
-        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
-Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.<br>
-Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in. Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.
-
-Cras diam leo, ultricies quis justo suscipit, venenatis pharetra libero. Curabitur ac lectus feugiat, fringilla ipsum id, euismod sem. Integer at risus eu sapien pretium scelerisque. Nullam porta nunc et tristique fermentum. Proin auctor, dui eget rhoncus finibus, turpis ipsum euismod massa, at eleifend purus lorem at arcu. Curabitur nunc enim, rutrum sed euismod ut, congue consequat tellus. Vestibulum dapibus convallis pharetra. Proin facilisis ultricies mi vitae gravida. Cras pharetra suscipit dui non cursus. Etiam cursus consectetur odio, sed accumsan erat ultricies at. Sed nec scelerisque eros, sit amet sodales lectus. In porttitor ligula vel nulla ornare, eu feugiat elit facilisis. Nam sed metus lorem. Mauris sit amet nunc dui. Duis blandit massa a dui faucibus pretium.
-Nunc viverra egestas lacus a volutpat. Donec cursus, risus ut lacinia mattis, lacus diam posuere nunc, fringilla accumsan turpis nulla vel nisl. Proin vitae cursus quam, fermentum vestibulum magna. Aenean eu ullamcorper quam, quis maximus dolor. Quisque mauris metus, aliquet ut dolor id, porttitor aliquet est. In rutrum quam mi, nec laoreet dolor molestie a. Nam tincidunt ante sit amet lorem imperdiet dictum a et lacus. Cras vel lectus massa. Phasellus vehicula justo pulvinar turpis vehicula posuere. Nullam mollis scelerisque interdum. Pellentesque enim augue, suscipit sed suscipit at, gravida ut lorem. Phasellus sollicitudin tincidunt ipsum.</p>
-    </section>
-
-    <section id="section6" class="pt-5 mt-5">
-        <h15>Section 6</h15>
-        <p>Curabitur egestas laoreet pretium. Maecenas massa velit, imperdiet sed libero vitae, consectetur placerat massa. Cras id neque vel sapien ullamcorper vestibulum. Praesent tincidunt tellus ac justo malesuada sollicitudin. Fusce non interdum turpis. Quisque efficitur consequat lectus, a gravida metus ornare sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl et libero elementum euismod sit amet sit amet erat. Phasellus hendrerit ante sit amet urna dignissim imperdiet. In ante quam, facilisis at dui in, vulputate malesuada nisl.<br>
-Fusce elementum imperdiet lacus sit amet rutrum. In hac habitasse platea dictumst. Duis lobortis justo risus, vel mattis risus semper in.<br> Curabitur sagittis erat sit amet ligula aliquam euismod. Nam eu eros condimentum nibh dictum pellentesque. Phasellus congue maximus molestie. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc suscipit elit ex, sit amet tempus enim ultrices et. Proin leo enim, bibendum et accumsan quis, tempus ac mauris. Nam laoreet eu nisi eget mattis. Duis non malesuada turpis, sed fringilla lacus. Sed pretium velit non sem lobortis tincidunt. Integer sit amet turpis id ligula volutpat faucibus.</p>
-    </section>
-</div> 
 
 
 

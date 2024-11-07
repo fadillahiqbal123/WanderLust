@@ -25,11 +25,9 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
     // Mengambil data berita
     $sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
     $result = $db->query($sql);
-  
-
-
    
     ?>
+    
 
 <!doctype html>
 <html lang="en">
@@ -41,7 +39,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
              rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"/>
@@ -124,12 +122,13 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
                 <a class="nav-link me-2 js-scroll-trigger text-dark" href="#berita"><strong> Berita</strong></a>
               </li>
 
+           
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
               <li class="nav-item">
-                <a class="nav-link me-2 active js-scroll-trigger text-dark" href="#hubungi_kami"><strong>Hubungi Kami</strong></a>
+                <a class="nav-link me-2 active js-scroll-trigger text-dark" href="cekstatus.php"><strong>Cek Status Bayar</strong></a>
               </li>
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
-              <a class="nav-link me-2 active js-scroll-trigger text-dark" href="#about"><strong>About</strong></a>
+              <a class="nav-link me-2 active js-scroll-trigger text-dark" href="about.php"><strong>About</strong></a>
               </li>
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
               
@@ -232,7 +231,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
         <div class="col-lg-12 bg-white shadow p-4 rounded">
             <h5 class="mb-4">Cek Jadwal</h5>
            
-            <form action="hasil_cari=.php?hal=hasil_cari" method="POST">
+            <form action="hasil_cari.php" method="POST">
                 <div class="row align-items-end">
                  
                     <div class="form-group col-md-4 mb-3">
@@ -405,11 +404,11 @@ function sql_select() {
 </div>
 
 <!-- Modal Kritik dan Saran -->
-<div class="modal fade" id="kritikSaranModal" tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
+<div class="modal fade"  tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="kritikSaranModalLabel">Isi Data Pemesanan</h5>
+        <h5 class="modal-title">Isi Data Pemesanan</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -517,24 +516,24 @@ if ($result->num_rows > 0) {
 <div class="container">
     <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
-            <h5 class="mt-3">HiAce</h5>
+            <img src="image/point.jpg" width="100px;">
+            <h5 class="mt-3">Penjumputan Sesuai Titik</h5>
         </div>
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
-            <h5 class="mt-3">HiAce</h5>
+            <img src="image/picture.jpg" width="100px;">
+            <h5 class="mt-3">Dokumentasi Di Setiap Moment</h5>
         </div>
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
-            <h5 class="mt-3">HiAce</h5>
+            <img src="image/keamanan.jpg" width="100px;">
+            <h5 class="mt-3">Keamanan</h5>
         </div>
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
-            <h5 class="mt-3">HiAce</h5>
+            <img src="image/kenyamanan.jpg" width="100px;">
+            <h5 class="mt-3">Kenyamanan</h5>
         </div>
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
-            <h5 class="mt-3">HiAce</h5>
+            <img src="image/driver.jpg" width="100px;">
+            <h5 class="mt-3">Driver Berpengalaman</h5>
         </div>   
     </div>
 </div>
@@ -576,6 +575,35 @@ if ($result->num_rows > 0) {
               <i class="bi bi-youtube me-1"></i> Youtube
               </span>
             </a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kritikSaranModal">
+              Kirim Kritik dan Saran
+        </button>
+
+<!-- Modal -->
+          <div class="modal fade" id="kritikSaranModal" tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="kritikSaranModalLabel">Form Kritik dan Saran</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form method="POST" action="simpan_kritik.php"> <!-- Ubah action ke file PHP untuk menyimpan data -->
+                    <div class="form-group mb-3">
+                    <div class=" mb-3">
+                      <label for="judulSaran" class="form-label">Judul Saran</label>
+                      <input type="text" class="form-control" id="judulSaran" name="judul_saran" placeholder="Masukkan Judul Saran Anda" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="kritikSaran" class="form-label">Detail Saran</label>
+                      <textarea class="form-control" id="kritikSaran" name="detail_saran" rows="3" placeholder="Masukkan Kritik dan Saran Anda" required></textarea>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-primary">Kirim</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
         </div>
@@ -585,14 +613,11 @@ if ($result->num_rows > 0) {
     <!-- Form Kritik dan Saran di sebelah peta -->
   
   
-
+    <h5 class="mt-4 pt-4 text-center fw-bold h-font"><strong>Form Kritik dan Saran</strong></h5>
 <div class="container">
   <div class="row">
   <div class="col-md-12 mb-5">
       <div class="card">
-        <div class="card-header">
-          <h5><strong>Form Kritik dan Saran</strong></h5>
-        </div>
         <div class="card-body">
           <form>
             <div class="mb-3">
@@ -608,38 +633,42 @@ if ($result->num_rows > 0) {
               <textarea class="form-control" id="kritikSaran" rows="3" placeholder="Masukkan Kritik dan Saran Anda"></textarea>
             </div>
             <div class="form-group">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kritikSaranModal">
-              Isi
-              </button>
+            <button type="button" class="btn btn-primary">
+                 isi
+            </button>
 
-              <div class="modal fade" id="kritikSaranModal" tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+<!-- Modal -->
+<!-- <div class="modal fade" id="kritikSaranModal" tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="kritikSaranModalLabel">Form Kritik dan Saran</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Form Kritik dan Saran -->
-        <form>
-          <div class="mb-3">
+        <form method="POST" action="simpan_kritik.php"> <!-- Ubah action ke file PHP untuk menyimpan data -->
+          <!-- <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
-            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama">
+            <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama" required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
+            <input type="email" class="form-control" name="email" placeholder="Masukkan Email" required>
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">Kritik dan Saran</label>
-            <textarea class="form-control" id="kritikSaran" rows="3" placeholder="Masukkan Kritik dan Saran Anda"></textarea>
+            <label for="judulSaran" class="form-label">Judul Saran</label>
+            <input type="text" class="form-control" name="judul_saran" placeholder="Masukkan Judul Saran Anda" required>
           </div>
-          <button type="submit" class="btn btn-primary">Kirim</button>
+          <div class="mb-3">
+            <label for="kritikSaran" class="form-label">Detail Saran</label>
+            <textarea class="form-control"  name="detail_saran" rows="3" placeholder="Masukkan Kritik dan Saran Anda" required></textarea>
+          </div>
+          <button type="submit" name="submit" class="btn btn-primary">Kirim</button>
         </form>
       </div>
     </div>
   </div>
-</div>
+</div> -->
               </div>
           </form>
         </div>

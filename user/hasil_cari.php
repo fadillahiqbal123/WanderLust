@@ -100,7 +100,7 @@ $resultJadwal = mysqli_query($db, $queryJadwal) or die(mysqli_error($db));
                                 ?>
                                 </td>
                                 <td>
-                                    <a href="formpesan.php?hal=detail&var1=<?php echo $row ['id_jadwal'] ?>" class="btn btn-sm btn-primary">
+                                    <a href="detailcari.php?hal=detail&var1=<?php echo $row ['id_jadwal'] ?>" class="btn btn-sm btn-primary">
                                          Detail
                                     </a>
                                 </td>
@@ -110,13 +110,12 @@ $resultJadwal = mysqli_query($db, $queryJadwal) or die(mysqli_error($db));
                 </table>
             <?php else: ?>
                 <div class="alert alert-warning" role="alert">
-                    Mohon maaf, jadwal yang Anda cari belum Dibuat.<br>Silahkan Kirim Kritik/ Anda Jika Dirasa ingin menambah Jadwal
+                    Mohon maaf, jadwal yang Anda cari belum Dibuat.<br>Silahkan Kirim Kritik/Saran Anda Jika Dirasa Ingin menambah Jadwal
                 </div>
             <?php endif; ?>
         </div>
     </div>
 </div>
-
 </main>
         
      

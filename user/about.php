@@ -1,19 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>WanderLust About</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-<div class="container">
-  <div class="col-md-12 mb-3">
-    <div class="card">
-      <h5 class="card-title text-center">About Bromo</h5></d>
-      <div class="card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum rutrum pretium. Praesent sapien neque, mattis sit amet risus posuere, tristique volutpat leo. Nulla condimentum tincidunt justo, in molestie sem tincidunt sed. In pulvinar libero nec velit ullamcorper, et eleifend nulla accumsan. Curabitur at dolor arcu. Integer ex purus, ultricies sed nisl id, viverra faucibus risus. Fusce luctus risus risus, vel congue risus semper in. Aenean sit amet mauris sed quam finibus elementum nec sed enim. Proin dapibus, diam ac pretium vehicula, diam dolor efficitur nibh, sit amet ultrices ipsum ligula id nibh. Nulla lorem turpis, suscipit vitae nibh ac, sagittis accumsan sem. Vestibulum pellentesque sem id magna rhoncus suscipit.<br> Integer vehicula ex eu egestas elementum. Pellentesque quis velit sed odio lobortis semper vel quis ante. In leo est, laoreet in facilisis a, convallis nec ex. Donec et lobortis velit, vel vehicula purus.
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+            <!-- sweetalert -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
+            <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
+            <!-- font awsome -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <!-- google font -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  </head>
 
-            Fusce id tempor risus.<br> Ut iaculis molestie sapien, sit amet tempus orci blandit a. Proin dictum ultrices ante nec vehicula. Donec porta purus non arcu rhoncus, vitae consectetur eros tempus. Nulla nec molestie elit. Vivamus semper orci lacus, vitae pellentesque turpis semper in. Vestibulum fringilla convallis euismod.<br> Quisque non maximus lacus. Nullam faucibus vel justo sit amet finibus. Maecenas commodo volutpat venenatis. Sed vehicula hendrerit laoreet.<br>
+  <body>
+    <header>
+     <?php 
+        include "layout/navbar.php";
+     ?>
+    </header>
+    <main style="min-height: 100vh; padding-top: 80px;">
 
-            Sed in ligula turpis. In hac habitasse platea dictumst. Duis elit nisi, ultricies sed nulla eget, vestibulum dignissim diam. Donec id velit diam.<br> Donec elit arcu, molestie ut tincidunt vitae, imperdiet laoreet ante. Quisque sed lorem eu elit rhoncus feugiat sit amet id arcu. Nulla auctor efficitur vehicula. Cras pretium rhoncus eleifend. Vestibulum sed nulla quis ante fringilla mollis eu at urna. Ut vel mattis ligula, et venenatis diam.
-
-            Donec non sem mi. Donec porta augue diam, nec rutrum urna pellentesque eget. Phasellus ipsum ex, elementum ut congue in, mattis non dolor.<br> Etiam ut felis eget eros aliquam convallis. Suspendisse pellentesque porttitor dolor id pellentesque. Maecenas tincidunt nisi libero, eget sodales ante sollicitudin feugiat. Aenean lacus est, vulputate sed eros a, viverra dapibus ex. Mauris viverra sem quam, nec elementum sapien cursus sed.
-
-              In mattis risus dolor, non consectetur odio maximus eu.<br> Donec tempor sollicitudin ornare. Maecenas aliquet nisi non dui sollicitudin malesuada vel vitae ex. Curabitur ultricies semper lacus, a ultrices augue faucibus sit amet. Vestibulum quis lectus mauris. Cras odio libero, mollis a tristique placerat, pharetra vitae tellus. Etiam volutpat, leo quis cursus laoreet, nisl ante maximus lorem, at vestibulum tortor nibh at sapien. Aliquam ac laoreet nisi, quis varius dolor. Nulla volutpat non ante vel scelerisque. Suspendisse potenti. Morbi et massa ac elit iaculis molestie ac a tortor.</p>
+      <div clas="my-5 px-4">
+      <h2 class="pt-4 mt-4 text-center fw-bold h-font">About Us</h2>
+      <div class="h-line bg-dark mt-3"></div>
+      <p class="text-center mt-3">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque odio quo assumenda minus expedita, fugiat et!
+      </p>
       </div>
-    </div>
-  </div>
-</div>
+
+      <div class="container">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-lg-6 col-md-5 mt-5 mb-4 order-md-1 order-2">
+            <h3 class="mb-3">Lorem Ipsum Dolar sit.</h3>
+              <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non interdum risus. Nulla orci eros, ullamcorper nec dignissim at, pulvinar quis purus.
+              Quisque maximus dolor sed massa ornare, nec vestibulum tellus dapibus. 
+              </p>
+          </div>
+          <div class="col-lg-5 col-md-5 mt-5 mb-4 order-md-2 order-1 shadow">
+            <img src="image/kenangan2.jpg" alt="foto profil" class="w-100">
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <footer>
+     <?php
+      include "layout/footer.php";
+     ?>
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

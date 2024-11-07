@@ -10,5 +10,4 @@ if($db->connect_error){
     die("Koneksi Gagal". $db->connect_error);
 }
 
-
 ?>

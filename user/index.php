@@ -53,7 +53,7 @@ session_start();
             <input type="text" name="nama_user" placeholder="Name" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password">
+            <input for="password" type="password" name="password" placeholder="Password">
             <button type="submit" id="btn" name="register">Sign Up</button>
             
           </form>
@@ -76,7 +76,7 @@ session_start();
             <input type="email" name="email" placeholder="Email" required
             value = "<?php echo (isset($_COOKIE["email"])) ? $_COOKIE['email']: '' ?>">
 
-            <input type="password" name="password" placeholder="Password" required
+            <input for="password" type="password" name="password" placeholder="Password" required
             value = "<?php echo (isset($_COOKIE["password"])) ? $_COOKIE['password']: '' ?>">
 
             <div class="form-group" style="width: 10px; align-items: center;">

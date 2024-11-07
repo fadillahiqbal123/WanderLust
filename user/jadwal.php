@@ -95,14 +95,13 @@
             <main style="padding-top: 80px;">
         <h4 class="mt-3 pt-3 mb-5 text-center fw-bold">Layanan Jadwal</h4>
         <div class="container-fluid my-5">
-            <div class="card">
-                <div class="card-body">
 
     <table id="example" class="display table table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Berangkat</th>
+                <th>Keberangkatan</th>
+                <th>Waktu Berangkat</th>
                 <th>Harga</th>
                 <th>Mobil</th>
                 <th>Warna</th>
@@ -124,7 +123,8 @@
                 $banyakData = 5 - $data2[0];
             ?>
                 <tr>
-                    <td><?php echo $no++; ?></td>
+                    <td></td>
+                    <td><?php echo $baris['alamat'] . '-' . $baris['nama_destinasi']; ?></td>
                     <td><?php echo $baris['tgl_berangkat'] . ' | ' . $baris['jam_berangkat']; ?></td>
                     <td>Rp.<?php echo number_format($baris['harga'], 0, ',', '.'); ?>,00</td>
                     <td><?php echo $baris['jenis_mobil']; ?></td>
@@ -134,7 +134,7 @@
                     <td>
                         <?php 
                         if ($banyakData > 0) {
-                            echo "<a href='formpesan.php?id_jadwal=$id_jadwal' class='btn btn-primary btn-sm'>Pesan</a>";
+                            echo "<a href='formpesan.php?formpesan&idp=$id_jadwal' class='btn btn-primary btn-sm'>Pesan</a>";
                         } else {
                             echo "<button class='btn btn-danger btn-sm' disabled>Kursi Penuh</button>";
                         }
@@ -144,8 +144,6 @@
             <?php } ?>
         </tbody>
     </table>
-    </div>
-   </div>
 </div>
                 
 
