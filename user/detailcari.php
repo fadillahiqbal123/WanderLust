@@ -76,14 +76,14 @@ $jadwal = mysqli_fetch_assoc($result);
                     <a href="formpesan.php?hal=pemesanan&idp=<?php echo $id_jadwal; ?>" class="btn btn-success">Pesan Sekarang</a>
                     <a href="dashboard.php" class="btn btn-danger">Batal</a>
                 <?php else: ?>
-                    <a href="login.php" class="btn btn-primary">Login untuk Memesan</a>
+                    <a href="index.php" class="btn btn-primary">Login untuk Memesan</a>
                 <?php endif; ?>
             <?php else: ?>
                 <div class="alert alert-danger" role="alert">
                     Maaf, kursi untuk jadwal ini sudah penuh.
                 </div>
             <?php endif; ?>
-            <a href="dashboard.php" class="btn btn-danger">Batal</a>
+            <a href="jadwal.php" class="btn btn-danger">Batal</a>
         </div>
     </div>
 </div>

@@ -1,8 +1,10 @@
 <!-- selanjutnya adalah tambah gambar dan komponen lain, saya berifir untuk memprioritaskan crud yang simple
 namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku -->
 <?php
-   session_start();
+  session_start();
   date_default_timezone_set('Asia/Jakarta');
+
+  $timeout_duration = 9000;
 
    if(empty($_SESSION['email']) and empty($_SESSION['password'])) {
     echo'
@@ -22,11 +24,27 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
         die("Koneksi gagal: " . $db->connect_error);
     }
 
-    // Mengambil data berita
-    $sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
+  
+    $sql = "SELECT DISTINCT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
     $result = $db->query($sql);
    
     ?>
+
+
+<?php 
+if(isset($_SESSION['last_activty']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
+    session_unset();
+    session_destroy();
+    echo "<script>alert('Sesi Anda Telah Berakhir Karena Tidak Ada Aktivitas');
+     window.loction = 'homepage.php'</script>";
+     exit();
+}
+
+$_SESSION['last_activity'] = time();
+?>
+
+
+  
     
 
 <!doctype html>
@@ -47,13 +65,15 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
             <!-- sweetalert -->
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
             <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
-            <!-- font awsome -->
+            
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-            <!-- google font -->
+        
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-              <!-- css -->
+            <head>
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+             
           <style>
             *{
               font-family: "Poppins", sans-serif;
@@ -146,7 +166,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
     </a>
 </li>
             <small><p class="dropdown-item text-center"><i class="bi bi-clock-fill"></i> Pkl <?php echo date('H:i:s')?> WIB</l></small>
-            <li><a class="dropdown-item" href="dashboard.php?hal=setting"><i class="bi bi-gear-fill"></i> Setting</a></li>
+            <li><a class="dropdown-item" href="setting.php"><i class="bi bi-gear-fill"></i> Setting</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
           </ul>
@@ -289,12 +309,11 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
 
 
 <?php
-// Koneksi database
-function sql_select() {
-  global $db; // Menggunakan koneksi database yang sudah dibuat
 
-  // Query untuk mengambil data dari tabel jadwal dengan join tabel lain
-          $sql = "SELECT 
+function sql_select() {
+  global $db;
+
+          $sql = "SELECT DISTINCT 
           jadwal.*, 
           kendaraan.jenis_mobil, 
           kendaraan.warna_mobil, 
@@ -330,12 +349,12 @@ function sql_select() {
             ?>
             <div class="col-lg-4 col-md-6 my-3"> <!-- Hapus rounded di sini -->
                 <div class="card tour-package-card border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <!-- Gambar jadwal, bisa diganti sesuai dengan data dari database -->
+                  
                     <img src="image/paket1.png" class="d-block w-100" alt="Jadwal Image">
                     <div class="card-body">
-                        <!-- Menampilkan kota asal dan tujuan -->
+                        
                         <h5 class="card-title mb-4"><strong><?php echo $baris['alamat']; ?> - <?php echo $baris['nama_destinasi']; ?></strong></h5>
-                        <!-- Harga jadwal -->
+                        
                         <h6>Start From Rp. <?php echo number_format($baris['harga'], 0, ',', '.'); ?></h6>
                         <!-- Detail fasilitas -->
                         <div class="fasilitas mb-3">
@@ -358,13 +377,13 @@ function sql_select() {
                                 <i class="bi bi-star-fill text-warning"></i>
                                 <i class="bi bi-star-fill text-warning"></i>
                                 <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star text-warning"></i> <!-- Bisa dinamis berdasarkan data rating -->
+                                <i class="bi bi-star text-warning"></i> 
                             </span>
                         </div>
                         <!-- Tombol aksi -->
                         <div class="d-flex justify-content-evenly mb-2 mt-3">
                             <?php if ($baris['no_kursi'] < 5) { ?>
-                                <a href="hasil_cari.php?menu=8&id=<?php echo $baris['id_jadwal']; ?>" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                                <a href="hasil_cari.php?&id=<?php echo $baris['id_jadwal']; ?>" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
                             <?php } else { ?>
                                 <button class="btn btn-outline-secondary btn-sm rounded-5 disabled">KURSI PENUH</button>
                             <?php } ?>
@@ -385,101 +404,6 @@ function sql_select() {
 
 
 <!-- layanan biasa -->
-<div class="container">
-<section id="section2" class="pt-5 mt-5">
-  <div class="col-md-12 rounded">
-    <div class="row g-4">
-          <div class="col-sm-6 col-md-4 col-lg-3 card-group">
-           <div class="card tour-package-card" style="width: 18rem;">
-          <img src="image/jeep1.png" class="d-block w-100">
-          <div class="card-header">Layanan Pemesanan Travel</div>
-          <div class="card-body">
-      <h2 class="card-title">HiAce Merah</h2>
-      <p class="card-text">Start From Rp. 1.000.000</p>
-      <button type="button" class="btn btn-primary btn-lg my-4 rounded-5" data-bs-toggle="modal" data-bs-target="#kritikSaranModal">
-        MORE DETAIL
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Kritik dan Saran -->
-<div class="modal fade"  tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Isi Data Pemesanan</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama">
-          </div>
-
-          <div class="mb-3">
-          <label for="inputState" class="form-label">Asal Kabupaten</label>
-            <select id="inputState" class="form-select">
-              <option selected>--Pilih Asal--</option>
-              <option>-- --</option>
-          </div>
-
-          <div class="mb-3">
-          <label for="inputState" class="form-label">Asal Kabupaten</label>
-            <select id="inputState" class="form-select">
-              <option selected>--Pilih Asal--</option>
-              <option>-- --</option>
-          </div>
-          <button type="submit" class="btn btn-primary">Pesan</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-
-    <div class="col-sm-6 col-md-4 col-lg-3 card-group">
-        <div class="card tour-package-card" style="width: 18rem;">
-          <img src="image/pemandangan9.jpg" class="d-block w-100">
-          <div class="card-header">Layanan Pemesanan Travel</div>
-           <div class="card-body">
-            <h2 class="card-title mt-2">HiAce<br>Biru</h2>
-               <p class="card-text">Start From Rp. 2.000.000</p>
-               <button class="btn btn-primary btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 col-md-4 col-lg-3 card-group">
-        <div class="card tour-package-card" style="width: 18rem;">
-          <img src="image/pemandangan10.jpg" class="d-block w-100">
-          <div class="card-header">Layanan Pemesanan Travel</div>
-           <div class="card-body">
-            <h2 class="card-title">Hiace Hitam</h2>
-               <p class="card-text">Start From Rp. 2.500.000</p>
-               <button class="btn btn-primary btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 col-md-4 col-lg-3 card-group">
-        <div class="card tour-package-card" style="width: 18rem;">
-          <img src="image/pemandangan11.jpg" class="d-block w-100">
-          <div class="card-header">Layanan Pemesanan Travel</div>
-           <div class="card-body">
-            <h2 class="card-title">HiAce<br>Hijau</h2>
-               <p class="card-text">Start From Rp.4.000.000</p>
-             <button class="btn btn-primary btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
-            </div>
-        </div>
-    </div>
-    </div>
-    </section>
-    </div>
-
     <h5 class="mt-5 pt-5 mb-5 text-center fw-bold h-font">BERITA BROMO</h5>
 
 <?php
@@ -598,6 +522,8 @@ if ($result->num_rows > 0) {
                       <label for="kritikSaran" class="form-label">Detail Saran</label>
                       <textarea class="form-control" id="kritikSaran" name="detail_saran" rows="3" placeholder="Masukkan Kritik dan Saran Anda" required></textarea>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LfGAXgqAAAAAO2v15eo4Qr2oynpK8y9gGf0vnqE"></div>
+                    <br/>
                     <button type="submit" name="submit" class="btn btn-primary">Kirim</button>
                   </form>
                 </div>
@@ -613,29 +539,6 @@ if ($result->num_rows > 0) {
     <!-- Form Kritik dan Saran di sebelah peta -->
   
   
-    <h5 class="mt-4 pt-4 text-center fw-bold h-font"><strong>Form Kritik dan Saran</strong></h5>
-<div class="container">
-  <div class="row">
-  <div class="col-md-12 mb-5">
-      <div class="card">
-        <div class="card-body">
-          <form>
-            <div class="mb-3">
-              <label for="nama" class="form-label">Nama</label>
-              <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama">
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
-            </div>
-            <div class="mb-3">
-              <label for="kritikSaran" class="form-label">Kritik dan Saran</label>
-              <textarea class="form-control" id="kritikSaran" rows="3" placeholder="Masukkan Kritik dan Saran Anda"></textarea>
-            </div>
-            <div class="form-group">
-            <button type="button" class="btn btn-primary">
-                 isi
-            </button>
 
 <!-- Modal -->
 <!-- <div class="modal fade" id="kritikSaranModal" tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
@@ -646,7 +549,7 @@ if ($result->num_rows > 0) {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="simpan_kritik.php"> <!-- Ubah action ke file PHP untuk menyimpan data -->
+        <form method="POST" action="simpan_kritik.php">  Ubah action ke file PHP untuk menyimpan data -->
           <!-- <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
             <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama" required>
@@ -669,50 +572,67 @@ if ($result->num_rows > 0) {
     </div>
   </div>
 </div> -->
-              </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
   </main>
 
-  <footer class="bg-dark text-white pt-5 pb-2">
-  <div class="container text-center">
+  <footer>
+  <div class="container-fluid bg-light mt-5">
     <div class="row">
-      <div class="col-md-12">
-        <h5>Anda Juga Bisa Menghubungi Kami</h5>
-        <p class="mb-1">
-          <a href="mailto:your-email@gmail.com" class="text-white me-3">
-            <i class="fas fa-envelope"></i> Gmail
-          </a>
-          <a href="https://www.instagram.com/fadillahiqbal._/?hl=en" target="_blank" class="text-white me-3">
-            <i class="fab fa-instagram"></i> Lastico
-          </a>
-          <a href="https://www.instagram.com/fadillahiqbal._/?hl=en" target="_blank" class="text-white me-3">
-            <i class="fab fa-instagram"></i> Fadillah Iqbal
-          </a>
-          <div class="card-text"><p>Anda bisa menghubungi saya</p></div>
-          <a href="https://www.instagram.com/fadillahiqbal._/?hl=en" target="_blank" class="text-white me-3">
-            <i class="fab fa-instagram"></i> Valia
-          </a>
-          <a href="https://www.instagram.com/fadillahiqbal._/?hl=en" target="_blank" class="text-white me-3">
-            <i class="fab fa-instagram"></i> Nisrina
-          </a>
-        
-        </p>
+      <div class="col-md-4">
+       <h3 class="fs-3 h-font fw-bold mb-2">WanderLust</h3>
+          <p class="mt-3">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Unde incidunt possimus in magnam necessitatibus, 
+            deleniti omnis exercitationem, 
+            eveniet voluptatem, aperiam aspernatur architecto tempore enim? Fuga ad magni sed maiores dicta.
+          </p>
+       
       </div>
+      <div class="col-md-4">
+          <h3 class="mb-3">Links</h3>
+          <a href="#" class="d-inline-block text-dark text-decoration-none">Home</a>
+          <br>
+          <a href="#" class="d-inline-block text-dark text-decoration-none">Lihat Jadwal</a>
+          <br>
+          <a href="#" class="d-inline-block text-dark text-decoration-none">Fasilitas</a>
+          <br>
+          <a href="#" class="d-inline-block text-dark text-decoration-none">Cek Status Bayar</a>
+          <br>
+          <a href="#" class="d-inline-block text-dark text-decoration-none">About</a>
+          <br>
+          <a href="#" class="d-inline-block text-dark text-decoration-none">User</a>
+      </div>
+      <div class="col-md-4">
+      <h3 class="mb-3">Follow Us</h3>
+      <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">     
+      <i class="fas fa-envelope"></i> Gmail
+      </a>
+      <br>
+      <a href="https://www.instagram.com/fadillahiqbal._/?hl=en" class="d-inline-block text-dark text-decoration-none mb-2">
+          <i class="fab fa-instagram"></i> @fadillahiqbal_
+      </a>
+      <br>
+      <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">     
+      <i class="bi bi-twitter"></i> Twitter
+      </a>
+      <br>
+      <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">     
+      <i class="bi bi-youtube"></i> Youtube
+      </a>
+        </div>
     </div>
-    <div class="row">
+    
+    <!-- <div class="row">
       <div class="col-md-12">
         <p class="mt-3">
           <small>&copy; 2024 WanderLust. "Bromo Lebih Dekat, Perjalanan Lebih Nyaman"</small>
         </p>
       </div>
-    </div>
+    </div> -->
   </div>
+  <h6 class="text-white bg-dark p-3 m-0 text-center">Designed By WanderLust Team</h6>
+
+
 </footer>
 
         <script

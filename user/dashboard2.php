@@ -4,19 +4,7 @@ namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku 
   session_start();
   date_default_timezone_set('Asia/Jakarta');
 
-   if(empty($_SESSION['email']) and empty($_SESSION['id_user'])) {
-    echo'
-    <br><br><br><br><br><br><br><br>
-    <center>
-    <b>Maaf, silahkan login kembali</b><br>
-    <b>Anda sudah keluar dari sistem</b><br>
-    <b>atau anda belum melakukan login</b><br>
-
-    <a href="homepage.php" title="Klik Gambar ini untuk kembali ke Halaman Login"><img src="image/key1.png" height="100" width="100"></img></a>
-    </center> 
-    ';
-    exit(); 
-   }else{
+  
     $db = new mysqli("localhost", "root", "", "db_wisata");
 
     if ($db->connect_error) {
@@ -715,7 +703,3 @@ if ($result->num_rows > 0) {
 
     </body>
 </html>
-<?php 
-}
-
-?>

@@ -1,46 +1,59 @@
 <?php 
-session_start(); // Pastikan sesi sudah dimulai
-include "koneksi.php"; // Ganti dengan file koneksi database Anda
+session_start();
+include "koneksi.php"; // Menghubungkan ke database
 
-// Ambil data dari form
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validasi reCAPTCHA
+    $recaptchaResponse = $_POST['g-recaptcha-response'];
+    $secretKey = '6LfGAXgqAAAAAGMioZecTIZWOeljKP4CiD3rVrV7';
+    
+    // Verifikasi reCAPTCHA
+    $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$recaptchaResponse");
+    $responseData = json_decode($verifyResponse);
 
-$judul_saran = $_POST['judul_saran'];
-$detail_saran = $_POST['detail_saran'];
+    if ($responseData->success) {
+    
+        $judul_saran = $db->real_escape_string($_POST['judul_saran']);
+        $detail_saran = $db->real_escape_string($_POST['detail_saran']);
 
-// Ambil username dari sesi
-$username = $_SESSION['username']; 
+        
+        $username = $_SESSION['username'];
 
-// Query untuk mendapatkan id_user berdasarkan username
-$sql_user = "SELECT id_user FROM user WHERE username = '$username'";
-$result_user = $db->query($sql_user);
+    
+        $sql_user = "SELECT id_user FROM user WHERE username = ?";
+        $stmt_user = $db->prepare($sql_user);
+        $stmt_user->bind_param("s", $username);
+        $stmt_user->execute();
+        $result_user = $stmt_user->get_result();
 
-if ($result_user->num_rows > 0) {
-    // Jika ada, ambil id_user
-    $row_user = $result_user->fetch_assoc();
-    $id_user = $row_user['id_user'];
+        if ($result_user->num_rows > 0) {
+            $row_user = $result_user->fetch_assoc();
+            $id_user = $row_user['id_user'];
 
-    // SQL untuk menyimpan kritik dan saran
-    $sql = "INSERT INTO saran (id_user, judul_saran, detail_saran) VALUES ('$id_user', '$judul_saran', '$detail_saran')";
+            // Simpan kritik dan saran ke dalam database
+            $sql = "INSERT INTO saran (id_user, judul_saran, detail_saran) VALUES (?, ?, ?)";
+            $stmt = $db->prepare($sql);
+            $stmt->bind_param("iss", $id_user, $judul_saran, $detail_saran);
 
-    if ($db->query($sql) === TRUE) {
-        echo "<script>
-        alert('Kritik dan saran berhasil dikirim.');
-        window.location.href = 'dashboard.php'; // Redirect ke dashboard
-      </script>";
-exit();
+            if ($stmt->execute()) {
+                echo "<script>
+                alert('Kritik dan saran berhasil dikirim.');
+                window.location.href = 'dashboard.php';
+                </script>";
+                exit();
+            } else {
+                echo "Terjadi kesalahan: " . $stmt->error;
+            }
+        } else {
+            echo "Pengguna tidak ditemukan.";
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $db->error;
+        echo "<script>alert('Validasi reCAPTCHA gagal. Apakah Anda robot ?'); window.location = 'dashboard.php'</script>";
     }
 } else {
-    echo "Pengguna tidak ditemukan.";
+    echo "Metode pengiriman tidak valid.";
 }
 
-// Tutup koneksi jika perlu
+
 $db->close();
-
-
-
-
-
-
 ?>

@@ -1,3 +1,4 @@
+
 <link src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></link>
 
 <?php
@@ -11,13 +12,16 @@ if (isset($_SESSION['id_user'])) {
     exit();
 }
 
+
+
 if (isset($_POST['register']) || isset($_POST['login'])) {
+    // Proses Registrasi
     if (isset($_POST['register'])) {
         $nama = $_POST['nama_user'];
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST["password"];
-        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+        $hash_password = md5($password); // Menggunakan MD5 untuk hashing
 
         $stmt = $db->prepare("SELECT * FROM user WHERE nama_user=? OR email=?");
         $stmt->bind_param("ss", $nama, $email);
@@ -46,9 +50,10 @@ if (isset($_POST['register']) || isset($_POST['login'])) {
         }
     }
 
+    // Proses Login
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']); // Menggunakan MD5 untuk verifikasi
 
         $stmt = $db->prepare("SELECT * FROM user WHERE email=?");
         $stmt->bind_param("s", $email);
@@ -58,7 +63,7 @@ if (isset($_POST['register']) || isset($_POST['login'])) {
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
 
-            if (password_verify($password, $user['password'])) {
+            if ($password === $user['password']) { 
                 $_SESSION['id_user'] = $user['id_user']; 
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];

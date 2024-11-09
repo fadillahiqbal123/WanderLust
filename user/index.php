@@ -85,10 +85,31 @@ session_start();
             <label class="form-cek-label" for="exampleCheck1" style="font-size: 12px; line-height: 1; margin: 0; cursor: pointer;">Remember Me</label>
             </div>
 
-            <a href="#">Forget Your Password ?</a>
+            
             <button type="submit" id="btn" name="login">Sign In</button>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#forgetPasswordModal" style="text-decoration: none;">Forget Your Password?</a>
           </form>
         </div>
+
+        <div class="modal fade" id="forgetPasswordModal" tabindex="-1" aria-labelledby="forgetPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgetPasswordModalLabel">Lupa Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="ForgotPassword.php">
+                    <div class="mb-3">
+                        <label for="emailReset" class="form-label" style="text-center fw-bold h-font">Inputkan Email Anda</label>
+                        <input type="email" class="form-control" id="emailReset" name="email" placeholder="example@gmail.com" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="submit_email">Kirim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
         
         <div class="toggle-container">
