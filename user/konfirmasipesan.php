@@ -117,6 +117,7 @@ while ($row = mysqli_fetch_object($result)) {
                             Setelah <u>Pembayaran Selesai</u>, silakan lakukan konfirmasi pembayaran dengan memasukkan Nomor Resi transfer pembayaran pemesanan tiket travel di website kami. Terima Kasih</p>
                         </div>
                         <input type="submit" name="action" value="Konfirmasi Pembayaran" class="btn btn-success">
+                        
                         <a class="btn btn-danger" onclick="self.history.back()">Batal</a>
                     </div>
                 </div>

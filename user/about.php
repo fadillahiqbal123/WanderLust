@@ -37,24 +37,40 @@
     <main style="min-height: 100vh; padding-top: 80px;">
 
       <div clas="my-5 px-4">
-      <h2 class="pt-4 mt-4 text-center fw-bold h-font">About Us</h2>
+      <h2 class="pt-4 mt-4 text-center fw-bold h-font">About WanderLust</h2>
       <div class="h-line bg-dark mt-3"></div>
-      <p class="text-center mt-3">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque odio quo assumenda minus expedita, fugiat et!
+      <p class="text-center mt-3 fw-bold">
+        Bromo Lebih Dekat Perjalanan Lebih Nyaman
       </p>
       </div>
 
       <div class="container">
         <div class="row justify-content-between align-items-center">
-          <div class="col-lg-6 col-md-5 mt-5 mb-4 order-md-1 order-2">
-            <h3 class="mb-3">Lorem Ipsum Dolar sit.</h3>
+          <div class="col-lg-8 col-md-5 mt-5 mb-4 order-md-1 order-2">
+            <h3 class="fw-bold h-font">Filosofi WanderLust</h3>
               <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non interdum risus. Nulla orci eros, ullamcorper nec dignissim at, pulvinar quis purus.
-              Quisque maximus dolor sed massa ornare, nec vestibulum tellus dapibus. 
+              Wanderlust adalah jasa penyedia layanan wisata khusus ke Gunung Bromo dan sekitarnya , dengan titik keberangkatan dari Jember. <br>
+              Kami hadir untuk memenuhi jiwa petualang anda yang ingin menjelajah keindahan alam Bromo Tengger Semeru tanpa harusb pusing mengurus persiapan perjalanan anda menuju Bromo. <br>
+              Berikut adalah filosofi dari elemen-elemen yang terdapat pada logo ini:
+              </p>
+              <p>
+                1. Huruf "W" dengan Warna Biru : Huruf "W" mewakili inisial dari nama Wanderlust. <br>
+                Warna biru yang dominan melambangkan ketenangan, kepercayaan, dan kestabilan. 
+              </p>
+              <p>
+                2. Gunung di Bagian Atas Huruf "W": Ilustrasi gunung di atas huruf "W" menggambarkan tujuan utama dari Wanderlust, yaitu Gunung Bromo. <br>
+                Gunung juga melambangkan kekuatan, daya tahan, dan keindahan alam yang menantang.
+              </p>
+              <p>
+              Warna Putih pada Gunung : Warna putih pada puncak gunung melambangkan kemurnian, kebersihan, dan kualitas pelayanan yang tinggi. <br>
+              Wanderlust berupaya memberikan pengalaman perjalanan yang memuaskan dan tak terlupakan bagi setiap pelanggan
+              </p>
+              <p>
+              Secara keseluruhan, logo Wanderlust menggambarkan identitas sebagai penyedia jasa perjalanan yang profesional, <br>terpercaya, dan berorientasi pada petualangan yang aman dan berkualitas tinggi bagi para wisatawan.
               </p>
           </div>
-          <div class="col-lg-5 col-md-5 mt-5 mb-4 order-md-2 order-1 shadow">
-            <img src="image/kenangan2.jpg" alt="foto profil" class="w-100">
+          <div class="col-lg-4 col-md-5 mt-5 mb-4 bg-dark order-md-2 order-1 shadow">
+            <img src="image/putihlogin.png" alt="foto profil" class="w-100">
           </div>
         </div>
       </div>

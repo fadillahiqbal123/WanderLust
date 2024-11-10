@@ -22,13 +22,12 @@ $jam_transfer = isset($_POST['jam_transfer']) ? mysqli_real_escape_string($db, $
 $id_pesan = isset($_POST['id_pesan']) ? mysqli_real_escape_string($db, $_POST['id_pesan']) : '';
 $status = isset($_POST['status']) ? mysqli_real_escape_string($db, $_POST['status']) : '';
 
-// Cek apakah semua field yang diperlukan terisi
 if (empty($no_resi) || empty($tgl_transfer) || empty($jam_transfer)) {
     echo "<script>alert('Semua field yang diperlukan harus terisi'); window.location = 'konfirmasipembayaran.php'</script>";
     exit;
 }
 
-// Cek apakah no_resi sudah ada di tabel transaksi
+
 $result = "SELECT * FROM transaksi WHERE no_resi='$no_resi'";
 $check = mysqli_query($db, $result) or die(mysqli_error($db));
 $fetch_resi = mysqli_num_rows($check);
@@ -38,7 +37,7 @@ if ($fetch_resi == 1) {
     exit;
 }
 
-// Pastikan id_pesan valid (ada di tabel pesan) sebelum melakukan insert
+
 $check_pesan = "SELECT * FROM pesan WHERE id_pesan=?";
 $stmt = mysqli_prepare($db, $check_pesan);
 mysqli_stmt_bind_param($stmt, 'i', $id_pesan); // Bind parameter untuk query
