@@ -34,19 +34,19 @@
         include "layout/navbar.php";
      ?>
     </header>
-    <main style="min-height: 100vh; padding-top: 80px;">
+    <main style="min-height: 100vh; padding-top: 20px;">
 
       <div clas="my-5 px-4">
-      <h2 class="pt-4 mt-4 text-center fw-bold h-font">About WanderLust</h2>
+      <h2 class="pt-2 mt-2 text-center fw-bold h-font">About WanderLust</h2>
       <div class="h-line bg-dark mt-3"></div>
-      <p class="text-center mt-3 fw-bold">
+      <p class="text-center mt-2 fw-bold">
         Bromo Lebih Dekat Perjalanan Lebih Nyaman
       </p>
       </div>
 
       <div class="container">
         <div class="row justify-content-between align-items-center">
-          <div class="col-lg-8 col-md-5 mt-5 mb-4 order-md-1 order-2">
+          <div class="col-lg-8 col-md-5 mt-2 mb-3 order-md-1 order-2">
             <h3 class="fw-bold h-font">Filosofi WanderLust</h3>
               <p>
               Wanderlust adalah jasa penyedia layanan wisata khusus ke Gunung Bromo dan sekitarnya , dengan titik keberangkatan dari Jember. <br>

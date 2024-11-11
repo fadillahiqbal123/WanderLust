@@ -311,33 +311,34 @@ $_SESSION['last_activity'] = time();
 function sql_select() {
   global $db;
 
-          $sql = "SELECT DISTINCT 
-          jadwal.*, 
-          kendaraan.jenis_mobil, 
-          kendaraan.warna_mobil, 
-          asal.alamat, 
-          destinasi.nama_destinasi,
-          pesan.no_kursi  
-        FROM 
-          jadwal 
-        JOIN 
-          kendaraan ON jadwal.id_mobil = kendaraan.id_mobil 
-        JOIN 
-          asal ON jadwal.id_asal = asal.id_asal 
-        JOIN 
-          destinasi ON jadwal.id_destinasi = destinasi.id_destinasi
-        JOIN 
-          pesan ON jadwal.id_jadwal = pesan.id_jadwal";
-  
+ 
+  $sql = "SELECT 
+            jadwal.*, 
+            kendaraan.jenis_mobil, 
+            kendaraan.warna_mobil, 
+            asal.alamat, 
+            destinasi.nama_destinasi,
+            COUNT(pesan.no_kursi) AS jumlah_kursi_dipesan
+          FROM 
+            jadwal 
+          JOIN 
+            kendaraan ON jadwal.id_mobil = kendaraan.id_mobil 
+          JOIN 
+            asal ON jadwal.id_asal = asal.id_asal 
+          JOIN 
+            destinasi ON jadwal.id_destinasi = destinasi.id_destinasi
+          LEFT JOIN 
+            pesan ON jadwal.id_jadwal = pesan.id_jadwal
+          GROUP BY 
+            jadwal.id_jadwal"; 
+
   $result = mysqli_query($db, $sql); 
   if (!$result) {
-   
       die('Query Error: ' . mysqli_error($db));
   }
   return $result; 
 }
 ?>
-
 
 <div class="container mt-5">
     <div class="row">
@@ -345,14 +346,11 @@ function sql_select() {
         $hasil = sql_select(); // Fungsi untuk mengambil data dari database
         while ($baris = mysqli_fetch_array($hasil)) {
             ?>
-            <div class="col-lg-4 col-md-6 my-3"> <!-- Hapus rounded di sini -->
+            <div class="col-lg-4 col-md-6 my-3">
                 <div class="card tour-package-card border-0 shadow" style="max-width: 350px; margin: auto;">
-                  
                     <img src="image/paket1.png" class="d-block w-100" alt="Jadwal Image">
                     <div class="card-body">
-                        
                         <h5 class="card-title mb-4"><strong><?php echo $baris['alamat']; ?> - <?php echo $baris['nama_destinasi']; ?></strong></h5>
-                        
                         <h6>Start From Rp. <?php echo number_format($baris['harga'], 0, ',', '.'); ?></h6>
                         <!-- Detail fasilitas -->
                         <div class="fasilitas mb-3">
@@ -361,7 +359,7 @@ function sql_select() {
                                 <?php echo $baris['jenis_mobil']; ?> (<?php echo $baris['warna_mobil']; ?>)
                             </span>
                             <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                Kursi Tersedia: <?php echo (5 - $baris['no_kursi']); ?> dari 5
+                                Kursi Tersedia: <?php echo (5 - $baris['jumlah_kursi_dipesan']); ?> dari 5
                             </span>
                             <span class="badge rounded-pill bg-light text-dark text-wrap">
                                 Perjalanan nyaman dan aman
@@ -380,12 +378,12 @@ function sql_select() {
                         </div>
                         <!-- Tombol aksi -->
                         <div class="d-flex justify-content-evenly mb-2 mt-3">
-                            <?php if ($baris['no_kursi'] < 5) { ?>
-                                <a href="hasil_cari.php?&id=<?php echo $baris['id_jadwal']; ?>" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
+                            <?php if ($baris['jumlah_kursi_dipesan'] < 5) { ?>
+                                <a href="detailcari.php?&var1=<?php echo $baris['id_jadwal']; ?>" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
                             <?php } else { ?>
                                 <button class="btn btn-outline-secondary btn-sm rounded-5 disabled">KURSI PENUH</button>
                             <?php } ?>
-                            <a href="detail_jadwal.php?id=<?php echo $baris['id_jadwal']; ?>" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
+                            <a href="detailjadwal.php?id=<?php echo $baris['id_jadwal']; ?>" class="btn btn-outline-dark btn-sm rounded-5">MORE DETAIL</a>
                         </div>
                     </div>
                 </div>

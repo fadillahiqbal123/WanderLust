@@ -91,9 +91,9 @@ if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
                         <div class=" form-group col-6 mt-2">
                             <button type="submit" class="btn btn-outline-primary">Login</button>
                         </div>
-                        <div class="form-group mt-2">
+                        <!-- <div class="form-group mt-2">
                         <p><a class="link-body-emphasis link-offset-2 link-opacity-50-hover" href="register.php">Don't have an Account? Click Here...</a></p>
-                        </div>
+                        </div> -->
 
                     </form>
                    

@@ -10,7 +10,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     // Hash password menggunakan MD5
     $hashed_password = mysqli_real_escape_string($db, md5($password));
 
-    // Query untuk mencari username dan password yang cocok
     $query_username = mysqli_query($db, "SELECT * FROM admin WHERE username='$username' AND password='$hashed_password'");
     $cek_username = mysqli_num_rows($query_username);
     

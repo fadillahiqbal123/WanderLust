@@ -1,12 +1,8 @@
 <?php 
-session_start();
+
 include "koneksi.php";
 
-
-
-
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -48,7 +44,7 @@ include "koneksi.php";
         </header>
         <main class="min-height:100vh; padding-top: 80px;">
         <?php
-    // Ambil id_jadwal dari parameter URL
+    
     $idj = isset($_GET['idp']) ? (int)$_GET['idp'] : 0;
 
     // Query untuk mendapatkan informasi jadwal, kendaraan, kota_asal, dan kota_tujuan

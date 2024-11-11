@@ -27,7 +27,7 @@
                  <option value="0" selected>--Pilih Destinasi Wisata--</option>
                  
                  <?php
-                    $sql = mysqli_query($db, "SELECT * FROM destinasi ORDER BY id_destinasi ASC");
+                    $sql = mysqli_query($db, "SELECT * FROM destinasi   ORDER BY id_destinasi ASC");
                     while($r = mysqli_fetch_array($sql)){  ?>
 
                         <option value="<?php echo $r['id_destinasi'] ?>"><?php echo $r['nama_destinasi'] ?></option>  

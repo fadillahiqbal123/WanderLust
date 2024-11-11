@@ -1,3 +1,4 @@
+
 <div class="container-fluid mt-4">
     <div class="card">
         <div class="card-header">
@@ -23,39 +24,39 @@
             </div>
             </form>
             <?php 
-                if(isset($_POST['submit'])){
-                    $judul_berita = $_POST['judul_berita'];
-                    $konten_berita =  $_POST['konten_berita'];
-                    
-                    $foto_berita = $_FILES['foto_berita']['name'];
+if(isset($_POST['submit'])) {
+    $judul_berita = $_POST['judul_berita'];
+    $konten_berita =  $_POST['konten_berita'];
+    $foto_berita = $_FILES['foto_berita']['name'];
+    $file_extension = array('png', 'jpg', 'jpeg', 'gif');
+    $extension = pathinfo($foto_berita, PATHINFO_EXTENSION);
+    $size_foto_berita = $_FILES['foto_berita']['size'];
+    $rand = rand();
 
-                    $file_extension = array('png', 'jpg', 'jpeg', 'gif');
-                    $extension = pathinfo($foto_berita, PATHINFO_EXTENSION);
-                    $size_foto_berita = $_FILES['foto_berita']['size'];
-                    $rand = rand();
+    // Ambil id_admin dari session
+    $penulis = $_SESSION['idadmin'];
+    $tanggal = date('Y-m-d');
 
-                    $penulis = $_SESSION['idadmin'];
-                    $tanggal = date('Y-m-d');
-                    
-                    if(!in_array($extension, $file_extension)){
-                        echo "<insert>alert('File Tidak Didukung') window.location = 'dashboard.php?hal=tambah_berita'</insert>";
-                    }else{
-                        if ($size_foto_berita < 409600) {
-                            $nama_foto_berita = $rand.'_'.$foto_berita;
+    if(!in_array($extension, $file_extension)) {
+        echo "<script>alert('File Tidak Didukung'); window.location = 'dashboard.php?hal=tambah_berita'</script>";
+    } else {
+        if ($size_foto_berita < 409600) {
+            $nama_foto_berita = $rand . '_' . $foto_berita;
+            move_uploaded_file($_FILES['foto_berita']['tmp_name'], '././img_berita/' . $nama_foto_berita);
 
-                            move_uploaded_file($_FILES['foto_berita']['tmp_name'], '././img_berita/'.$nama_foto_berita);
-
-                            mysqli_query($db, "INSERT INTO berita (judul_berita,id_admin,tgl_berita,konten_berita,foto_berita) VALUES ('$judul_berita', '$penulis', '$tanggal', '$konten_berita', '$nama_foto_berita')");
-
-                            echo "<script>alert('Konten Berita Berhasil Ditambahkan'); window.location = 'dashboard.php?hal=berita'</script>";
-                        }else{
-                           echo "<script>alert('Ukuran Foto Terlalu Besar'); window.location = 'dashboard.php?hal=tambah_berita'</script>";
-
-                        }
-                    }
-                }
-
-            ?>
+            // Masukkan data ke tabel berita
+            $query = "INSERT INTO berita (judul_berita, id_admin, tgl_berita, konten_berita, foto_berita) VALUES ('$judul_berita', '$penulis', '$tanggal', '$konten_berita', '$nama_foto_berita')";
+            if (mysqli_query($db, $query)) {
+                echo "<script>alert('Konten Berita Berhasil Ditambahkan'); window.location = 'dashboard.php?hal=berita'</script>";
+            } else {
+                echo "<script>alert('Gagal Menambahkan Data'); window.location = 'dashboard.php?hal=tambah_berita'</script>";
+            }
+        } else {
+            echo "<script>alert('Ukuran Foto Terlalu Besar'); window.location = 'dashboard.php?hal=tambah_berita'</script>";
+        }
+    }
+}
+?>
 
 
         </div>

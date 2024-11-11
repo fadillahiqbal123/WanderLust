@@ -25,7 +25,7 @@
              $sql = mysqli_query($db, "SELECT jadwal.id_jadwal, asal.alamat AS alamat_keberangkatan, destinasi.nama_destinasi, jadwal.harga, jadwal.tgl_berangkat, jadwal.jam_berangkat, kendaraan.nomor_polisi 
                 FROM jadwal 
                 JOIN asal ON jadwal.id_asal = asal.id_asal 
-                JOIN destinasi ON jadwal.id_destinasi = destinasi.id_destinasi 
+                JOIN destinasi ON jadwal.id_destinasi = destinasi.id_destinasi
                 JOIN kendaraan ON jadwal.id_mobil = kendaraan.id_mobil");
 
                 while($r = mysqli_fetch_array($sql)){   

@@ -63,7 +63,7 @@
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
             <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
-
+            <!-- link fontawsom -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
             <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
             <!-- GRAFIK JS -->
@@ -113,12 +113,28 @@
 
         <body>
         <div class="row">
-    <div class="col-lg-12 py-2 bg-dark fixed-top d-flex justify-content-between align-items-center">
+    <div class="col-lg-12 py-2 bg-secondary fixed-top d-flex justify-content-between align-items-center">
         <!-- Nav Brand -->
         <a href="index.php" class="navbar-brand ms-3 text-white">
             <img src="image/wander_logo.png" height="55" width="90" alt="Brand Logo" class="me-2">
         </a>
-        
+
+        <!-- icon font awsom -->
+         <div class="d-flex ms-3">
+            <a href="#" class="text-white me-3">
+                 <i class="fa-brands fa-square-instagram" style="font-size: 1.em;"></i>
+            </a>
+            <a href="#" class="text-white me-3">
+                 <i class="fa-brands fa-facebook" style="font-size: 1.em;"></i>
+            </a>
+            <a href="#" class="text-white me-3">
+                <i class="fa-brands fa-linkedin" style="font-size: 1.em;"></i>
+            </a>
+            <a href="#" class="text-white me-3">
+               <i class="fa-brands fa-tiktok" style="font-size: 1.em;"></i>
+            </a>
+         </div>
+         
         <!-- User Dropdown -->
         <div class="text-end">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -149,8 +165,7 @@
             
 
 
-          
-
+        
                 
             <div class="row mt-5 bg-body" style="padding-top: 25px; font-size: 14px;">
             <div class="col-lg-2 col-md-3 col-sm-12 bg-light sidebar" style="overflow-y: auto; position: sticky; top: 0; height:100vh; border-right:5px;">

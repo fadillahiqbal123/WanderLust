@@ -25,7 +25,7 @@
                                 <td><?php echo $r['nama_destinasi']; ?></td>
                                 <td><img src="././img_galeri/<?php echo $r['nama_foto']; ?>" height="100" width="200" alt="Foto Destinasi"></td>
                                 <td>
-                                    <a href="dashboard.php?hal=edit_galeri&id=<?php echo $r['id_galeri'] ?>" class="btn btn-outline-success" title="edit"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="dashboard.php?hal=edit_galeri&id=  galeri'] ?>" class="btn btn-outline-success" title="edit"><i class="bi bi-pencil-square"></i></a>
 
                                     <a href="dashboard.php?hal=hapus_galeri&id=<?php echo $r['id_galeri'] ?>" class="btn btn-outline-danger" title="hapus data"><i class="bi bi-trash3-fill"></i></a>
                                 </td>

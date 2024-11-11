@@ -55,15 +55,14 @@ if (isset($_POST['register']) || isset($_POST['login'])) {
         $email = $_POST['email'];
         $password = md5($_POST['password']); // Menggunakan MD5 untuk verifikasi
 
-        $stmt = $db->prepare("SELECT * FROM user WHERE email=?");
-        $stmt->bind_param("s", $email);
+        $stmt = $db->prepare("SELECT * FROM user WHERE email= ? AND password = ? ");
+        $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
 
-            if ($password === $user['password']) { 
                 $_SESSION['id_user'] = $user['id_user']; 
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
@@ -81,7 +80,7 @@ if (isset($_POST['register']) || isset($_POST['login'])) {
                     alert('Login Berhasil!');
                     window.location = 'dashboard.php';
                 </script>";
-                exit();
+                
             } else {
                 echo "<script>
                     alert('Login Gagal! Password salah. Silakan coba lagi.');
@@ -96,5 +95,5 @@ if (isset($_POST['register']) || isset($_POST['login'])) {
             exit();
         }
     }
-}
+
 ?>

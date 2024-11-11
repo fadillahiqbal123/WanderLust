@@ -1,5 +1,4 @@
     <?php 
-    session_start();
     include "koneksi.php";
 
 
@@ -92,8 +91,8 @@
             </header>
 
 
-            <main style="padding-top: 80px;">
-        <h4 class="mt-3 pt-3 mb-5 text-center fw-bold">Layanan Jadwal</h4>
+            <main style="padding-top: 20px;">
+        <h4 class="mt-2 pt-2 mb-5 text-center fw-bold">Layanan Jadwal</h4>
         <div class="container-fluid my-5">
 
     <table id="example" class="display table table-striped" style="width:100%">

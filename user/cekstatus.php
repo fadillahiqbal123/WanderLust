@@ -1,7 +1,7 @@
 fitur cekstatus
 
 <?php 
-session_start();
+
 include "koneksi.php";
 ?>
 

@@ -1,20 +1,16 @@
 <?php
-// detailpesan.php
 
-// Memulai sesi untuk memeriksa login pengguna jika diperlukan
 session_start();
 
-// Memeriksa apakah pengguna masuk ke halaman dengan `var1` (id_jadwal) yang valid
 if (!isset($_GET['var1'])) {
     die("ID jadwal tidak valid.");
 }
 
-// Menyambungkan ke database
-include 'koneksi.php'; // Pastikan file ini berisi koneksi ke database Anda
+include 'koneksi.php'; 
 
 $id_jadwal = $_GET['var1'];
 
-// Query untuk mengambil detail jadwal, kendaraan, asal, dan tujuan
+
 $query = "
     SELECT jadwal.*, kendaraan.jenis_mobil, kendaraan.warna_mobil, kendaraan.nomor_polisi, 
            asal.alamat AS asal_alamat, destinasi.nama_destinasi 

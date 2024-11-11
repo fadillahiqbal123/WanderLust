@@ -1,81 +1,81 @@
-<?php 
-session_start();
-include "koneksi.php";
+ <?php 
+// session_start();
+// include "koneksi.php"; 
 
-if(isset($_SESSION["is_login"])) {
-    header("location: dashboard.php");
-}
+// if(isset($_SESSION["is_login"])) {
+//     header("location: dashboard.php");
+// }
 
-if(isset($_POST["register"])){
-    $nama_admin = $_POST["nama_admin"];
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $email = $_POST["email"];
+// if(isset($_POST["register"])){
+    // $nama_admin = $_POST["nama_admin"];
+    // $username = $_POST["username"];
+    // $password = $_POST["password"];
+    // $email = $_POST["email"];
 
-    $hash_password = md5($password);
+    // $hash_password = md5($password);
 
-    $sql =  "SELECT * FROM admin WHERE username = '$username' OR email = '$email'";
-    $result_check = $db->query($sql);
+    // $sql =  "SELECT * FROM admin WHERE username = '$username' OR email = '$email'";
+    // $result_check = $db->query($sql);
     
-    if($result_check->num_rows > 0) {
-        // SweetAlert untuk kegagalan registrasi (username/email sudah terdaftar)
-        echo "<script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Daftar Gagal!',
-                        text: 'Username atau email sudah terdaftar',
-                        showConfirmButton: true
-                    });
-                });
-              </script>";
-    } else {
-        try {
-            $sql = "INSERT INTO admin (nama_admin, username, password, email) VALUES ('$nama_admin', '$username', '$hash_password', '$email')";
+    // if($result_check->num_rows > 0) {
+    //     // SweetAlert untuk kegagalan registrasi (username/email sudah terdaftar)
+    //     echo "<script>
+    //             document.addEventListener('DOMContentLoaded', function() {
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Daftar Gagal!',
+    //                     text: 'Username atau email sudah terdaftar',
+    //                     showConfirmButton: true
+    //                 });
+    //             });
+    //           </script>";
+    // } else {
+    //     try {
+    //         $sql = "INSERT INTO admin (nama_admin, username, password, email) VALUES ('$nama_admin', '$username', '$hash_password', '$email')";
             
-            if($db->query($sql)) {
-                echo "<script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Daftar Berhasil!',
-                                text: 'Anda akan diarahkan ke halaman login.',
-                                showConfirmButton: false,
-                                timer: 3000
-                            }).then(function() {
-                                window.location = 'index.php';
-                            });
-                        });
-                      </script>";
-            } else {
-                echo "<script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Daftar Gagal!',
-                                text: 'Terjadi kesalahan, silakan coba lagi.',
-                                showConfirmButton: true
-                            });
-                        });
-                      </script> window.location = 'index.php'";
-            }
-        } catch (mysqli_sql_exception $e) {
-            echo "<script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Daftar Gagal!',
-                            text: '" . $e->getMessage() . "',
-                            showConfirmButton: true
-                        });
-                    });
-                  </script> window.location = index.php";
-        }
-    }
-}
-?>
+    //         if($db->query($sql)) {
+    //             echo "<script>
+    //                     document.addEventListener('DOMContentLoaded', function() {
+    //                         Swal.fire({
+    //                             icon: 'success',
+    //                             title: 'Daftar Berhasil!',
+    //                             text: 'Anda akan diarahkan ke halaman login.',
+    //                             showConfirmButton: false,
+    //                             timer: 3000
+    //                         }).then(function() {
+    //                             window.location = 'index.php';
+    //                         });
+    //                     });
+    //                   </script>";
+    //         } else {
+            //     echo "<script>
+            //             document.addEventListener('DOMContentLoaded', function() {
+            //                 Swal.fire({
+            //                     icon: 'error',
+            //                     title: 'Daftar Gagal!',
+            //                     text: 'Terjadi kesalahan, silakan coba lagi.',
+            //                     showConfirmButton: true
+            //                 });
+            //             });
+            //           </script> window.location = 'index.php'";
+            // }
+//         // } catch (mysqli_sql_exception $e) {
+//         //     echo "<script>
+//         //             document.addEventListener('DOMContentLoaded', function() {
+//         //                 Swal.fire({
+//         //                     icon: 'error',
+//         //                     title: 'Daftar Gagal!',
+//         //                     text: '" . $e->getMessage() . "',
+//         //                     showConfirmButton: true
+//         //                 });
+//         //             });
+//         //           </script> window.location = index.php";
+//         }
+//     }
+// }
+// ?>
 
-
+<!-- 
 <!doctype html>
 <html lang="en">
 <head>
@@ -151,4 +151,4 @@ if(isset($_POST["register"])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 </body>
 
-</html>
+</html> -->
