@@ -1,159 +1,116 @@
 <?php
-
 session_start();
+
+if ((empty($_SESSION['username'])) && (empty($_SESSION['password']))) {
+          if (isset($_SESSION['login_error'])) {
+        echo '
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Login failed!</strong> ' . $_SESSION['login_error'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+        unset($_SESSION['login_error']);
+    }
+
+    if (isset($_SESSION['register_success'])) {
+        echo '
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Registration successful!</strong> You can now log in.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+        unset($_SESSION['register_success']);
+    }
+
 
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-    <title>WanderLust</title>
-    <link rel="icon" href="image/lofo_wanderlust1.png" type="image/png">
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisatku.id</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- sweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-        <!-- icon bootstrap -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <!-- link font awsome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <!-- sweetalert -->
-       <script src="dist/sweetalert2.all.min.js"></script>
-        <!-- css -->
-        <link rel="stylesheet" href="css/index.css">
-       
-    </head>
-
-    <body>
-      <div class="container" id="container">
-        <div class="form-container sign-up">
-          <form id="auth-form" action="proses.php" method="POST">
-            <h3 style="text-align: center;">Kunjungi Juga Sosial Media Kami</h3>
-            <div class="social-icons">
-                <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i>
-              </a>
-              <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="#" class="icon"><i class="fa-brands fa-github"></i>
-              </a>
-              <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i>
-              </a>
-            </div>
-            <span>Or use your email for registration</span>
-            <input type="text" name="nama_user" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="text" name="username" placeholder="Username" required>
-            <input for="password" type="password" name="password" placeholder="Password">
-            <button type="submit" id="btn" name="register">Sign Up</button>
-            
-          </form>
-        </div> 
-        <div class="form-container sign-in">
-          <form action="proses.php" method="POST">
-            <h4><strong>Sign In</strong></h4>
-            <div class="social-icons">
-              <h6 style="text-align: center;"><strong>Kunjungi Juga<br>Social Media Kami</strong></h6>
-                <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i>
-              </a>
-              <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="#" class="icon"><i class="fa-brands fa-github"></i>
-              </a>
-              <a href="#" class="icon"><i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-            <span>Use your email password</span>
-            <input type="email" name="email" placeholder="Email" required
-            value = "<?php echo (isset($_COOKIE["email"])) ? $_COOKIE['email']: '' ?>">
-
-            <input for="password" type="password" name="password" placeholder="Password" required
-            value = "<?php echo (isset($_COOKIE["password"])) ? $_COOKIE['password']: '' ?>">
-
-            <div class="form-group" style="width: 10px; align-items: center;">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
-            <?php echo ((isset($_COOKIE["email"])) and (isset($_COOKIE["password"]))) ? "checked": "" ?>>
-            <label class="form-cek-label" for="exampleCheck1" style="font-size: 12px; line-height: 1; margin: 0; cursor: pointer;">Remember Me</label>
-            </div>
-
-            
-            <button type="submit" id="btn" name="login">Sign In</button>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#forgetPasswordModal" style="text-decoration: none;">Forget Your Password?</a>
-          </form>
-        </div>
-
-        <div class="modal fade" id="forgetPasswordModal" tabindex="-1" aria-labelledby="forgetPasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="forgetPasswordModalLabel">Lupa Password</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="ForgotPassword.php">
-                    <div class="mb-3">
-                        <label for="emailReset" class="form-label" style="text-center fw-bold h-font">Inputkan Email Anda</label>
-                        <input type="email" class="form-control" id="emailReset" name="email" placeholder="example@gmail.com" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" name="submit_email">Kirim</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
+    <!-- lord icon -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <style>
+        .posisitengah {
+            margin: 0 auto;
+        }
         
-        <div class="toggle-container">
-    <div class="toggle">
-        <div class="toggle-panel toggle-left">
-          <img src="image/putihlogin.png" alt="WanderLust" style="height: 100px;">
-            <h4>Welcome to the WanderLust app</h4>
-            <p>Enter your personal details to use all the site features</p>
-            <button class="hidden" id="login">Sign in</button>
-        </div>
-        <div class="toggle-panel toggle-right">
-        <img src="image/putihlogin.png" alt="WanderLust" style="height: 100px;">
-            <h1>Hello, Users!</h1>
-            <p>Register with your personal details to use all the site features</p>
-            <button class="hidden" id="register">Sign Up</button>
+        body {
+            background-image: url("image/bg_login.png");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    
+     <div class="container mb-5 mt-5">
+        <div class="col-md-4 posisitengah">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <form action="ceklogin.php" method="POST">
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" placeholder="Enter Username" required
+                            value = "<?php echo (isset($_COOKIE["username"])) ? $_COOKIE['username']: '' ?>">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter Password" required
+                            value="<?php echo (isset($_COOKIE["password"])) ? $_COOKIE['password']: '' ?>">
+                        </div>
+                        
+                        <div class="form-group form-check mt-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
+                            <?php echo ((isset($_COOKIE["username"])) and (isset($_COOKIE["password"]))) ? "checked": "" ?>>
+                            <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                        </div>
+                        
+                        <div class=" form-group col-6 mt-2">
+                            <button type="submit" class="btn btn-outline-primary">Login</button>
+                        </div>
+                        <!-- <div class="form-group mt-2">
+                        <p><a class="link-body-emphasis link-offset-2 link-opacity-50-hover" href="register.php">Don't have an Account? Click Here...</a></p>
+                        </div> -->
+
+                    </form>
+                   
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</body>
 
-      </div>
-    
-    
-    
-        <footer>
-            
-        </footer>
-
-
-       
-       
-
-
-        <script src="script.js"></script>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </html>
+
+<?php
+} else {
+    echo "<script>window.history.go(-1)</script>";
+}
+?>

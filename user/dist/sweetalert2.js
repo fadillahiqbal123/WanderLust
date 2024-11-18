@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v11.14.4
+* sweetalert2 v11.14.1
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -877,6 +877,28 @@
       target.appendChild(elem.cloneNode(true));
     }
   };
+
+  /**
+   * @returns {'webkitAnimationEnd' | 'animationend' | false}
+   */
+  const animationEndEvent = (() => {
+    // Prevent run in Node env
+    if (isNodeEnv()) {
+      return false;
+    }
+    const testEl = document.createElement('div');
+
+    // Chrome, Safari and Opera
+    if (typeof testEl.style.webkitAnimation !== 'undefined') {
+      return 'webkitAnimationEnd';
+    }
+
+    // Standard syntax
+    if (typeof testEl.style.animation !== 'undefined') {
+      return 'animationend';
+    }
+    return false;
+  })();
 
   /**
    * @param {SweetAlert} instance
@@ -2301,7 +2323,7 @@
   const handlePopupAnimation = (instance, popup, innerParams) => {
     const container = getContainer();
     // If animation is supported, animate
-    const animationIsSupported = hasCssAnimation(popup);
+    const animationIsSupported = animationEndEvent && hasCssAnimation(popup);
     if (typeof innerParams.willClose === 'function') {
       innerParams.willClose(popup);
     }
@@ -2322,17 +2344,16 @@
    * @param {Function} didClose
    */
   const animatePopup = (instance, popup, container, returnFocus, didClose) => {
+    if (!animationEndEvent) {
+      return;
+    }
     globalState.swalCloseEventFinishedCallback = removePopupAndResetState.bind(null, instance, container, returnFocus, didClose);
-    const swalCloseAnimationFinished = function (e) {
+    popup.addEventListener(animationEndEvent, function (e) {
       if (e.target === popup) {
         globalState.swalCloseEventFinishedCallback();
         delete globalState.swalCloseEventFinishedCallback;
-        popup.removeEventListener('animationend', swalCloseAnimationFinished);
-        popup.removeEventListener('transitionend', swalCloseAnimationFinished);
       }
-    };
-    popup.addEventListener('animationend', swalCloseAnimationFinished);
-    popup.addEventListener('transitionend', swalCloseAnimationFinished);
+    });
   };
 
   /**
@@ -4032,12 +4053,11 @@
    */
   const swalOpenAnimationFinished = event => {
     const popup = getPopup();
-    if (event.target !== popup) {
+    if (event.target !== popup || !animationEndEvent) {
       return;
     }
     const container = getContainer();
-    popup.removeEventListener('animationend', swalOpenAnimationFinished);
-    popup.removeEventListener('transitionend', swalOpenAnimationFinished);
+    popup.removeEventListener(animationEndEvent, swalOpenAnimationFinished);
     container.style.overflowY = 'auto';
   };
 
@@ -4046,10 +4066,9 @@
    * @param {HTMLElement} popup
    */
   const setScrollingVisibility = (container, popup) => {
-    if (hasCssAnimation(popup)) {
+    if (animationEndEvent && hasCssAnimation(popup)) {
       container.style.overflowY = 'hidden';
-      popup.addEventListener('animationend', swalOpenAnimationFinished);
-      popup.addEventListener('transitionend', swalOpenAnimationFinished);
+      popup.addEventListener(animationEndEvent, swalOpenAnimationFinished);
     } else {
       container.style.overflowY = 'auto';
     }
@@ -4486,7 +4505,7 @@
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '11.14.4';
+  SweetAlert.version = '11.14.1';
 
   const Swal = SweetAlert;
   // @ts-ignore

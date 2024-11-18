@@ -92,7 +92,7 @@
 
                         .col-lg-12.py-3.bg-ligth.text-end.bg-ligth.fixed-top {
                              background-color: #004085; /* Ganti ini dengan warna background yang kamu inginkan */
-                             color: white; /* Jika ingin mengubah warna teks juga */
+                             color: white;
                 }
 
                     
@@ -105,8 +105,22 @@
                         overflow-y: auto;
                         max-height: 100vh; 
                     }
-                    
+                    .nav-link {
+                        color: #adb5bd;
+                        text-decoration: none;
+                    }
 
+                    /* Warna link aktif */
+                    .nav-link.active {
+                        color: #ffffff;
+                        background-color: #007bff;
+                    }
+
+                    /* Hover link */
+                    .nav-link:hover {
+                        color: #ffffff;
+                        background-color: #0056b3;
+                    }
 
             </style>
         </head>
@@ -178,31 +192,37 @@
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'kategori' or ($_GET['hal'] == 'tambah_kategori') or ($_GET['hal'] == 'edit_kategori')) ?  "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kategori"><i class="bi bi-stack"></i> Kategori</a>
                 <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'keluhan' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=keluhan"><i class="bi bi-send-plus-fill"></i> Keluhan Pengguna</a>
                 
-                <!-- dropdown transaksi -->
-                <a class="nav-link text-white mb-3" data-bs-toggle="collapse" href="#pesananDropdown" role="button" aria-expanded="<?php echo (isset($_GET['hal']) && in_array($_GET['hal'], ['pesanan-baru', 'data-pesanan', 'konfirmasi-pesan', 'perbarui_pesanan', 'belum_bayar'])) ? 'true' : 'false'; ?>" aria-controls="pesananDropdown">
-    <i class="bi bi-coin"></i> Pesanan <i class="bi bi-chevron-down"></i>
-</a>
+                            
+                <div class="treeview">
+            <a href="#" class="nav-link text-white mb-3" data-bs-toggle="collapse" 
+            data-bs-target="#pesananTreeview" aria-expanded="false">
+                <i class="bi bi-coin"></i> Pesanan <i class="bi bi-chevron-down"></i>
+            </a>
+    
+    
+    <div class="collapse" id="pesananTreeview">
+        
+        <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'pesanan-lunas') ? 'active text-white' : 'text-muted'; ?>" href="dashboard.php?hal=pesanan-lunas">
+            <i class="bi bi-stack"></i> Pesanan Lunas
+        </a>
 
-<!-- Dropdown Menu -->
-<div class="collapse <?php echo (isset($_GET['hal']) && in_array($_GET['hal'], ['pesanan-baru', 'data-pesanan', 'konfirmasi-pesan', 'perbarui_pesanan', 'belum_bayar'])) ? 'show' : ''; ?>" id="pesananDropdown">
-    <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'pesanan-baru' ? 'active text-white' : 'text-muted') ?>" href="dashboard.php?hal=pesanan-baru">
-        <i class="bi bi-stack"></i> Pesanan Baru
-    </a>
-    <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'data-pesanan' ? 'active text-white' : 'text-muted') ?>" href="dashboard.php?hal=data-pesanan">
-        <i class="bi bi-plus-circle"></i> Data Pesanan
-    </a>
-    <a class="nav-link <?php echo (isset($_GET['hal']) && in_array($_GET['hal'], ['konfirmasi-pesan', 'perbarui_pesanan']) ? 'active text-white' : 'text-muted') ?>" href="dashboard.php?hal=konfirmasi-pesan">
-        <i class="bi bi-plus-circle"></i> Konfirmasi Pesanan
-    </a>
-    <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'belum_bayar' ? 'active text-white' : 'text-muted') ?>" href="dashboard.php?hal=belum_bayar">
-        <i class="bi bi-stack"></i> Konfirmasi Belum Bayar
-    </a>
+       
+        <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'konfirmasi-pesan') ? 'active text-white' : 'text-muted'; ?>" href="dashboard.php?hal=konfirmasi-pesan">
+            <i class="bi bi-plus-circle"></i> Konfirmasi Pesanan
+        </a>
+
+        <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'dalam-proses') ? 'active text-white' : 'text-muted'; ?>" href="dashboard.php?hal=belum-bayar">
+            <i class="bi bi-credit-card"></i> Pesanan Belum Bayar
+        </a>
+    </div>
 </div>
+
 
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'alamat' or ($_GET['hal'] == 'tambah_alamat') or ($_GET['hal'] == 'edit_alamat')) ?  "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=alamat"><i class="fa-solid fa-truck-pickup"></i> Alamat</a>
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'kendaraan' or ($_GET['hal'] == 'tambah_kendaraan') or ($_GET['hal'] == 'edit_kendaraan')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=kendaraan"><i class="bi bi-car-front-fill"></i> Atur Armada</a>
                 <a class="nav-link <?php echo ((isset($_GET['hal']) && $_GET['hal'] == 'jadwal' or ($_GET['hal'] == 'tambah_jadwal') or ($_GET['hal'] == 'edit_jadwal')) ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=jadwal"><i class="bi bi-car-front-fill"></i> Atur Jadwal</a>
                 <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'pendaftar' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=pendaftar"><i class="bi bi-person-fill-check"></i> Lihat User</a>
+                <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'laporan' ? "active text-white" : "text-white") ?> mb-3" href="dashboard.php?hal=laporan"><i class="bi bi-journal-bookmark-fill"></i> Laporan</a> 
                 
              
                 
@@ -278,20 +298,14 @@
                         case 'hapus_keluhan':
                             include "modul/mod_keluhan/hapus_keluhan.php";
                             break;
-                        case 'pesanan-baru':
-                            include "modul/mod_transaksi/pesanan_baru.php";
-                            break;
-                        case 'data-pesanan':
-                            include "modul/mod_transaksi/data_pesanan.php";
+                        case 'pesanan-lunas':
+                            include "modul/mod_transaksi/pemesanan_lunas.php";
                             break;
                         case 'konfirmasi-pesan':
                             include "modul/mod_transaksi/konfirmasi_pesan.php";
                             break;
                         case 'perbarui_pesanan':
                             include "modul/mod_transaksi/perbarui_pesanan.php";
-                            break;
-                        case 'belum_bayar':
-                            include "modul/mod_transaksi/belum_bayar.php";
                             break;
                        case 'pendaftar':
                           include "modul/mod_pengunjung/pengunjung.php";
@@ -331,6 +345,9 @@
                             break;
                         case 'hapus_alamat':
                             include "modul/mod_alamat/hapus_alamat.php";
+                            break;
+                        case 'laporan':
+                            include "modul/mod_laporan/laporan.php";
                             break;
 
                             default:
@@ -382,24 +399,30 @@
     });
 </script>
 
-    <script>
-    $(document).ready(function() {
-        $('#keluhanTable').DataTable({
-            "order": [[ 1, "asc" ]], // Default sorting berdasarkan kolom kedua (Nama) secara ascending
-            "paging": true,          // Menambahkan pagination
-            "searching": true,       // Menambahkan fitur search
-            "columnDefs": [
-                { "orderable": false, "targets": 0 },  // Disable sorting untuk kolom No
-                { "orderable": false, "targets": 4 }   // Disable sorting untuk kolom Aksi
-            ]
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const treeviewLinks = document.querySelectorAll("[data-bs-toggle='collapse']");
+
+    treeviewLinks.forEach(link => {
+        link.addEventListener("click", function() {
+            const allSubmenus = document.querySelectorAll(".collapse");
+            allSubmenus.forEach(submenu => {
+                if (submenu !== document.querySelector(link.dataset.bsTarget)) {
+                    submenu.classList.remove("show");
+                }
+            });
         });
     });
-    </script>
+});
+</script>
+
+
             <script
                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
                 integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
                 crossorigin="anonymous"
-            ></script>
+            ></scrip>
             <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
             <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
             <script>
@@ -411,7 +434,7 @@
                     targets: 0
                 }
                     ],
-                    order: [[1, 'asc']]
+                    order: [[1, 'desc']]
                 });
                 
                 table
