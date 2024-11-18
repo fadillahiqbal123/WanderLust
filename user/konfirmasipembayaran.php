@@ -30,7 +30,7 @@ include "koneksi.php";
           <?php include "layout/navbar.php"; ?>
         </header>
 
-        <main class="min-height: 100vh; padding-top:50px; flex:2;">
+        <main class="min-height: 100vh; padding-top: 90px;">
             <?php 
                  $idj = $_GET['idp'];
                  $query1 = "select * from pesan where id_pesan= ".$idj;
@@ -65,15 +65,17 @@ include "koneksi.php";
             $result = mysqli_query($db, $query) or die(mysqli_error($db));
             $row = mysqli_fetch_object($result);
         ?>
-        <h3 class="text-center fw-bold h-font mt-4">Konfirmasi Pembayaran Anda</h3>
-            <div class="container mt-3 pt-3 mb-5">
+
+
+        <h3 class="text-center fw-bold h-font mt-5 pt-5">Konfirmasi Pembayaran Anda</h3>
+            <div class="container mt-3 pt-3 mb-3">
                 <div class="row">
                 <form class="form-control" action="prosespembayaran.php?idp=<?php echo $id_pesan; ?>" method="post">
                     
                     <p>ID Pesan: <strong><?php echo $row->id_pesan; ?></strong></p>
                     <p>Kota Asal: <strong><?php echo $row->kota_asal; ?></strong></p>
                     <p>Kota Tujuan: <strong><?php echo $row->kota_tujuan; ?></strong></p>
-                    <p>Tanggal Berangkat: <strong><?php echo $row->tgl_berangkat; ?></strong></p>
+                    <p>Tanggal Berangkat: <strong><?php echo date('d-M-Y', strtotime($row->tgl_berangkat)); ?></strong></p>
                     <p>Total Bayar: <strong><?php echo $row->harga; ?></strong></p>
 
                     <div class="col-md-5 mb-3">

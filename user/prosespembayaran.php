@@ -48,14 +48,14 @@ if (mysqli_num_rows($result_check_pesan) == 0) {
     echo "<script>alert('ID Pesan yang Anda masukkan tidak ditemukan di database'); window.location = 'konfirmasipembayaran.php'</script>";
     exit;
 } else {
-    // Query untuk INSERT ke tabel transaksi menggunakan prepared statement
+    
     $sql = "INSERT INTO transaksi (no_resi, no_rek, tgl_transfer, jam_transfer, id_pesan) 
             VALUES (?, ?, ?, ?, ?)";
     $stmt_insert = mysqli_prepare($db, $sql);
     mysqli_stmt_bind_param($stmt_insert, 'ssssi', $no_resi, $no_rek, $tgl_transfer, $jam_transfer, $id_pesan);
 
     if (mysqli_stmt_execute($stmt_insert)) {
-        // Jika INSERT berhasil, lakukan UPDATE status di tabel pesan
+       
         $sql1 = "UPDATE pesan SET status=? WHERE id_pesan=?";
         $stmt_update = mysqli_prepare($db, $sql1);
         mysqli_stmt_bind_param($stmt_update, 'si', $status, $id_pesan); 

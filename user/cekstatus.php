@@ -67,101 +67,85 @@ include "koneksi.php";
         <main>
 
         <div class="panel panel-default" style="color:black">
-    <div class="panel-body text-center fw-bold h-font mt-3" style="font-size: 20px;">Data Status Bayar</div>
-</div>
-<div class="panel panel-primary">
-    <table id="example" class="display">
-        <thead>
-            <tr>
-                <td></td>
-                <td>ID Pesan</td>
-                <td>Jurusan</td>
-                <td>Berangkat</td>
-                <td>Harga</td>
-                <td>Status</td>
-                <td>Pembatalan</td>
-                <td>Cetak</td> 
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $mem = $_SESSION['username'];
-            global $db;
+                <div class="panel-body text-center fw-bold h-font mt-3" style="font-size: 20px;">Data Status Bayar</div>
+            </div>
+            <div class="panel panel-primary">
+                <table id="example" class="display">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>ID Pesan</td>
+                            <td>Jurusan</td>
+                            <td>Berangkat</td>
+                            <td>Harga</td>
+                            <td>Status</td>
+                            <td>Pembatalan</td>
+                            <td>Cetak</td> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $mem = $_SESSION['username'];
+                        global $db;
 
-            $result_count = "SELECT count(id_pesan) AS total FROM user, pesan, jadwal, asal, destinasi 
-                            WHERE user.id_user = pesan.id_user 
-                            AND user.username = '$mem' 
-                            AND pesan.id_jadwal = jadwal.id_jadwal 
-                            AND jadwal.id_asal = asal.id_asal 
-                            AND jadwal.id_destinasi = destinasi.id_destinasi";
+                        $query1 = "SELECT pesan.id_pesan, user.id_user, asal.alamat, destinasi.nama_destinasi, 
+                        jadwal.tgl_berangkat, jadwal.jam_berangkat, jadwal.harga, pesan.status 
+                        FROM user, pesan, jadwal, asal, destinasi 
+                        WHERE user.id_user = pesan.id_user
+                        AND user.username = '$mem'
+                        AND pesan.id_jadwal = jadwal.id_jadwal
+                        AND jadwal.id_asal = asal.id_asal
+                        AND jadwal.id_destinasi = destinasi.id_destinasi";
 
-            $sqli = mysqli_query($db, $result_count) or die(mysqli_error($db));
-            $data = mysqli_fetch_array($sqli);
-            $banyakData = $data['total'];
+                        $result = mysqli_query($db, $query1) or die(mysqli_error($db));
 
-            $query1 = "SELECT pesan.id_pesan, user.id_user, asal.alamat, destinasi.nama_destinasi, 
-            jadwal.tgl_berangkat, jadwal.jam_berangkat, jadwal.harga, pesan.status 
-            FROM user, pesan, jadwal, asal, destinasi 
-            WHERE user.id_user = pesan.id_user
-            AND user.username = '$mem'
-            AND pesan.id_jadwal = jadwal.id_jadwal
-            AND jadwal.id_asal = asal.id_asal
-            AND jadwal.id_destinasi = destinasi.id_destinasi
-            AND LOWER(pesan.status) = 'lunas'";
-
-
-            $result = mysqli_query($db, $query1) or die(mysqli_error($db));
-
-
-            while ($row = mysqli_fetch_object($result)) { 
-                $id_pesan = $row->id_pesan;
-                ?>
-                <tr>
-                    <td></td>
-                    <td><?php echo $row->id_pesan; ?></td>
-                    <td><?php echo $row->alamat; ?> - <?php echo $row->nama_destinasi; ?></td>
-                    <td><?php echo $row->tgl_berangkat; ?> | <?php echo $row->jam_berangkat; ?></td>
-                    <td>Rp. <?php echo number_format($row->harga, 0, ',', '.'); ?>,00</td>
-                    <td>
+                        while ($row = mysqli_fetch_object($result)) { 
+                            $id_pesan = $row->id_pesan;
+                        ?>
+                            <tr>
+                                <td></td>
+                                <td><?php echo $row->id_pesan; ?></td>
+                                <td><?php echo $row->alamat; ?> - <?php echo $row->nama_destinasi; ?></td>
+                                <td><?php echo $row->tgl_berangkat; ?> | <?php echo $row->jam_berangkat; ?></td>
+                                <td>Rp. <?php echo number_format($row->harga, 0, ',', '.'); ?>,00</td>
+                                <td>
+                                    <?php 
+                                    if ($row->status == "Belum Bayar") { 
+                                        echo "<a href='konfirmasipembayaran.php?&idp=$id_pesan' class='btn btn-danger'> $row->status</a>";
+                                    } elseif ($row->status == "Dalam Proses") { 
+                                        echo "<a href='#' class='btn btn-primary disabled'> $row->status</a>";
+                                    } else {
+                                        echo "<a href='#' class='btn btn-success disabled'> $row->status</a>";
+                                    } 
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php  
+                                    if ($row->status == "Belum Bayar") { 
+                                        echo "<a href='batalpesan.php?&idp=$id_pesan' class='btn btn-warning'>Batal</a>";
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    if (trim(strtolower($row->status)) == "lunas") { 
+                                        echo "<a href='cetak_tiket.php?id_pesan=$id_pesan&id_user={$row->id_user}' class='btn btn-secondary' target='_blank'>Cetak ID: $id_pesan</a>";
+                                    } else {
+                                        echo "<span class='text-muted'>Tidak tersedia</span>";
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
                         <?php 
-                        if ($row->status == "Belum Bayar") { 
-                            echo "<a href='konfirmasipembayaran.php?&idp=$id_pesan' class='btn btn-danger'> $row->status</a>";
-                        } elseif ($row->status == "Dalam Proses") { 
-                            echo "<a href='#' class='btn btn-primary disabled'> $row->status</a>";
-                        } else {
-                            echo "<a href='#' class='btn btn-success disabled'> $row->status</a>";
                         } 
                         ?>
-                    </td>
-                    <td>
-                        <?php  
-                            
-                        if ($row->status == "Belum Bayar") { 
-                            echo "<a href='batalpesan.php?&idp=$id_pesan' class='btn btn-warning'>Batal</a>";
-                        }
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-
-                    if (trim($row->status) == "lunas") { 
-                        echo "<a href='cetak_tiket.php?id_pesan=$id_pesan&id_user={$row->id_user}' class='btn btn-secondary' target='_blank'>Cetak ID: $id_pesan</a>";
-                    } else {
-                        echo "<span class='text-muted'>Tidak tersedia</span>";
-                    }
-                        ?>
-                    </td>
-                </tr>
-                <?php 
-            } 
-            ?>
-        </tbody>
-    </table>
-    <div class="well well-sm">
-        Pembatalan pemesanan hanya dapat dilakukan pada pemesanan yang belum dilakukan konfirmasi pembayaran<br>
-        Untuk melakukan konfirmasi pembayaran klik tombol <b style="color:red;">Selesai Bayar</b>
-    </div>
-</div>
+                    </tbody>
+                </table>
+                <div class="well well-sm">
+                    Pembatalan pemesanan hanya dapat dilakukan pada pemesanan yang belum dilakukan konfirmasi pembayaran.<br>
+                    Untuk melakukan konfirmasi pembayaran klik tombol <b style="color:red;">Selesai Bayar</b>.
+                </div>
+            </div>
 
 
         </main>
