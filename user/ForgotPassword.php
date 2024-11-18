@@ -11,7 +11,7 @@ require_once "PHPMailer/PHPMailer/src/SMTP.php";
 
 class ForgotPassword {
 
-    // Fungsi untuk merespons request
+    
     private function response($status, $message, $error_detail = null) {
         $response = ['status' => $status, 'message' => $message];
         if ($error_detail) {

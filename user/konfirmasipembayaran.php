@@ -1,6 +1,6 @@
 <?php
-session_start();
-include "koneksi.php"
+
+include "koneksi.php";
 ?>
 
 <!doctype html>
@@ -30,7 +30,7 @@ include "koneksi.php"
           <?php include "layout/navbar.php"; ?>
         </header>
 
-        <main class="min-height: 100vh; padding-top:80px; flex:2;">
+        <main class="min-height: 100vh; padding-top:50px; flex:2;">
             <?php 
                  $idj = $_GET['idp'];
                  $query1 = "select * from pesan where id_pesan= ".$idj;
@@ -65,11 +65,10 @@ include "koneksi.php"
             $result = mysqli_query($db, $query) or die(mysqli_error($db));
             $row = mysqli_fetch_object($result);
         ?>
-        <h3 class="text-center fw-bold h-font">Konfirmasi Pembayaran Anda</h3>
-            <div class="container mt-5 pt-5 mb-5">
+        <h3 class="text-center fw-bold h-font mt-4">Konfirmasi Pembayaran Anda</h3>
+            <div class="container mt-3 pt-3 mb-5">
                 <div class="row">
                 <form class="form-control" action="prosespembayaran.php?idp=<?php echo $id_pesan; ?>" method="post">
-                    <h4 class="text-center">Konfirmasi Pembayaran</h4>
                     
                     <p>ID Pesan: <strong><?php echo $row->id_pesan; ?></strong></p>
                     <p>Kota Asal: <strong><?php echo $row->kota_asal; ?></strong></p>
@@ -81,31 +80,34 @@ include "koneksi.php"
                         <label class="form-label">ID Pesan</label>
                         <input class="form-control" type="text hidden" name="id_pesan" value="<?php echo $row->id_pesan; ?>" readonly>
                     </div>
-                    <!-- Input Nomor Resi -->
+                   
                     <div class="col-md-5 mb-3">
                         <label for="no_resi" class="form-label">Nomor Resi</label>
                         <input type="text" name="no_resi" class="form-control" required>
                     </div>
 
-                    <!-- Input Tanggal Transfer -->
+                  
                     <div class="col-md-5 mb-3">
                         <label for="tgl_transfer" class="form-label">Tanggal Transfer</label>
                         <input type="date" name="tgl_transfer" class="form-control" required>
                     </div>
 
-                    <!-- Input Jam Transfer -->
+                    
                     <div class="col-md-5 mb-3">
                         <label for="jam_transfer" class="form-label">Jam Transfer</label>
                         <input type="time" name="jam_transfer" class="form-control" required>
                     </div>
 
-                    <!-- Status Pembayaran (Read-only) -->
+                   
                     <div class="col-md-5 mb-3">
                         <label for="status" class="form-label">Status</label>
                         <input type="text" name="status" class="form-control" value="Dalam Proses" readonly>
                     </div>
 
-                    <p><input type="submit" name="action" value="Simpan" class="btn mb-3 btn-success"></p>
+                    <div class="d-flex">
+                    <p class="me-2"><input type="submit" name="action" value="Simpan" class="btn mb-3 btn-success"></p>
+                    <p><a href="cekstatus.php" name="submit" class="btn btn-warning">Kembali</a></p>
+                    </div>
                 </form>
                 </div>
             </div>

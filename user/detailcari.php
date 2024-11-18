@@ -79,7 +79,7 @@ $jadwal = mysqli_fetch_assoc($result);
                     Maaf, kursi untuk jadwal ini sudah penuh.
                 </div>
             <?php endif; ?>
-            <a href="jadwal.php" class="btn btn-danger">Batal</a>
+            <a href="jadwal.php" class="btn btn-warning">Cek Jadwal</a>
         </div>
     </div>
 </div>

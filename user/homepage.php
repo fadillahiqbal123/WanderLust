@@ -1,6 +1,7 @@
 <!-- selanjutnya adalah tambah gambar dan komponen lain, saya berifir untuk memprioritaskan crud yang simple
 namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku -->
 <?php
+session_start();
 
 $db = new mysqli("localhost", "root", "", "db_wisata");
 
@@ -424,28 +425,30 @@ if ($result->num_rows > 0) {
 <div class="container">
     <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
+            <img src="image/point.jpg" width="100px;">
             <h5 class="mt-3">HiAce</h5>
         </div>
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
+            <img src="image/picture.jpg" width="100px;">
             <h5 class="mt-3">HiAce</h5>
         </div>
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
+            <img src="image/keamanan.jpg" width="100px;">
             <h5 class="mt-3">HiAce</h5>
         </div>
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
+            <img src="image/kenyamanan.jpg" width="100px;">
             <h5 class="mt-3">HiAce</h5>
         </div>
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
-            <img src="image/HiAce.jpg" width="100px;">
+            <img src="image/driver.jpg" width="100px;">
             <h5 class="mt-3">HiAce</h5>
         </div>   
     </div>
     </div>
     </section>
+
+    
  
 <br><br><br><br>
 <br><br><br><br>
@@ -461,7 +464,9 @@ if ($result->num_rows > 0) {
 
 
         <footer>
-        
+            <?php 
+                include "layout/footer.php"
+            ?>
         </footer>
 
     

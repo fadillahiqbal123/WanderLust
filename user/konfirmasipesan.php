@@ -1,6 +1,6 @@
 <?php  
 include "koneksi.php";
-session_start();
+
 
 ?>
 
@@ -36,7 +36,7 @@ session_start();
             <style>
     main {
         flex: 1;
-        padding-top: 80px; /* Sesuaikan dengan tinggi navbar */
+        padding-top: 30px; /* Sesuaikan dengan tinggi navbar */
         padding-bottom: 40px; /* Sesuaikan dengan tinggi footer */
         min-height: calc(100vh - 120px); /* Sesuaikan total tinggi navbar dan footer */
     }
@@ -84,7 +84,7 @@ $result = mysqli_query($db, $query) or die(mysqli_error($db));
 
 while ($row = mysqli_fetch_object($result)) {
 ?>
-    <div class="container mt-5">
+    <div class="container mt-3">
         <div class="mb-4 panel panel-default" style="color:black;">
             <div class="text-center fw-bold fs-40 h-font panel-body">KONFIRMARSI PESANAN</div>
             
@@ -112,18 +112,16 @@ while ($row = mysqli_fetch_object($result)) {
                         <p>Status Bayar: 
                             <div class="alert alert-danger" role="alert"><?php echo $row->status; ?></div>
                         </p>
-                        <div class="fw-bold">
-                            <p>Anda memiliki waktu paling lambat 1 jam sebelum jam keberangkatan untuk melakukan pembayaran.<br>
-                            Setelah <u>Pembayaran Selesai</u>, silakan lakukan konfirmasi pembayaran dengan memasukkan Nomor Resi transfer pembayaran pemesanan tiket travel di website kami. Terima Kasih</p>
-                        </div>
-                        <input type="submit" name="action" value="Konfirmasi Pembayaran" class="btn btn-success">
-                        
-                        <a class="btn btn-danger" onclick="self.history.back()">Batal</a>
+                        <p>Waktu tersisa 1 jam untuk pembayaran: <span id="countdownTimer"></span></p>
+                         <input type="submit" name="action" value="Konfirmasi Pembayaran" class="btn btn-success" id="confirmButton">
+                            <a class="btn btn-warning" onclick="self.history.back()">Batal</a>
+                       
                     </div>
                 </div>
             </div>
         </form>
     </div>
+    
 <?php
 }
 ?>
@@ -151,5 +149,41 @@ while ($row = mysqli_fetch_object($result)) {
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+
+        <script>
+
+var waktuPembayaran = new Date().getTime() + 60 * 60 * 1000; 
+
+
+function formatTime(time) {
+    var hours = Math.floor(time / 3600);
+    var minutes = Math.floor((time % 3600) / 60);
+    var seconds = time % 60;
+
+    return hours + " jam " + minutes + " menit " + seconds + " detik";
+}
+
+
+var countdownInterval = setInterval(function() {
+    var now = new Date().getTime();
+    var timeLeft = waktuPembayaran - now; 
+
+    
+    if (timeLeft <= 0) {
+        clearInterval(countdownInterval); 
+        document.getElementById("countdownTimer").innerHTML = "Waktu pembayaran telah habis.";
+       
+        document.getElementById("confirmButton").disabled = true;
+    } else {
+       
+        var time = Math.floor(timeLeft / 1000); 
+        document.getElementById("countdownTimer").innerHTML = formatTime(time);
+    }
+}, 1000);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     </body>
 </html>

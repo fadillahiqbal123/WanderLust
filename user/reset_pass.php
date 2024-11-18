@@ -9,7 +9,6 @@
     <style>
 
         body {
-            background-image: url("image/bg_login.png");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -18,6 +17,8 @@
             justify-content: center;
             align-items: center;
             margin: 0;
+            background-color: #091057 ;
+            background: linear-gradient(to left, #08C2FF, #091057 ) ;
         }
 
         .card {
@@ -38,6 +39,9 @@
     <div class="container">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header">
+                    <img src="image/lofo_wanderlust1.png" alt="logo">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title text-center mb-4">Reset Password</h5>
                     <?php

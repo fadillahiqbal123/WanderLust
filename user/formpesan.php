@@ -138,21 +138,21 @@ include "koneksi.php";
                             <hr>
                             <p>Alamat: <?php echo $row->alamat; ?></p>
                             <p>Nama Destinasi: <?php echo $row->nama_destinasi; ?></p>
-                            <p>Tanggal Berangkat: <?php echo $row->tgl_berangkat; ?></p>
+                            <p>Tanggal Berangkat: <?php echo date('d-m-Y', strtotime($row->tgl_berangkat)); ?></p>
                         </div>
                         <div class="col-md-6">
                             <hr>
-                            <img src="" alt="Gambar Destinasi" class="img-fluid"/>
+                            <img src="image/sketsacar.png" alt="Gambar Destinasi" class="img-fluid"/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-5 justify-content-between mt-3">
+        <div class="col-md-5 justify-content-between">
             <div class="panel panel-warning">
                 <div class="panel-body">
-                    <p>Keterangan:<br>0: Supir<br>
+                    <p>Keterangan:
                     <?php
                         for ($i = 1; $i <= 5; $i++) {
                             $sql = "SELECT COUNT(no_kursi) FROM pesan WHERE id_jadwal = $idj AND no_kursi = $i";

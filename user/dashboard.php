@@ -1,5 +1,7 @@
 <!-- selanjutnya adalah tambah gambar dan komponen lain, saya berifir untuk memprioritaskan crud yang simple
 namun tetap bekerja dengan baik, Bismillah Semoga Bisa Gusti Allah Menyertai ku -->
+
+
 <?php
   session_start();
   date_default_timezone_set('Asia/Jakarta');
@@ -73,6 +75,7 @@ $_SESSION['last_activity'] = time();
             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
              
           <style>
+
             *{
               font-family: "Poppins", sans-serif;
             }
@@ -104,6 +107,11 @@ $_SESSION['last_activity'] = time();
           z-index: 2;
           position: relative;
         }
+       
+        .card-body{
+          font-size: 2 rem;
+          margin-top: 10px;
+        }
 
           </style>
            
@@ -115,14 +123,19 @@ $_SESSION['last_activity'] = time();
       <header>
         <nav class="navbar navbar-expand-lg navbar-ligth bg-white align-items-center fixed-top px-lg-3 py-lg-2 shadow-sm styicky-top">
            <div class="container">
-          <a class="navbar-brand" href="page-top"><img src="image/lofo_wanderlust1.png" height="60px;" style="vertical-align: middle;"></a>
+
+           <a class="navbar-brand me-auto" href="#page-top">
+            <img src="image/lofo_wanderlust1.png" height="60px;" style="vertical-align: middle;">
+        </a>
+
           <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse" id="#navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active me-2 js-scroll-trigger text-dark" aria-current="page" href="#section1"><strong>Home</strong></a>
+                <a class="nav-link active js-scroll-trigger text-dark" aria-current="page" href="#section1"><strong>Home</strong></a>
               </li>
 
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
@@ -132,7 +145,7 @@ $_SESSION['last_activity'] = time();
 
               <span class="text-dark mx-2 d-flex align-items-center">|</span>
               <li class="nav-item">
-                <a class="nav-link me-2 js-scroll-trigger text-dark" href="#"><strong>Fasilitas</strong></a>
+                <a class="nav-link me-2 js-scroll-trigger text-dark" href="fasilitas.php"><strong>Fasilitas</strong></a>
                </li>
 
                <span class="text-dark mx-2 d-flex align-items-center">|</span>
@@ -157,14 +170,20 @@ $_SESSION['last_activity'] = time();
            <strong>User</strong>
          </button>
           <ul class="dropdown-menu">
-          <li>
-    <a class="dropdown-item" role="button">
-        <i class="fa-solid fa-user"></i>
-        <span class="username"><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Apa'; ?></span>
-    </a>
-</li>
+                <li>
+          <a class="dropdown-item" role="button">
+              <i class="fa-solid fa-user"></i>
+              <span class="username"><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Apa'; ?></span>
+          </a>
+      </li>
             <small><p class="dropdown-item text-center"><i class="bi bi-clock-fill"></i> Pkl <?php echo date('H:i:s')?> WIB</l></small>
-            <li><a class="dropdown-item" href="setting.php"><i class="bi bi-gear-fill"></i> Setting</a></li>
+
+            <li class="nav-item dropdown">
+            <button type="button" class="btn btn-light text-align-center" data-bs-toggle="modal" data-bs-target="#profileModal">
+            <i class="bi bi-gear-fill"></i> Buka Profile
+            </button>
+            </li>
+
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
           </ul>
@@ -174,6 +193,26 @@ $_SESSION['last_activity'] = time();
             </div>
           </div>
         </nav>
+
+           
+        <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="profileModalLabel">Profile Pengguna</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Nama: <span><?php echo $_SESSION['nama_user']; ?></span></p>
+                <p>Email: <span><?php echo $_SESSION['email']; ?></span></p>
+                <p>Username: <span><?php echo $_SESSION['username']; ?></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
         </header>
 
         <!-- <div class="container-fluid" style="background-image: url('image/pemandangan2.png'); background-size: cover; height:750px; text-align: center; margin-top: -120px;">
@@ -192,7 +231,7 @@ $_SESSION['last_activity'] = time();
 
   <main>
 
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="padding-top: 40px; margin-top:50px;">
   <section id="section1" >
   <div class="carousel-inner">
   <div class="carousel-item active">
@@ -202,7 +241,7 @@ $_SESSION['last_activity'] = time();
       <div class="card-body">
         <h1 class="display-5 fw-bold text-white" style="margin-top: 20px;">Pura Luhur Poten</h1>
         <p class="col-md-12 fs-4 text-white">Keindahan Budaya dan Agama Akan Nampak Disini</p>
-        <button class="btn btn-primary btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
+        
       </div>
     </div>
   </div>
@@ -214,7 +253,6 @@ $_SESSION['last_activity'] = time();
       <div class="card-body">
         <h1 class="display-5 fw-bold text-white" style="margin-top: 20px;">Gunung Bromo</h1>
         <p class="col-md-12 fs-4 text-white">Keindahan Gunung Bromo</p>
-        <button class="btn btn-primary btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
       </div>
     </div>
   </div>
@@ -226,7 +264,7 @@ $_SESSION['last_activity'] = time();
       <div class="card-body">
         <h1 class="display-5 fw-bold text-white" style="margin-top: 20px;">Gunung Gentong</h1>
         <p class="col-md-12 fs-4 text-white">Keindahan Gunung Bromo</p>
-        <button class="btn btn-primary btn-lg my-4 rounded-5" type="button">MORE DETAIL</button>
+        
       </div>
     </div>
   </div>
@@ -307,52 +345,59 @@ $_SESSION['last_activity'] = time();
 
 
 <?php
+function sql_select($limit = 5, $offset = 0) {
+    global $db;
 
-function sql_select() {
-  global $db;
+    $sql = "SELECT 
+                jadwal.*, 
+                kendaraan.jenis_mobil, 
+                kendaraan.warna_mobil, 
+                asal.alamat, 
+                destinasi.nama_destinasi,
+                COUNT(pesan.no_kursi) AS jumlah_kursi_dipesan
+            FROM 
+                jadwal 
+            JOIN 
+                kendaraan ON jadwal.id_mobil = kendaraan.id_mobil 
+            JOIN 
+                asal ON jadwal.id_asal = asal.id_asal 
+            JOIN 
+                destinasi ON jadwal.id_destinasi = destinasi.id_destinasi
+            LEFT JOIN 
+                pesan ON jadwal.id_jadwal = pesan.id_jadwal
+            GROUP BY 
+                jadwal.id_jadwal
+            LIMIT $limit OFFSET $offset"; 
 
- 
-  $sql = "SELECT 
-            jadwal.*, 
-            kendaraan.jenis_mobil, 
-            kendaraan.warna_mobil, 
-            asal.alamat, 
-            destinasi.nama_destinasi,
-            COUNT(pesan.no_kursi) AS jumlah_kursi_dipesan
-          FROM 
-            jadwal 
-          JOIN 
-            kendaraan ON jadwal.id_mobil = kendaraan.id_mobil 
-          JOIN 
-            asal ON jadwal.id_asal = asal.id_asal 
-          JOIN 
-            destinasi ON jadwal.id_destinasi = destinasi.id_destinasi
-          LEFT JOIN 
-            pesan ON jadwal.id_jadwal = pesan.id_jadwal
-          GROUP BY 
-            jadwal.id_jadwal"; 
-
-  $result = mysqli_query($db, $sql); 
-  if (!$result) {
-      die('Query Error: ' . mysqli_error($db));
-  }
-  return $result; 
+    $result = mysqli_query($db, $sql); 
+    if (!$result) {
+        die('Query Error: ' . mysqli_error($db));
+    }
+    return $result; 
 }
 ?>
 
 <div class="container mt-5">
     <div class="row">
         <?php
-        $hasil = sql_select(); // Fungsi untuk mengambil data dari database
+        
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; 
+        $limit = 3;  
+        $offset = ($page - 1) * $limit;  
+
+        
+        $hasil = sql_select($limit, $offset); 
+
+      
         while ($baris = mysqli_fetch_array($hasil)) {
-            ?>
+        ?>
             <div class="col-lg-4 col-md-6 my-3">
                 <div class="card tour-package-card border-0 shadow" style="max-width: 350px; margin: auto;">
                     <img src="image/paket1.png" class="d-block w-100" alt="Jadwal Image">
                     <div class="card-body">
                         <h5 class="card-title mb-4"><strong><?php echo $baris['alamat']; ?> - <?php echo $baris['nama_destinasi']; ?></strong></h5>
                         <h6>Start From Rp. <?php echo number_format($baris['harga'], 0, ',', '.'); ?></h6>
-                        <!-- Detail fasilitas -->
+                        
                         <div class="fasilitas mb-3">
                             <h6 class="mb-1">Fasilitas</h6>
                             <span class="badge rounded-pill bg-light text-dark text-wrap">
@@ -390,6 +435,16 @@ function sql_select() {
             </div>
         <?php } ?>
     </div>
+
+    
+    <?php
+   
+    $totalQuery = "SELECT COUNT(*) AS total FROM jadwal";
+    $totalResult = mysqli_query($db, $totalQuery);
+    $totalData = mysqli_fetch_assoc($totalResult);
+    $totalPages = ceil($totalData['total'] / $limit); 
+    ?>
+  
 </div>
 
 
@@ -399,8 +454,7 @@ function sql_select() {
 
 
 
-<!-- layanan biasa -->
-    <h5 class="mt-5 pt-5 mb-5 text-center fw-bold h-font">BERITA BROMO</h5>
+    <h5 class="mt-5 pt-5 mb-4 text-center fw-bold h-font">BERITA BROMO</h5>
 
 <?php
 $sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
@@ -409,7 +463,7 @@ $result = $db->query($sql);
 if ($result->num_rows > 0) {
    echo '<div class="container mt-4">';
    while($row = $result->fetch_assoc()) {
-       // Path gambar
+       
        $foto_path = '../Admin/img_berita/' . $row['foto_berita'];
 ?>
        <div class="row mb-4 rounded shadow">
@@ -432,7 +486,7 @@ if ($result->num_rows > 0) {
     
 
 
-    <h2 class="mt-5 pt-5 text-center fw-bold h-font">Fasilitas WanderLust</h2>
+    <h2 class="mt-5 pt-5 mb-4 text-center fw-bold h-font">Fasilitas WanderLust</h2>
 <div class="container">
     <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
         <div class="col-lg-2 col-md-2 text-center rounded bg-white shadow py-4 my-4">
@@ -459,7 +513,7 @@ if ($result->num_rows > 0) {
 </div>
 
 
-    <h5 class="mt-5 pt-5 text-center fw-bold h-font">Reach Us</h5>
+    <h2 class="mt-5 pt-5 text-center fw-bold h-font">Reach Us</h2>
   <div class="container mt-5 mb-5">
   <div class="row">
       <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-4 bg-white rounded">
@@ -618,13 +672,6 @@ if ($result->num_rows > 0) {
         </div>
     </div>
     
-    <!-- <div class="row">
-      <div class="col-md-12">
-        <p class="mt-3">
-          <small>&copy; 2024 WanderLust. "Bromo Lebih Dekat, Perjalanan Lebih Nyaman"</small>
-        </p>
-      </div>
-    </div> -->
   </div>
   <h6 class="text-white bg-dark p-3 m-0 text-center">Designed By WanderLust Team</h6>
 
@@ -635,12 +682,13 @@ if ($result->num_rows > 0) {
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
         ></script>
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></scrip>
-
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
 <?php 

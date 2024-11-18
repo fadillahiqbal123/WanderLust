@@ -40,7 +40,7 @@ if ($fetch_resi == 1) {
 
 $check_pesan = "SELECT * FROM pesan WHERE id_pesan=?";
 $stmt = mysqli_prepare($db, $check_pesan);
-mysqli_stmt_bind_param($stmt, 'i', $id_pesan); // Bind parameter untuk query
+mysqli_stmt_bind_param($stmt, 'i', $id_pesan);
 mysqli_stmt_execute($stmt);
 $result_check_pesan = mysqli_stmt_get_result($stmt);
 
@@ -58,7 +58,7 @@ if (mysqli_num_rows($result_check_pesan) == 0) {
         // Jika INSERT berhasil, lakukan UPDATE status di tabel pesan
         $sql1 = "UPDATE pesan SET status=? WHERE id_pesan=?";
         $stmt_update = mysqli_prepare($db, $sql1);
-        mysqli_stmt_bind_param($stmt_update, 'si', $status, $id_pesan); // Bind parameter untuk status
+        mysqli_stmt_bind_param($stmt_update, 'si', $status, $id_pesan); 
 
         if (mysqli_stmt_execute($stmt_update)) {
             echo "<script>alert('Terima kasih, konfirmasi pembayaran berhasil dilakukan, mohon bersabar. Kami akan memprosesnya.'); window.location = 'cekstatus.php'</script>";

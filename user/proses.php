@@ -67,6 +67,7 @@ if (isset($_POST['register']) || isset($_POST['login'])) {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['password'] = $user['password'];
+                $_SESSION['nama_user'] = $user['nama_user'];
 
                 if (!empty($_POST["remember"])) {
                     setcookie("email", $_POST["email"], time() + (60 * 60 * 24 * 5), "/");

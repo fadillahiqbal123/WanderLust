@@ -2,10 +2,10 @@
     include "koneksi.php";
 
 
-    // Fungsi untuk mengambil semua jadwal dari database
+   
     function sql_select_all()
     {
-        global $db; // Pastikan koneksi database sudah didefinisikan sebelumnya
+        global $db; 
         $sql = "SELECT jadwal.id_jadwal, jadwal.tgl_berangkat, jadwal.jam_berangkat, jadwal.harga, 
                     kendaraan.jenis_mobil, kendaraan.warna_mobil, kendaraan.nomor_polisi, 
                     asal.alamat, destinasi.nama_destinasi 
@@ -29,7 +29,6 @@
                 name="viewport"
                 content="width=device-width, initial-scale=1, shrink-to-fit=no"
             />
-
             <!-- Bootstrap CSS v5.2.1 -->
             <link
                 href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -112,10 +111,10 @@
         <tbody>
             <?php
             $hasil = sql_select_all();
-            $no = 1; // Penomoran baris
+            $no = 1;
             while ($baris = mysqli_fetch_array($hasil)) {
                 $id_jadwal = $baris['id_jadwal'];
-                // Hitung kursi yang tersedia
+                
                 $result2 =  "SELECT COUNT(no_kursi) FROM pesan WHERE id_jadwal = '$id_jadwal'";
                 $sqli2 = mysqli_query($db, $result2);
                 $data2 = mysqli_fetch_array($sqli2);
@@ -124,7 +123,7 @@
                 <tr>
                     <td></td>
                     <td><?php echo $baris['alamat'] . '-' . $baris['nama_destinasi']; ?></td>
-                    <td><?php echo $baris['tgl_berangkat'] . ' | ' . $baris['jam_berangkat']; ?></td>
+                    <td><?php echo date('d F Y', strtotime($baris['tgl_berangkat'])) . ' | ' . $baris['jam_berangkat']; ?></td>
                     <td>Rp.<?php echo number_format($baris['harga'], 0, ',', '.'); ?>,00</td>
                     <td><?php echo $baris['jenis_mobil']; ?></td>
                     <td><?php echo $baris['warna_mobil']; ?></td>
@@ -175,7 +174,7 @@
                 targets: 0
             }
         ],
-        order: [[1, 'asc']]
+        order: [[1, 'desc']]
     });
     
     table
