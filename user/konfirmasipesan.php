@@ -107,7 +107,7 @@ while ($row = mysqli_fetch_object($result)) {
                         <p>ID Pesan: <span><?php echo $row->id_pesan; ?></span></p>
                         <p>Kota Asal: <span><?php echo $row->alamat; ?></span></p>
                         <p>Kota Tujuan: <span><?php echo $row->nama_destinasi; ?></span></p>
-                        <p>Tanggal Berangkat: <span><?php echo $row->tgl_berangkat; ?></span></p>
+                        <p>Tanggal Berangkat: <span><?php echo date('d-m-Y', strtotime($row->tgl_berangkat)); ?></span></p>
                         <p>Total Bayar: <span><?php echo $row->harga; ?></span></p>
                         <p>Status Bayar: 
                             <div class="alert alert-danger" role="alert"><?php echo $row->status; ?></div>

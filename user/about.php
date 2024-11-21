@@ -34,7 +34,7 @@
         include "layout/navbar.php";
      ?>
     </header>
-    <main style="min-height: 100vh; padding-top: 20px;">
+    <main style="min-height: 100vh; padding-top: 80px;">
 
       <div clas="my-5 px-4">
       <h2 class="pt-2 mt-2 text-center fw-bold h-font">About WanderLust</h2>

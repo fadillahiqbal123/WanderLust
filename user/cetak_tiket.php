@@ -34,36 +34,49 @@ if (!$row) {
 $pdf = new FPDF();
 $pdf->AddPage();
 
+$pageWidth = $pdf->GetPageWidth();
+$imageWidth = 40;
+
+$xCenter = ($pageWidth - $imageWidth) / 2;
+
+$pdf->Image('image/logo_wanderlust.png',  $xCenter, 10, $imageWidth);
+$pdf->Ln(30); 
 
 $pdf->SetFont('Arial', 'B', 16);
 $pdf->Cell(200, 10, 'Tiket Pemesanan', 0, 1, 'C');
 
 
-$pdf->Ln(10); 
+$pdf->Ln(5); 
+
 $pdf->SetFont('Arial', '', 12);
-$pdf->Cell(40, 10, 'ID Pesan: ');
+$pdf->Cell(40, 10, 'ID Pesan              : ');
 $pdf->Cell(0, 10, $row['id_pesan'], 0, 1);
 
-$pdf->Cell(40, 10, 'Username: ');
+$pdf->Cell(40, 10, 'Nama Pemesan   :');
 $pdf->Cell(0, 10, $row['username'], 0, 1);
 
-$pdf->Cell(40, 10, 'Alamat: ');
+$pdf->Cell(40, 10, 'Alamat                  : ');
 $pdf->Cell(0, 10, $row['alamat'], 0, 1);
 
-$pdf->Cell(40, 10, 'Destinasi: ');
+$pdf->Cell(40, 10, 'Destinasi              : ');
 $pdf->Cell(0, 10, $row['nama_destinasi'], 0, 1);
 
-$pdf->Cell(40, 10, 'Tanggal Berangkat: ');
+$pdf->Cell(40, 10, 'Tanggal Berangkat  : ');
 $pdf->Cell(0, 10, $row['tgl_berangkat'], 0, 1);
 
-$pdf->Cell(40, 10, 'Jam Berangkat: ');
+$pdf->Cell(40, 10, 'Jam Berangkat       : ');
 $pdf->Cell(0, 10, $row['jam_berangkat'], 0, 1);
 
-$pdf->Cell(40, 10, 'Harga: ');
+$pdf->Cell(40, 10, 'Harga                     : ');
 $pdf->Cell(0, 10, 'Rp. ' . number_format($row['harga'], 0, ',', '.'), 0, 1);
 
-$pdf->Cell(40, 10, 'Status: ');
+$pdf->Cell(40, 10, 'Status                : ');
 $pdf->Cell(0, 10, $row['status'], 0, 1);
+
+// untuk spasi ini
+$pdf->Ln(20); 
+$pdf->SetFont('Arial', 'I', 10);
+$pdf->MultiCell(0, 10, "Terima kasih telah memesan tiket dengan kami.\nKami berharap Anda memiliki perjalanan yang menyenangkan dan aman.\n\nBromo lebih dikit Perjalanan Lebih Nyaman,\nTim WanderLuset", 0, 'C');
 
 // Output PDF
 $pdf->Output('I', 'Tiket_' . $row['id_pesan'] . '.pdf');

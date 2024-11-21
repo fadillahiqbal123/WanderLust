@@ -309,7 +309,7 @@ $_SESSION['last_activity'] = time();
                         </select>
                     </div>
 
-                    <!-- Dropdown Destinasi Wisata -->
+                   
                     <div class="form-group col-md-4 mb-3">
                         <label class="form-label" style="font-weight:500;">Destinasi Wisata</label>
                         <select name="cari_destinasi" class="form-select shadow-none" required>
@@ -319,7 +319,7 @@ $_SESSION['last_activity'] = time();
                             $queryDestinasi = "SELECT id_destinasi, nama_destinasi FROM destinasi";
                             $resultDestinasi = mysqli_query($db, $queryDestinasi) or die(mysqli_error($db));
                             
-                            // Tampilkan hasil dalam opsi dropdown
+                           
                             while ($rowDestinasi = mysqli_fetch_assoc($resultDestinasi)) {
                                 echo "<option value='" . $rowDestinasi['id_destinasi'] . "'>" . $rowDestinasi['nama_destinasi'] . "</option>";
                             }
@@ -332,7 +332,7 @@ $_SESSION['last_activity'] = time();
                       <input type="date" class="form-control shadow-none" name="caritgl" required>
                     </div>
 
-                    <!-- Button Submit -->
+                   
                     <div class="col-sm-1 mb-lg-3 mt-2">
                         <input type="submit" class="btn btn-primary" value="Cari"/>
                     </div>
@@ -422,7 +422,7 @@ function sql_select($limit = 5, $offset = 0) {
                             </span>
                         </div>
                         <!-- Tombol aksi -->
-                        <div class="d-flex justify-content-evenly mb-2 mt-3">
+                        <div class="d-flex justify-content-evenly mb-4 mt-3">
                             <?php if ($baris['jumlah_kursi_dipesan'] < 5) { ?>
                                 <a href="detailcari.php?&var1=<?php echo $baris['id_jadwal']; ?>" class="btn btn-outline-primary btn-sm rounded-5">PESAN SEKARANG</a>
                             <?php } else { ?>
@@ -454,7 +454,7 @@ function sql_select($limit = 5, $offset = 0) {
 
 
 
-    <h5 class="mt-5 pt-5 mb-4 text-center fw-bold h-font">BERITA BROMO</h5>
+    <h4 class="mt-5 pt-5 mb-4 text-center fw-bold h-font">BERITA BROMO</h4>
 
 <?php
 $sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
@@ -464,7 +464,7 @@ if ($result->num_rows > 0) {
    echo '<div class="container mt-4">';
    while($row = $result->fetch_assoc()) {
        
-       $foto_path = '../Admin/img_berita/' . $row['foto_berita'];
+       $foto_path = '../admin/img_berita/' . $row['foto_berita'];
 ?>
        <div class="row mb-4 rounded shadow">
            <div class="col-md-4">
@@ -483,6 +483,45 @@ if ($result->num_rows > 0) {
    echo "<p>Tidak ada berita tersedia.</p>";
 }
 ?>
+
+
+<h4 class="mt-5 pt-5 text-center fw-bold h-font">Galeri</h4>
+
+<?php 
+$sql = "SELECT keterangan_foto, nama_foto FROM galeri";
+$result = $db->query($sql);
+
+
+if($result->num_rows > 0){
+  echo '<div class="container mt-4">';
+
+  while($row = $result ->fetch_assoc()){
+      $foto_path = '../admin/img_galeri/' . $row['nama_foto'];
+
+      ?>
+    <div class="row mb-4 shadow rounded">
+       <div class="col-md-4">
+        <img src="<?php echo $foto_path; ?>" class="img-fluid" alt="foto galeri">
+       </div>
+       <div class="col-md-8">
+        <p><?php echo $row['keterangan_foto'] ?></p>
+       </div>
+    </div>
+
+
+<?php 
+  }
+  echo '</div>';
+}else{
+  echo "<p>Tidak ada Galeri tersedia.</p>";
+}
+
+?>
+
+
+
+
+
     
 
 
