@@ -35,7 +35,7 @@ if(isset($_POST['submit'])) {
     $size_foto_berita = $_FILES['foto_berita']['size'];
     $rand = rand();
 
-    // Ambil id_admin dari session
+    
     $penulis = $_SESSION['idadmin'];
     $tanggal = date('Y-m-d');
 
@@ -46,7 +46,7 @@ if(isset($_POST['submit'])) {
             $nama_foto_berita = $rand . '_' . $foto_berita;
             move_uploaded_file($_FILES['foto_berita']['tmp_name'], '././img_berita/' . $nama_foto_berita);
 
-            // Masukkan data ke tabel berita
+           
             $query = "INSERT INTO berita (judul_berita, id_admin, tgl_berita, konten_berita, foto_berita) VALUES ('$judul_berita', '$penulis', '$tanggal', '$konten_berita', '$nama_foto_berita')";
             if (mysqli_query($db, $query)) {
                 echo "<script>alert('Konten Berita Berhasil Ditambahkan'); window.location = 'dashboard.php?hal=berita'</script>";

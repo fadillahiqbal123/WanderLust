@@ -8,7 +8,7 @@ include "koneksi.php";
             <hr>
            
             <div class="container">
-                <table class="table table-border table-striped mt-3" style="height: 50px; font-size: 15px;">   
+                <table id="example" class="display" style="height: 50px; font-size: 15px;">   
                     <thead>
                         <tr>
                             <th>No</th>

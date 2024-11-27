@@ -58,8 +58,9 @@
                 crossorigin="anonymous"/>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
             <script src="//cdn.ckeditor.com/4.19.1/full/ckeditor.js"></script>
-            <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css">
-                <!-- DATA TABLES JS -->
+            <!-- DATA TABLES JS -->
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+                <!-- sweetalert -->
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
             <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.min.css" rel="stylesheet">
@@ -84,20 +85,20 @@
                         margin: 0;
                         padding: 0;
                         overflow-x: hidden;
-                        background-color: #ffffff; /* Ganti warna dasar menjadi putih */
+                        background-color: #ffffff; 
                         }
                     .nav-link:hover {
-                        background-color: #d1e7dd; /* Sesuaikan hover dengan warna lebih terang */
+                        background-color: #d1e7dd;
                         }
 
                         .col-lg-12.py-3.bg-ligth.text-end.bg-ligth.fixed-top {
-                             background-color: #004085; /* Ganti ini dengan warna background yang kamu inginkan */
+                             background-color: #004085; 
                              color: white;
                 }
 
                     
                     .text-white {
-                            color: #000000 !important; /* Ganti warna teks menjadi hitam */
+                            color: #000000 !important; 
                         }
                     .col-lg-2.position-fixed.vh-100.bg-ligth {
                         border-right: 2px solid #ccc;
@@ -109,14 +110,13 @@
                         color: #adb5bd;
                         text-decoration: none;
                     }
-
-                    /* Warna link aktif */
+                    
                     .nav-link.active {
                         color: #ffffff;
                         background-color: #007bff;
                     }
 
-                    /* Hover link */
+                    
                     .nav-link:hover {
                         color: #ffffff;
                         background-color: #0056b3;
@@ -211,7 +211,7 @@
             <i class="bi bi-plus-circle"></i> Konfirmasi Pesanan
         </a>
 
-        <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'dalam-proses') ? 'active text-white' : 'text-muted'; ?>" href="dashboard.php?hal=belum-bayar">
+        <a class="nav-link <?php echo (isset($_GET['hal']) && $_GET['hal'] == 'belum-bayar') ? 'active text-white' : 'text-muted'; ?>" href="dashboard.php?hal=belum-bayar">
             <i class="bi bi-credit-card"></i> Pesanan Belum Bayar
         </a>
     </div>
@@ -301,11 +301,26 @@
                         case 'pesanan-lunas':
                             include "modul/mod_transaksi/pemesanan_lunas.php";
                             break;
+                        case 'hapus-pesanLunas':
+                            include "modul/mod_transaksi/hapus_pesanLunas.php";
+                            break;
                         case 'konfirmasi-pesan':
                             include "modul/mod_transaksi/konfirmasi_pesan.php";
                             break;
                         case 'perbarui_pesanan':
                             include "modul/mod_transaksi/perbarui_pesanan.php";
+                            break;
+                        case 'hapus_pesanan':
+                            include "modul/mod_transaksi/hapus_pesanan.php";
+                            break;
+                        case 'belum-bayar':
+                            include "modul/mod_transaksi/belum_bayar.php";
+                            break;
+                        case 'hapus-belumBayar':
+                            include "modul/mod_transaksi/hapus_Belumbayar.php";
+                            break;
+                        case 'perbarui_belumBayar':
+                            include "modul/mod_transaksi/perbarui_belumBayar.php";
                             break;
                        case 'pendaftar':
                           include "modul/mod_pengunjung/pengunjung.php";
@@ -349,7 +364,11 @@
                         case 'laporan':
                             include "modul/mod_laporan/laporan.php";
                             break;
+                        case 'preview':
+                            include "modul/mod_laporan/preview.php";
+                            break;
 
+                            
                             default:
                             echo "<h1>Halaman Tidak Ditemukan</h1>";
                         
@@ -422,17 +441,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
                 integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
                 crossorigin="anonymous"
-            ></scrip>
+            ></script>
             <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-            <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+             <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+            <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
             <script>
-            const table = new DataTable('#example', {
+               const table = new DataTable('#example', {
                     columnDefs: [
-                {
-                    searchable: false,
-                    orderable: false,
-                    targets: 0
-                }
+                        {
+                            searchable: false,
+                            orderable: false,
+                            targets: 0
+                        }
                     ],
                     order: [[1, 'desc']]
                 });
@@ -441,12 +461,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     .on('order.dt search.dt', function () {
                         let i = 1;
                 
-                    table
-                        .cells(null, 0, { search: 'applied', order: 'applied' })
-                        .every(function (cell) {
+                        table
+                            .cells(null, 0, { search: 'applied', order: 'applied' })
+                            .every(function (cell) {
                                 this.data(i++);
                             });
-                    }).draw();
+                    })
+                    .draw();
                 
 
 

@@ -1,7 +1,7 @@
 <?php
 include 'koneksi.php';
 
-// Query untuk mengambil data pesanan yang statusnya lunas
+
 $query = "SELECT * 
           FROM pesan 
           JOIN transaksi ON transaksi.id_pesan = pesan.id_pesan
@@ -16,9 +16,10 @@ $result = mysqli_query($db, $query);
 
 <div class="container-fluid">
     <div class="row mt-3">
+    <h3><strong>Form Konfirmasi Pesanan</strong></h3>
     <div class="card">
         <div class="card-header">
-        <h3><strong>Form Konfirmasi Pesanan</strong></h3> 
+        <h5><strong>Form Konfirmasi Pesanan</strong></h5> 
         </div>
         <div class="card-body">
             <table id="example" class="display">
@@ -49,13 +50,14 @@ $result = mysqli_query($db, $query);
                         echo "<td>" . $row['no_kursi'] . "</td>";
                         echo "<td>
                                 <a href='#' class='btn btn-outline-success'><i class='bi bi-pencil-square'></i></a>
+                               <a href='dashboard.php?hal=hapus-pesanLunas&id=" . $row['id_pesan'] . "' class='btn btn-outline-danger'><i class='fa-solid fa-trash'></i></a>
                               </td>";
                         echo "</tr>";
                     }
                     ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </div>

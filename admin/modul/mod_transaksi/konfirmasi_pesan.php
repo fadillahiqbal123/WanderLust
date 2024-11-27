@@ -23,7 +23,7 @@
                 FROM transaksi
                 JOIN pesan ON transaksi.id_pesan = pesan.id_pesan
                 JOIN jadwal ON pesan.id_jadwal = jadwal.id_jadwal
-                WHERE pesan.status != 'Lunas'"); // Hanya menampilkan pesanan yang belum lunas
+                WHERE pesan.status = 'Dalam Proses'"); 
 
             while($r = mysqli_fetch_array($sql)){   
             ?>
@@ -37,7 +37,8 @@
                         <td><?php echo $r['status'] ?></td>
                         <td><?php echo $r['harga'] ?></td>
                         <td>
-                            <a href="dashboard.php?hal=perbarui_pesanan&id=<?php echo $r['no_resi'] ?>" class="btn btn-outline-secondary"> Update</a>
+                            <a href="dashboard.php?hal=perbarui_pesanan&id=<?php echo $r['no_resi'] ?>" class="btn btn-outline-secondary"> <i class="fa-sharp fa-solid fa-file-pen"></i></a>
+                            <a href="dashboard.php?hal=hapus_pesanan&id=<?php echo $r['no_resi'] ?>" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php 
