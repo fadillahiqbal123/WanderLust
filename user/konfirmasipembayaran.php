@@ -35,7 +35,7 @@ include "koneksi.php";
                  $idj = $_GET['idp'];
                  $query1 = "select * from pesan where id_pesan= ".$idj;
                    
-                $result=mysqli_query($db,$query1) or die(mysql_error());
+                $result=mysqli_query($db,$query1) or die(mysqli_error($db));
                 while($row=mysqli_fetch_object($result))
                    {
             ?>

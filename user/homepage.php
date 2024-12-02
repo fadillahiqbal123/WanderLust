@@ -55,7 +55,7 @@ $result = $db->query($sql);
             </style>
     </head>
 
-    <body class="bg-light">
+    < class="bg-light">
     <nav id="mainNav" class="navbar navbar-expand-lg navbar-secondary bg-white fixed-top px-lg-3 py-lg-2 shadow-sm styicky-top">
     <div class="container">
         <a class="navbar-brand me-5 fw-bold" href="#">
@@ -127,49 +127,47 @@ $result = $db->query($sql);
 </div>
  </div>
 
-<!-- layanan cari -->
+
 <div class="container availability-form">
     <div class="row">
-        <section id="#section2">
         <div class="col-lg-12 bg-white shadow p-4 rounded">
             <h5 class="mb-4">Cek Jadwal</h5>
-           <form>
-            <div class="row align-items-end">
-                <div class="col-lg-3 mb-3">
-                    <label class="form-label" style="font-weight: 500;">Cek Jadwal Anda</label>
-                    <input type="date" class="form-control shadow-none">
+
+           <form action="" method="POST">
+          <div class="row align-items-end">
+            <div class="form-group col-md-4 mb-3">
+                <label class="form-group">Keberangkatan</label>
+                <select name="" class="form-select">
+                    <option value="0" selected>
+
+                    </option>
+                </select>
+            </div>
+                
+            <div class="form-group col-md-4 mb-3">
+                <label class="form-group">Tujuan Destinasi</label>
+                <select name="" class="form-select">
+                    <option value="0" selected>
+
+                    </option>
+                </select>
+            </div>
+          
+            <div class="form-group col-md-3 mb-3">
+                <label for="date" class="form-label" style="font-weight: 500;">Pilih Tanggal</label>
+                <input type="date" class="form-control shadow-none" name="#">
                 </div>
-                <div class="col-lg-3 mb-3">
-                    <label class="form-label" style="font-weight: 500;">Tujuan Destinasi</label>
-                    <input type="text" class="form-control shadow-none">
-                </div>
-                <div class="col-lg-3 mb-3">
-                    <label class="form-label" style="font-weight:500;">paket Wisata</label>
-                    <select class="form-select shadow-none">
-                    <option selected>-- Pilih Paket --</option>
-                    <option value="1">Paket Trip 1</option>
-                    <option value="2">Paket Trip 2</option>
-                    <option value="3">Paket Trip 3</option>
-                    </select>
-                </div>
-                <div class="col-lg-2 mb-3">
-                    <label class="form-label" style="font-weight:500;">paket Kategori Wisata</label>
-                    <select class="form-select shadow-none">
-                    <option selected>-- Pilih Kategori --</option>
-                    <option value="1">Paket Kategori 1</option>
-                    <option value="2">Paket Kategori 2</option>
-                    <option value="3">Paket Kategori 3</option>
-                    </select>
-                </div>
-                <div class="col-lg-1 mb-lg-3 mt-2">
+
+                <div class="col-sm-1 mb-lg-3 mt-2">
                     <button type="button" class="btn text-white shadow-none custom-bg">Submit</button>
                 </div>
+            </form>
+            </div> 
+               
+            </div>   
             </div>
-            </div>
-           </form>
-           </section>
-        </div>
-    </div>
+            
+           
 
 <!-- layanan paket -->
 <div class="container mt-5">
@@ -398,7 +396,7 @@ $result = $db->query($sql);
 if ($result->num_rows > 0) {
     echo '<div class="container mt-4">';
     while($row = $result->fetch_assoc()) {
-        // Path gambar
+        
         $foto_path = '../Admin/img_berita/' . $row['foto_berita'];
 ?>
         <div class="row mb-4 rounded shadow">

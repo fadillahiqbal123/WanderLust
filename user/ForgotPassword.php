@@ -35,7 +35,7 @@ class ForgotPassword {
             // URL reset password ke localhost
             $reset_url = "http://localhost:80/destinasi-wisata/user/reset_pass.php?reset=$pass&key={$email}";
 
-            // Set up PHPMailer
+            
             $mail = new PHPMailer(true);
             $body = "Klik link berikut untuk reset password Anda: <a href='$reset_url'>Reset Password</a>";
 
@@ -44,7 +44,7 @@ class ForgotPassword {
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'wanderlustjember@gmail.com';
-                $mail->Password = 'vkpp xgcf nhum edhq'; // Gantilah dengan password Anda
+                $mail->Password = 'vkpp xgcf nhum edhq'; 
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 

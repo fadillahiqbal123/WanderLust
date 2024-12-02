@@ -47,7 +47,7 @@ include "koneksi.php";
     
     $idj = isset($_GET['idp']) ? (int)$_GET['idp'] : 0;
 
-    // Query untuk mendapatkan informasi jadwal, kendaraan, kota_asal, dan kota_tujuan
+ 
     $query1 = "
         SELECT * FROM jadwal
         JOIN kendaraan ON kendaraan.id_mobil = jadwal.id_mobil

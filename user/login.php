@@ -49,7 +49,7 @@
       <p>Hello admin! Welcome back to please access again via the login page</p>
     </div>
     <div class="right-panel col-6">
-      <form>
+      <form action="" method="POST">
         <div class=" form-group mb-3">
           <label for="username" class="form-label">Username</label>
           <input type="text" class="form-control" id="username" placeholder="Enter Username">
@@ -69,6 +69,14 @@
     </div>
   </div>
 
+  <?php 
+     $username = $_POST['username'];
+     $password = $_POST['password'];
+
+     
+     
+
+  ?>
 
 
   <footer>

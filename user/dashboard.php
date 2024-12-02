@@ -62,6 +62,7 @@ $_SESSION['last_activity'] = time();
              rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"/>
+            
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
             <!-- sweetalert -->
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
@@ -97,11 +98,7 @@ $_SESSION['last_activity'] = time();
               border: 1px;
               box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
-        .tour-package-card:hover {
-              transform: scale(1.1);
-              border: 1px;
-              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        }
+
         .availability-form{
           margin-top: -50px;
           z-index: 2;
@@ -112,6 +109,14 @@ $_SESSION['last_activity'] = time();
           font-size: 2 rem;
           margin-top: 10px;
         }
+
+        .text-truncate{
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+      }
+
+
 
           </style>
            
@@ -315,7 +320,7 @@ $_SESSION['last_activity'] = time();
                         <select name="cari_destinasi" class="form-select shadow-none" required>
                             <option selected>-- Pilih Destinasi --</option>
                             <?php
-                            // Query untuk mendapatkan data dari tabel `destinasi`
+                            
                             $queryDestinasi = "SELECT id_destinasi, nama_destinasi FROM destinasi";
                             $resultDestinasi = mysqli_query($db, $queryDestinasi) or die(mysqli_error($db));
                             
@@ -454,69 +459,89 @@ function sql_select($limit = 5, $offset = 0) {
 
 
 
-    <h4 class="mt-5 pt-5 mb-4 text-center fw-bold h-font">BERITA BROMO</h4>
+<h4 class="mt-5 pt-5 mb-4 text-center fw-bold h-font">BERITA BROMO</h4>
 
 <?php
-$sql = "SELECT judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
+$sql = "SELECT id_berita, judul_berita, tgl_berita, konten_berita, foto_berita FROM berita";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
    echo '<div class="container mt-4">';
    while($row = $result->fetch_assoc()) {
-       
        $foto_path = '../admin/img_berita/' . $row['foto_berita'];
+       $id_berita = $row['id_berita'];
 ?>
-       <div class="row mb-4 rounded shadow">
+       <div class="row mb-4 rounded shadow p-3">
            <div class="col-md-4">
                <img src="<?php echo $foto_path; ?>" class="img-fluid rounded" alt="Berita Terkini">
            </div>
-           <div class="col-md-8">
-               <h3><?php echo $row['judul_berita']; ?></h3>
-               <p><small class="text-muted"><?php echo date('d-m-Y', strtotime($row['tgl_berita'])); ?></small></p>
-               <p><?php echo $row['konten_berita']; ?></p>
+           <div class="col-md-8 d-flex flex-column">
+          <h3><?php echo $row['judul_berita']; ?></h3>
+          <p><small class="text-muted"><?php echo date('d-m-Y', strtotime($row['tgl_berita'])); ?></small></p>
+          <p class="overflow-hidden text-truncate text-break" style="max-height: 4.5rem;">
+              <?php echo $row['konten_berita']; ?>
+          </p>
+          <div class="mt-auto text-end">
+              <button class="btn btn-outline-warning btn-md" data-bs-toggle="modal" data-bs-target="#beritaModal<?php echo $id_berita; ?>">Read More</button>
+          </div>
+        </div>
+       </div>
+
+       <!-- Modal -->
+       <div class="modal fade" id="beritaModal<?php echo $id_berita; ?>" tabindex="-1" aria-labelledby="beritaModalLabel<?php echo $id_berita; ?>" aria-hidden="true">
+           <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <h5 class="modal-title" id="beritaModalLabel<?php echo $id_berita; ?>"><?php echo $row['judul_berita']; ?></h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                   </div>
+                   <div class="modal-body">
+                       <img src="<?php echo $foto_path; ?>" class="img-fluid mb-3 rounded" alt="Berita">
+                       <p><small class="text-muted"><?php echo date('d-m-Y', strtotime($row['tgl_berita'])); ?></small></p>
+                       <p><?php echo nl2br($row['konten_berita']); ?></p>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                   </div>
+               </div>
            </div>
        </div>
 <?php
    }
    echo '</div>';
 } else {
-   echo "<p>Tidak ada berita tersedia.</p>";
+   echo "<p class='text-center'>Tidak ada berita tersedia.</p>";
 }
 ?>
 
 
-<h4 class="mt-5 pt-5 text-center fw-bold h-font">Galeri</h4>
+<h3 class="mt-5 pt-5 text-center fw-bold h-font">Galeri</h3>
 
 <?php 
 $sql = "SELECT keterangan_foto, nama_foto FROM galeri";
 $result = $db->query($sql);
 
-
-if($result->num_rows > 0){
-  echo '<div class="container mt-4">';
-
-  while($row = $result ->fetch_assoc()){
-      $foto_path = '../admin/img_galeri/' . $row['nama_foto'];
-
+if ($result->num_rows > 0): ?>
+  <div class="container mt-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <?php while ($row = $result->fetch_assoc()):
+        $foto_path = '../admin/img_galeri/' . $row['nama_foto'];
       ?>
-    <div class="row mb-4 shadow rounded">
-       <div class="col-md-4">
-        <img src="<?php echo $foto_path; ?>" class="img-fluid" alt="foto galeri">
-       </div>
-       <div class="col-md-8">
-        <p><?php echo $row['keterangan_foto'] ?></p>
-       </div>
+      <div class="col">
+        <div class="card shadow-sm rounded">
+          <img src="<?php echo htmlspecialchars($foto_path); ?>" class="card-img-top" alt="Galeri Foto">
+          <div class="card-body text-center">
+            <p class="card-text"><?php echo htmlspecialchars($row['keterangan_foto']); ?></p>
+          </div>
+        </div>
+      </div>
+      <?php endwhile; ?>
     </div>
+  </div>
+<?php else: ?>
+  <p class="text-center text-muted">Tidak ada Galeri tersedia.</p>
+<?php endif; ?>
 
-
-<?php 
-  }
-  echo '</div>';
-}else{
-  echo "<p>Tidak ada Galeri tersedia.</p>";
-}
-
-?>
 
 
 
@@ -550,6 +575,8 @@ if($result->num_rows > 0){
         </div>   
     </div>
 </div>
+
+
 
 
     <h2 class="mt-5 pt-5 text-center fw-bold h-font">Reach Us</h2>
@@ -588,8 +615,9 @@ if($result->num_rows > 0){
               <i class="bi bi-youtube me-1"></i> Youtube
               </span>
             </a>
+            <br>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kritikSaranModal">
-              Kirim Kritik dan Saran
+              Kirim Feedback
         </button>
 
 <!-- Modal -->
@@ -625,42 +653,44 @@ if($result->num_rows > 0){
         </div>
   
 
-    <!-- Form Kritik dan Saran di sebelah peta -->
-  
-  
+          <!-- toast -->
+          <h3 class="mb-5 fw-bold h-font text-center mt-5 pt-5">Curhat Para User</h3>
+      
 
-<!-- Modal -->
-<!-- <div class="modal fade" id="kritikSaranModal" tabindex="-1" aria-labelledby="kritikSaranModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="kritikSaranModalLabel">Form Kritik dan Saran</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<?php
+$sql =  "SELECT user.email, saran.judul_saran, saran.detail_saran
+                          FROM saran
+                          JOIN user ON saran.id_user = user.id_user
+                          ORDER BY saran.judul_saran ASC
+                          LIMIT 6";
+      $result = mysqli_query($db, $sql);?>
+
+<?php if (mysqli_num_rows($result) > 0): ?>
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+  <div 
+    id="toastPlacement" 
+    class="d-flex flex-wrap justify-content-start gap-3 p-3" 
+    style="z-index: 1050;">
+    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto"><?= htmlspecialchars($row['email']); ?></strong>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form method="POST" action="simpan_kritik.php">  Ubah action ke file PHP untuk menyimpan data -->
-          <!-- <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" placeholder="Masukkan Email" required>
-          </div>
-          <div class="mb-3">
-            <label for="judulSaran" class="form-label">Judul Saran</label>
-            <input type="text" class="form-control" name="judul_saran" placeholder="Masukkan Judul Saran Anda" required>
-          </div>
-          <div class="mb-3">
-            <label for="kritikSaran" class="form-label">Detail Saran</label>
-            <textarea class="form-control"  name="detail_saran" rows="3" placeholder="Masukkan Kritik dan Saran Anda" required></textarea>
-          </div>
-          <button type="submit" name="submit" class="btn btn-primary">Kirim</button>
-        </form>
+      <div class="toast-body">
+        <h6 class="fw-bold"><?= htmlspecialchars($row['judul_saran']); ?></h6>
+        <p><?= htmlspecialchars($row['detail_saran']); ?></p>
       </div>
     </div>
+    <?php endwhile; ?>
   </div>
-</div> -->
+</div>
+<?php 
+else: 
+  echo "<p class='text-center text-muted'>Tidak ada saran yang tersedia.</p>";
+endif;
+?>
 
   </main>
 
@@ -717,10 +747,34 @@ if($result->num_rows > 0){
 
 </footer>
 
+
+          <!-- toast saran -->
+      <script> 
+            document.addEventListener('DOMContentLoaded', () => {
+            const selectToastPlacement = document.getElementById('selectToastPlacement');
+            const toastPlacementContainer = document.getElementById('toastPlacement');
+
+            if (selectToastPlacement && toastPlacementContainer) {
+                selectToastPlacement.addEventListener('change', (event) => {
+                    const positionClass = event.target.value;
+
+                    
+                    toastPlacementContainer.className = 'toast-container p-3';
+
+                    if (positionClass) {
+                        toastPlacementContainer.classList.add(positionClass);
+                    }
+                });
+            } else {
+                console.warn('Toast placement elements are not found in the DOM.');
+            }
+        });
+  </script>
+
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
         ></script>
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></scrip>
+         
           <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"

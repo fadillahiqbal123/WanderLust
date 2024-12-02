@@ -44,12 +44,23 @@
                     height: 1.7px;
                 }
 
-                .pop:hover{
-                    border-top-color: #28a745;
-                    transform: scale();
-                    transition: all 0.3s;
+                .pop{
+                    border-radius: 5px;
+                    border: 1px;
+                    padding-top: 10px;
+                    border-top: 4px solid #000 !important; 
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+                    transition: transform 0.3s ease;
+                    margin: 0 15px;
+                    transition:all 0.3 ease;
                 }
-
+                .pop:hover {
+                    border: 1px;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+                    border-top-color: #007bff !important; 
+                    transform: scale(1.03);
+                    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); 
+    }
            
             </style>
     </head>
@@ -158,6 +169,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

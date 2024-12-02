@@ -85,7 +85,7 @@ if (isset($_POST['register']) || isset($_POST['login'])) {
             } else {
                 echo "<script>
                     alert('Login Gagal! Password salah. Silakan coba lagi.');
-                    window.location = 'index.php';
+                    window.location = 'gagal_login.php';
                 </script>";
             }
         } else {

@@ -79,10 +79,10 @@ session_start();
             <input for="password" type="password" name="password" placeholder="Password" required
             value = "<?php echo (isset($_COOKIE["password"])) ? $_COOKIE['password']: '' ?>">
 
-            <div class="form-group" style="width: 10px; align-items: center;">
+            <div class="form-group" style="display:flex; width: 16px; align-items: center; margin-bottom: 1rem;">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember"
-            <?php echo ((isset($_COOKIE["email"])) and (isset($_COOKIE["password"]))) ? "checked": "" ?>>
-            <label class="form-cek-label" for="exampleCheck1" style="font-size: 12px; line-height: 1; margin: 0; cursor: pointer;">Remember Me</label>
+                <?php echo ((isset($_COOKIE["email"])) and (isset($_COOKIE["password"]))) ? "checked": "" ?>>
+            <label class="form-check-label" for="exampleCheck1" style="font-size: 12px; white-space: nowrap;">Remember Me</label>
             </div>
 
             
@@ -101,7 +101,7 @@ session_start();
             <div class="modal-body">
                 <form method="POST" action="ForgotPassword.php">
                     <div class="mb-3">
-                        <label for="emailReset" class="form-label" style="text-center fw-bold h-font">Inputkan Email Anda</label>
+                        <label for="emailReset" class="form-label" style="text-align: center; font-weight: bold; font-family: h-font;">Inputkan Email Anda</label>
                         <input type="email" class="form-control" id="emailReset" name="email" placeholder="example@gmail.com" required>
                     </div>
                     <button type="submit" class="btn btn-primary" name="submit_email">Kirim</button>

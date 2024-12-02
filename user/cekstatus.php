@@ -106,19 +106,25 @@ include "koneksi.php";
                                 <td></td>
                                 <td><?php echo $row->id_pesan; ?></td>
                                 <td><?php echo $row->alamat; ?> - <?php echo $row->nama_destinasi; ?></td>
-                                <td><?php echo $row->tgl_berangkat; ?> | <?php echo $row->jam_berangkat; ?></td>
+                                <td><?php echo date('d-m-Y', strtotime($row->tgl_berangkat)); ?> | <?php echo $row->jam_berangkat; ?></td>
                                 <td>Rp. <?php echo number_format($row->harga, 0, ',', '.'); ?>,00</td>
                                 <td>
-                                    <?php 
-                                    if ($row->status == "Belum Bayar") { 
-                                        echo "<a href='konfirmasipembayaran.php?&idp=$id_pesan' class='btn btn-danger'> $row->status</a>";
-                                    } elseif ($row->status == "Dalam Proses") { 
-                                        echo "<a href='#' class='btn btn-primary disabled'> $row->status</a>";
-                                    } else {
-                                        echo "<a href='#' class='btn btn-success disabled'> $row->status</a>";
-                                    } 
-                                    ?>
-                                </td>
+                                        <?php 
+                                        if ($row->status == "Belum Bayar") { 
+                                            echo "<a href='konfirmasipembayaran.php?&idp=$id_pesan' class='btn btn-danger'>
+                                                    <i class='fas fa-times-circle'></i> $row->status
+                                                </a>";
+                                        } elseif ($row->status == "Dalam Proses") { 
+                                            echo "<a href='#' class='btn btn-primary disabled'>
+                                                    <i class='fas fa-hourglass-half'></i> $row->status
+                                                </a>";
+                                        } else { 
+                                            echo "<a href='#' class='btn btn-success disabled'>
+                                                    <i class='fas fa-check-circle'></i> $row->status
+                                                </a>";
+                                        } 
+                                        ?>
+                                    </td>
                                 <td>
                                     <?php  
                                     if ($row->status == "Belum Bayar") { 
@@ -129,7 +135,9 @@ include "koneksi.php";
                                 <td>
                                     <?php
                                     if (trim(strtolower($row->status)) == "lunas") { 
-                                        echo "<a href='cetak_tiket.php?id_pesan=$id_pesan&id_user={$row->id_user}' class='btn btn-secondary' target='_blank'>Cetak ID: $id_pesan</a>";
+                                        echo "<a href='cetak_tiket.php?id_pesan=$id_pesan&id_user={$row->id_user}' class='btn btn-secondary' target='_blank' title='Cetak Tiket'>
+                                                <i class='fas fa-file-pdf'></i>
+                                            </a>";
                                     } else {
                                         echo "<span class='text-muted'>Tidak tersedia</span>";
                                     }
