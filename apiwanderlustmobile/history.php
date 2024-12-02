@@ -1,5 +1,5 @@
 <?php
-include '../koneksi.php';
+include 'koneksi.php';
 
 header('Content-Type: application/json');
 
@@ -28,32 +28,30 @@ if ($result->num_rows === 0) {
 }
 $stmt->close();
 
-$sql = "SELECT id_berita, judul_berita, tgl_berita, konten_berita, foto_berita FROM berita ORDER BY id_berita DESC";
+$sql = "SELECT keterangan_foto, nama_foto FROM galeri";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
-    $berita_list = array();
+    $galeri_list = array();
 
     while ($row = $result->fetch_assoc()) {
-        $foto_path = 'http://172.20.144.1/wanderlust/admin/img_berita/' . $row['foto_berita'];
+        $foto_path = 'http://172.20.144.1/wanderlust/admin/img_galeri/' . $row['nama_foto'];
 
-        $berita_list[] = array(
-            "judul_berita" => $row['judul_berita'],
-            "tgl_berita" => date('d-m-Y', strtotime($row['tgl_berita'])),
-            "konten_berita" => $row['konten_berita'],
-            "foto_berita" => $foto_path
+        $galeri_list[] = array(
+            "keterangan_foto" => $row['keterangan_foto'],
+            "nama_foto" => $foto_path
         );
     }
 
     echo json_encode(array(
         "status" => "berhasil",
-        "message" => "Data berita berhasil diambil.",
-        "data" => $berita_list
+        "message" => "Data galeri berhasil diambil.",
+        "data" => $galeri_list
     ));
 } else {
     echo json_encode(array(
         "status" => "gagal",
-        "message" => "Tidak ada berita tersedia."
+        "message" => "Tidak ada galeri tersedia."
     ));
 }
 
