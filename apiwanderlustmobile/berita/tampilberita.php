@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
     $berita_list = array();
 
     while ($row = $result->fetch_assoc()) {
-        $foto_path = 'http://172.20.144.1/wanderlust/admin/img_berita/' . $row['foto_berita'];
+        $foto_path = 'http://172.22.32.1/wanderlust/admin/img_berita/' . $row['foto_berita'];
 
         $berita_list[] = array(
             "judul_berita" => $row['judul_berita'],

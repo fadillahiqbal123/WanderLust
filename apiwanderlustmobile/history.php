@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
     $galeri_list = array();
 
     while ($row = $result->fetch_assoc()) {
-        $foto_path = 'http://172.20.144.1/wanderlust/admin/img_galeri/' . $row['nama_foto'];
+        $foto_path = 'http://172.22.32.1/wanderlust/admin/img_galeri/' . $row['nama_foto'];
 
         $galeri_list[] = array(
             "keterangan_foto" => $row['keterangan_foto'],

@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo json_encode(array(
             "status" => "gagal",
-            "message" => "Email tidak ditemukan."
+            "message" => "Email tidak ditemukan/isi email dan password dengan benar!"
         ));
     }
 
